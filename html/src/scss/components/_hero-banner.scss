@@ -1,0 +1,84 @@
+.hero-banner-wrap {
+  position: relative;
+  .container {
+    position: relative;  
+  }
+  .big, .small {
+    border-radius: 20px;
+    transform: rotate(45deg);
+    position: absolute;
+    opacity: 0.2
+  }
+
+  .small {
+    width: 140px;
+    height: 140px;
+    @include use-theme(background-color, $palette-primary-light, $palette-primary-dark);
+  }
+
+  .big {
+    width: 200px;
+    height: 200px;
+    @include use-theme(background-color, $palette-secondary-light, $palette-secondary-dark);
+  }
+
+  .left-deco {
+    position: absolute;
+    left: 0;
+    top: 200px;
+    .big {
+      left: 80px;
+      top: 200px;
+    }
+    .small {
+      left: 0px;
+      top: 130px;
+    }
+  }
+
+  .deco-wrap {
+    width: 100%;
+    height: 100%;
+  }
+
+  .deco {
+    border-radius: 80px;
+    transform: rotate(45deg);
+    position: absolute;
+    opacity: 0.3;
+    &.top {
+      @include use-theme(background-color, $palette-primary-light, $palette-primary-dark);
+      width: 800px;
+      height: 800px;
+      &.s1 {
+        top: -400px;
+        right: -250px;
+      }
+      &.s2 {
+        top: -400px;
+        left: -250px;
+      }
+      &.s3 {
+        top: -360px;
+        left: 150px;
+      }
+    }
+    &.bottom {
+      @include use-theme(background-color, $palette-secondary-light, $palette-secondary-dark);
+      width: 790px;
+      height: 815px;
+      &.s1 {
+        top: -390px;
+        right: -240px;
+      }
+      &.s2 {
+        top: -390px;
+        left: -240px;
+      }
+      &.s3 {
+        top: -360px;
+        left: 150px;
+      }
+    }
+  }
+}

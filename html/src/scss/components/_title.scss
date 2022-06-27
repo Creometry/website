@@ -1,0 +1,111 @@
+@mixin title-base {
+  text-transform: capitalize;
+  font-weight: bold;
+  margin-bottom: 40px !important;
+  position: relative;
+}
+
+.title-primary {
+  .theme--dark & {
+    color: $palette-primary-light
+  }
+  .theme--light & {
+    color: $palette-primary-dark
+  }
+  font-size: 48px;
+  line-height: 62px;
+  @include breakpoints-down(md) {
+    font-size: 38px;
+    line-height: 50px
+  }
+  @include breakpoints-down(sm) {
+    text-align: center;
+    margin-bottom: $spacing4
+  }
+  @include breakpoints-down(xs) {
+    font-size: 32px;
+    line-height: 42px
+  }
+  @include title-base;
+}
+
+.title-secondary {
+  color: $palette-secondary-dark;
+  font-size: 48px;
+  line-height: 62px;
+  @include breakpoints-down(md) {
+    font-size: 38px;
+    line-height: 50px
+  }
+  @include breakpoints-down(xs) {
+    font-size: 32px;
+    line-height: 42px
+  }
+  @include title-base;
+}
+
+.title-deco {
+  position: relative;
+  h3 {
+    color: $palette-common-white;
+    width: 120px;
+    position: relative;
+    text-transform: capitalize;
+    @include padding-left(20px);
+    font-size: 48px;
+    font-Weight: 700;
+    line-height: 62px;
+    @include breakpoints-up(lg) {
+      height: 160px;
+      @include margin-left($spacing3);
+    }
+    @include breakpoints-up(md) {
+      padding-top: 40px;
+      margin-top: $spacing10;
+    }
+    @include breakpoints-between(md, lg) {
+      @include margin-left($spacing7)
+    }
+    @include breakpoints-down(md) {
+      font-size: 38px;
+      line-height: 50px
+    }
+    @include breakpoints-down(sm) {
+      @include padding-left(0);
+      .theme--dark & {
+        color: $palette-primary-light
+      }
+      .theme--light & {
+        color: $palette-primary-dark
+      }
+      width: auto;
+      text-align: center;
+    }
+    @include breakpoints-down(xs) {
+      font-size: 32px;
+      line-height: 42px
+    }
+  }
+  &:before {
+    content: "";
+    width: 210px;
+    height: 210px;
+    background: $palette-primary-main;
+    border-radius: 24px;
+    position: absolute;
+    top: 0;
+    @include left(0);
+    [dir="ltr"] & {
+      transform: rotate(-45deg);
+    }
+    [dir="rtl"] & {
+      transform: rotate(45deg);
+    }
+    @include breakpoints-down(md) {
+      @include left($spacing3)
+    }
+    @include breakpoints-down(sm) {
+      display: none;
+    }
+  }
+}

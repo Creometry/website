@@ -1,0 +1,15 @@
+include ../cards/profile-card
+
+.about-style
+  .bg-wrapper.team-root
+    .container
+      h4.use-text-title2.use-text-primary.mb-3
+        | #{$t.common.about_team}
+      p.use-text-subtitle2
+        | Vestibulum faucibus eget erat eget pretium. Donec commodo convallis eget suscipit orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    .carousel.mt-12
+      .team-carousel#about_team_carousel
+        - var n = 0
+        while n < 6
+          .item.px-3(data-key=n++)
+            +profile-card(imgAPI.photo[40+n], imgAPI.avatar[n], 'John Dalton', 'Web Designer', 100, 10, 12, 'over', 'landscape')

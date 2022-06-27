@@ -1,0 +1,96 @@
+include ../cards/testi-card
+include ./slider-art
+
+-
+  var testiContent = [
+    {
+      text: 'The team is transparent & focuses on continual improvement based on the ideal methodology.',
+      avatar: imgAPI.avatar[10],
+      name: 'John Doe',
+      title: 'Chief Digital Officer',
+      rating: 5
+    },
+    {
+      text:
+        'The services has gone above and beyond the traditional engagement of vendors.',
+      avatar: imgAPI.avatar[1],
+      name: 'Jean Doe',
+      title: 'Chief Digital Officer',
+      rating: 4
+    },
+    {
+      text:
+        'It\'s been a wonderful experience! I am pleased with the services.',
+      avatar: imgAPI.avatar[2],
+      name: 'Jena Doe',
+      title: 'Graphic Designer',
+      rating: 4
+    },
+    {
+      text: 'Sed imperdiet enim ligula, vitae viverra justo porta vel.',
+      avatar: imgAPI.avatar[3],
+      name: 'Jovelin Doe',
+      title: 'Senior Graphic Designer',
+      rating: 3
+    },
+    {
+      text:
+        'The app was rated #1 on local app stores and did not receive any negative comments.',
+      avatar: imgAPI.avatar[4],
+      name: 'Jihan Doe',
+      title: 'CEO Software House',
+      rating: 5
+    },
+    {
+      text:
+        'We appreciate their proactive approach to suggest improvements to a prospective solution.',
+      avatar: imgAPI.avatar[6],
+      name: 'Jovelin Doe',
+      title: 'Senior Graphic Designer',
+      rating: 5
+    },
+    {
+      text:
+        'For accelerated project timelines which require skilled resources, this is a company that your team should consider.',
+      avatar: imgAPI.avatar[7],
+      name: 'Jerry Doe',
+      title: 'Senior Graphic Designer',
+      rating: 4
+    },
+    {
+      text: 'The team has been delivering results within budget and time. I am absolutely satisfied with the quality of their services.',
+      avatar: imgAPI.avatar[10],
+      name: 'Jack Doe',
+      title: 'Chief Digital Officer',
+      rating: 5
+    },
+    {
+      text:
+        'I am particularly impressed by the cooperative nature of the team, so we saw no need to look for other vendors',
+      avatar: imgAPI.avatar[1],
+      name: 'Jean Doe',
+      title: 'Chief Digital Officer',
+      rating: 4
+    }
+  ]
+
+
+// #### TESTIMONIALS ####
+.root
+  .container.carousel-header
+    h4.title-primary
+      | #{$t.agency_landing.testimonial_title}
+  .carousel
+    .slick-carousel#testimonial_carousel(data-length=testiContent.length)
+      each item in testiContent
+        .item
+          +testimonial-card(item.avatar, item.title, item.name, item.text, item.rating)
+      .item.show-lg-up
+        .item-props-last
+  .floating-artwork
+    .container.fixed-width
+      .artwork
+        +slider-art('testimonials')
+          .wow.fadeInLeftShort(data-wow-ffset='-60' data-wow-delay='0.3s' data-wow-duration='0.5s')
+            img.img-2d3d(src=img_assets+img_artwork[19] data-2d=img_assets+img_artwork[18] data-3d=img_assets+img_artwork[19] alt='services 3d')
+// #### END TESTIMONIALS ####

@@ -1,0 +1,10 @@
+case cornerType
+  when 'chat'
+    include ./chat
+  when 'nav'
+    include ./page-nav
+  default
+    #corner-chat.corner-component.active
+      include ./chat
+    #corner-nav.corner-component
+      include ./page-nav

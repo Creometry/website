@@ -1,0 +1,113 @@
+.footer-sitemap {
+  position: relative;
+  @include breakpoints-up(sm) {
+    padding-bottom: $spacing5;
+  }
+  .title {
+    text-transform: capitalize;
+    @include use-theme(color, $palette-primary-dark, $palette-primary-light);
+  }
+  .link {
+    margin: spacing(1, 1.5);
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      list-style: none;
+      line-height: 32px;
+      a {
+        @include palette-text-secondary;
+        text-decoration: none;
+      }
+    }
+  }
+  .logo-area {
+    @include breakpoints-down(sm) {
+      text-align: center;
+    }
+  }
+  .body-2 {
+    @include palette-text-secondary;
+    margin: spacing(2, 0)
+  }
+  .collapsible {
+    border: none;
+    box-shadow: none;
+  }
+  .collapsible-header {
+    background: none;
+    box-shadow: none;
+    border: none;
+  }
+  .logo {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    @include breakpoints-up(md) {
+      margin-top: $spacing4;
+    }
+    @include breakpoints-down(sm) {
+      justify-content: center;
+    }
+    img {
+      width: 54px;
+      height: 54px;
+      @include margin-right($spacing2)
+    }
+  }
+  .socmed {
+    display: flex;
+    justify-content: center;
+    .btn {
+      margin: $spacing1;
+      @include use-theme(background-color, $light-divider, $dark-divider);
+    }
+    .icon {
+      width: 24px;
+      height: 24px;
+      font-size: 24px;
+      color: $palette-primary-main;
+    }
+  }
+  .select-lang {
+    margin: 0 auto;
+    width: 200px;
+    display: inherit;
+    margin-top: $spacing2;
+    input {
+      box-shadow: 0 1.5px 12px 2px rgba(0, 0, 0, 0.06);
+      .theme--dark & {
+        color: $palette-primary-light;
+        border-color: $palette-primary-light
+      }
+      .theme--light & {
+        color: $palette-primary-dark;
+        border-color: $palette-primary-main
+      }
+    }
+  }
+  .site-map-item {
+    @include breakpoints-down('md') {
+      padding-bottom: 0 !important;
+      padding-top: 0 !important
+    }
+  }
+  .accordion-root {
+    background: none;
+    box-shadow: none
+  }
+  #main-wrap .accordion-content.v-expansion-panel {
+    background-color: transparent;
+    &:before, &:after {
+      display: none
+    }
+  }
+  .accordion-icon {
+    padding: 0
+  }
+  .collapsible-body {
+    border-bottom: none;
+    margin-bottom: $spacing2
+  }
+}

@@ -1,0 +1,17 @@
+#slide_menu.sidenav.mobile-nav
+  ul.collection
+    each item in menu.agency
+      li.collection-item
+        a.sidenav-close.waves-effect.menu-list(href='#' + item.name)
+          | #{$t.agency_landing['header_' + item.name]}
+  .dropdown-divider
+  .collection
+      ul
+        each item in ['login', 'register']
+          li.collection-item
+            |
+            |
+            a.sidenav-close.waves-effect.menu-list(href=link.agency[item])
+              | #{$t.common[item]}
+            |
+            |

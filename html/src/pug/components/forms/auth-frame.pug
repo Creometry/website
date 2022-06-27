@@ -1,0 +1,28 @@
+block variables
+
+.form-style
+  .page-wrap
+    .container.inner-wrap
+      .auth-frame
+        .row.mb-0
+          .col-md-6.px-lg-6.px-2
+            .card.form-box.fragment-fadeUp
+              .form-wrap
+                block auth_content
+          .col-md-6
+            .hidden-sm-down
+              .greeting
+                h4.use-text-title2.use-text-primary.pb-2 #{title}
+                h6.use-text-subtitle2 #{subtitle}
+                .img
+                  .deco
+                    .big
+                    .small
+                  |
+                  |
+                  if type === 'login'
+                    img(src=img_assets+img_artworkInner[3] data-2d=img_assets+img_artworkInner[2] data-3d=img_assets+img_artworkInner[3] class='img-2d3d' alt='login')/
+                  else
+                    img(src=img_assets+img_artworkInner[5] data-2d=img_assets+img_artworkInner[4] data-3d=img_assets+img_artworkInner[5] class='img-2d3d' alt='registes')/
+                  |
+                  |

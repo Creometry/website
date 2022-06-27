@@ -1,0 +1,154 @@
+$frame-deco: '../images/decoration/frame-deco.png';
+
+/* Case Studies Card */
+.case-card {
+  box-shadow: none;
+  max-height: 375px;
+  height: auto !important;
+  border-radius: 24px;
+  margin-bottom: $spacing3;
+  overflow: hidden;
+  position: relative;
+  text-transform: none !important;
+  padding: 0 !important;
+  background: $palette-secondary-light !important;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include breakpoints-up(lg) {
+    min-height: 148px
+  }
+  .figure {
+    margin: 0;
+    display: inline-block;
+    width: 100%;
+    img {
+      width: 100%;
+      left: -1px;
+      position: relative;
+    }
+  }
+  .title {
+    line-height: 22px;
+    font-size: 1.25rem;
+    font-weight: 500
+  }
+  .logo {
+    display: block;
+    position: relative;
+    img {
+      width: 100%;
+      z-index: 1;
+    }
+  }
+  &.small {
+    .title {
+      text-align: center;
+    }
+    .logo {
+      margin: -16px auto 16px !important
+    }
+    .property {
+      text-align: center !important;
+      bottom: 0 !important;
+      .title {
+        display: block;
+      }
+    }
+    .figure {
+      @include breakpoints-down(xs) {
+        width: 100%
+      }
+    }
+  }
+  &.big {
+    .property {
+      bottom: 0px;
+      @include breakpoints-down(md) {
+        text-align: center;
+        bottom: 0
+      }
+    }
+  }
+  &:hover {
+    .property {
+      @include breakpoints-up(lg) {
+        background: $palette-primary-main;
+        height: 100%;
+        bottom: 0px;
+        opacity: 1;
+        p {
+          opacity: 1;
+          bottom: 0
+        }
+      }
+    }
+  }
+  .property {
+    transition: all 0.3s ease-out;
+    position: absolute;
+    width: 100%;
+    height: 150%;
+    min-height: 170px;
+    padding: $spacing3 $spacing2;
+    bottom: 0;
+    @include text-align(left);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    @include left(0);
+    color: $palette-common-white;
+    z-index: -1;
+    background: linear-gradient(to bottom, rgba(238, 238, 238, 0) 20%, #000 90%);
+    .desc {
+      font-weight: $font-regular;
+      font-size: 16px;
+      white-space: normal
+    }
+    @include breakpoints-down(md) {
+      padding: $spacing1;
+      text-align: center;
+      bottom: 0;
+      .desc {
+        display: none
+      }
+    }
+    .title {
+      white-space: normal;
+      @include breakpoints-up(lg) {
+        display: flex
+      }
+    }
+    .logo {
+      width: 64px;
+      height: 64px;
+      background: url($frame-deco) no-repeat;
+      padding: $spacing2;
+      text-align: center;
+      @include margin-right($spacing2);
+      background-size: 100%;
+      @include breakpoints-down(md){
+        display: none;
+      }
+      img {
+        display: block
+      }
+    }
+    h6 {
+      color: $palette-common-white;
+      margin-bottom: $spacing2;
+      line-height: 22px
+    }
+    &.full-hide {
+      background: none;
+      opacity: 0;
+    }
+    p {
+      opacity: 0;
+      transition: bottom 0.5s ease-out;
+      position: relative;
+      bottom: -20px
+    }
+  }
+}

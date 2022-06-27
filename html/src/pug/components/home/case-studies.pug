@@ -1,0 +1,87 @@
+-
+  var categories = [
+    "corporate",
+    "advertising",
+    "marketing",
+    "government",
+    "creative"
+  ]
+  var caseData = [
+    {
+      bg: img_artwork[9],
+      logo: '/images/logos/cloud.png',
+      title: 'Building Inspectors',
+      desc: 'Responsible for inspecting buildings',
+      size: 'big'
+    },
+    {
+      bg: img_artwork[8],
+      logo: '/images/logos/fashion.png',
+      title: 'Car Seat Clip',
+      desc: 'Powering many of the personal computers',
+      size: 'big'
+    },
+    {
+      bg: img_artwork[5],
+      logo: '/images/logos/mobile.png',
+      title: 'Indoor Solution',
+      desc: 'Solutions for the retail industry',
+      size: 'medium'
+    },
+    {
+      bg: img_artwork[6],
+      logo: '/images/logos/profile.png',
+      title: 'Media Asset Management',
+      desc: 'Builds advanced media asset',
+      size: 'medium'
+    },
+    {
+      bg: img_artwork[7],
+      logo: '/images/logos/architect.png',
+      title: 'Investment Evolution',
+      desc: 'Global fintech in consumer loans',
+      size: 'medium'
+    }
+  ]
+
+include ../cards/case-card.pug
+
+.root
+  .container.max-width-md
+    .row.spacing6
+      //
+        .col-md-3.px-10.pt-10.pb-md-10
+          .wow.fadeInLeftShort(data-offset="-100" data-delay="0.2s" data-duration="0.3s")
+            .side-filter
+              h4.title-primary #{$t.agency_landing.case_title}
+              ul.collection.nav#case_categories
+                each item, index in categories
+                  li.collection-item.filter(class=index === 1 && "active")
+                    a.waves-effect #{item}
+      //.col-md-9.pa-sm-6
+      .col-md-12.px-10
+        h4.title-primary.mb-0 #{$t.agency_landing.case_title}
+      .col-md-12.pa-sm-6
+        .massonry
+          .row#case_gallery
+            .col-sm-8.pa-3
+              .wow.fadeInUpShort(data-wow-delay="0.6s" data-wow-duration="0.4s")
+                each item in caseData
+                  if item.size === "big"
+                    div.item
+                      - var bg = item.bg || ""
+                      - var simple = item.simple || ""
+                      |
+                      |
+                      +case-card(bg, assets+item.logo, item.title, item.desc, item.size, simple)
+            // .col-sm-6.col-md-5.pa-3
+            .col-sm-4.pa-3
+              .wow.fadeInUpShort(data-wow-delay="0.4s" data-wow-duration="0.4s")
+                each item in caseData
+                  if item.size === "medium"
+                    div.item
+                      - var bg = item.bg || ""
+                      - var simple = item.simple || ""
+                      |
+                      |
+                      +case-card(bg, assets+item.logo, item.title, item.desc, item.size, simple)

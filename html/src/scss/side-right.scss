@@ -1,0 +1,366 @@
+/*
+** RTL Mixins including margin, pading, position, border and border radius
+** See documentation https://www.npmjs.com/package/rtl-sass
+*/
+@import './vendors/rtl-sass/rtl';
+
+// Custom variable
+@import './utils/variables';
+
+// Custom mixins
+@import './utils/mixins';
+
+// Custom functions
+@import './utils/functions';
+
+// Custom media queries
+@import './utils/media-queries';
+
+
+.btn-float-opt {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  right: 10px;
+  top: 32%;
+  z-index: 9999;
+  border-radius: 8px;
+  @include shadow4;
+  padding: 4px;
+  border: 1px solid;
+  border-color: $palette-primary-main;
+  @include use-theme(background, rgba(255, 255, 255, 0.95), rgba(66, 66, 66, 0.8));
+  background: rgba(255, 255, 255, 0.6);
+  transition: right 0.3s ease-out;
+  @include breakpoints-down(xs) {
+    top: 45%
+  }
+  &.active {
+    right: 610px;
+    border: none
+  }
+  button.btn {
+    padding: 12px !important;
+    width: 56px;
+    background: inherit;
+    height: 56px;
+    border-radius: 50%;
+    background: none;
+    @include breakpoints-down(xs) {
+      padding: 8px !important;
+      width: 40px;
+      height: 40px;
+    }
+    i {
+      font-size: 32px;
+      @include palette-text-secondary;
+      @include breakpoints-down(xs) {
+        font-size: 18px;
+        line-height: 26px !important;
+      }
+    }
+  }
+}
+
+.sidenav-opt.drawer-opt {
+  z-index: 1201;
+  @include use-theme(background, rgba(255, 255, 255, 0.95), rgba(66, 66, 66, 0.8));
+  right: 0;
+  left: auto;
+  transform: translateX(105%);
+  position: fixed;
+  top: 0;
+  margin: 0;
+  height: calc(100% + 60px);
+  padding-bottom: 60px;
+  overflow-y: auto;
+  will-change: transform;
+  backface-visibility: hidden;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12), 0 1px 5px 0 rgba(0,0,0,.2);
+  width: auto;
+  @include breakpoints-down(xs) {
+    width: 100%
+  }
+  .btn-icon {
+    position: absolute;
+    width: 36px;
+    left: $spacing1;
+    top: 10px;
+    z-index: 90;
+    i {
+      margin: 0;
+      line-height: 36px;
+    }
+  }
+  .tabs {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+    @include palette-background-paper;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    @include breakpoints-down(xs) {
+      padding-left: 64px;
+    }
+    .tab {
+      height: auto;
+      a {
+        padding: spacing(0.5, 3);
+        line-height: normal;
+      }
+      a.active i{
+        color: $palette-primary-main
+      }
+      i {
+        display: block;
+        margin-bottom: $spacing1;
+        top: 6px;
+        position: relative;
+      }
+    }
+  }
+  .indicator {
+    background-color: $palette-primary-main
+  }  
+  .carousel-item {
+    -webkit-transition: auto;
+    -o-transition: auto;
+    transition: auto;
+  }
+  
+  .tabs-content {
+    overflow: auto;
+    height: calc(100% - 100px) !important;
+    position: absolute;
+    display: block;
+    margin-top: $spacing5;
+  }
+
+  .tab-label {
+    font-weight: bold
+  }
+  
+  .tab-item {
+    width: 100% !important;
+    padding: spacing(10, 2, 5)
+  }
+
+  .paper {
+    padding: $spacing2;
+    border-radius: 10px !important;
+    .row {
+      width: 100%;
+    }
+  }
+
+  .opt-wrap {
+    width: 600px;
+    overflow: hidden;
+    height: 100%;
+    overflow: auto;
+    @include breakpoints-down(xs) {
+      width: 100%
+    }
+    .carousel.carousel-slider .carousel-item,
+    .carousel .carousel-item {
+      left: 0;
+      margin-right: -100%;
+      right: auto;
+      margin-left: 0;
+    }
+  }
+
+  .wrapper {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .theme-switched {
+    margin-bottom: $spacing3;
+    h6 {
+      margin-bottom: $spacing1;
+    }
+    label {
+      line-height: 40px
+    }
+  }
+
+  .thumb-switch {
+    background-color: $palette-secondary-main
+  }
+
+  .track-switch {
+    background-color: $palette-secondary-main
+  }
+
+  .swatch {
+    height: auto !important;
+    width: 100% !important;
+    min-width: auto !important;
+    position: relative;
+    text-align: center;
+    border: 3px solid;
+    @include use-theme(border-color, $palette-common-white, $dark-background-paper);
+    border-radius: 10px;
+    &.active {
+      box-shadow: 0 0 0 2px $palette-primary-main
+    }
+  }
+
+  .primary-swatch {
+    width: 100%;
+    height: 100px;
+    display: block;
+    border-radius: 10px;
+  }
+
+  .secondary-swatch {
+    width: 60px;
+    height: 60px;
+    display: block;
+    position: absolute;
+    border-radius: 50px;
+    right: 0;
+    top: 40%
+  }
+
+  .accent-swatch {
+    width: 20px;
+    height: 20px;
+    display: block;
+    position: absolute;
+    border-radius: 4px;
+    right: 0;
+    top: 80%
+  }
+
+  .theme-color {
+    .row > div {
+      text-align: center
+    }
+    h6 {
+      margin-bottom: $spacing1
+    }
+  }
+
+  .explore {
+    margin-bottom: $spacing4;
+    ul {
+      padding: 0;
+      margin: 0;
+      li {
+        list-style: none;
+        display: inline-block;
+        float: left;
+        text-align: center;
+        margin-bottom: $spacing4;
+        width: 33%;
+        padding: 0 8px;
+        @include breakpoints-down(xs) {
+          width: 100%
+        }
+        a {
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          font-weight: $font-medium;
+          @include palette-text-primary;
+          font-family: 'Arial';
+          transition: all 0.3s ease;
+          top: 0;
+          position: relative;
+          padding: 0;
+          text-transform: capitalize;
+          &:hover {
+            top: -5px;
+          }
+          figure {
+            margin: spacing(0, 0, 1, 0);
+            overflow: hidden;
+            border-radius: 6px;
+            @include shadow4;
+            height: 200px;
+            width: 170px;
+            @include breakpoints-down(xs) {
+              width: 190px;
+              height: 242px;
+            }
+          }
+          img {
+            width: 100%
+          }
+        }
+      }
+    }
+  }
+
+  .margin-bottom {
+    @include breakpoints-down(xs) {
+      margin-bottom: $spacing3
+    }
+  }
+
+  .overline {
+    font-size: 14px !important;
+    letter-spacing: 1px !important;
+    font-weight: bold;
+  }
+
+  .switch-toggle {
+    .lever {
+      background-color: $palette-secondary-light;
+      &:before {
+        background-color: $palette-secondary-light;
+      }
+      &:after {
+        background-color: $palette-secondary-main;
+      }
+    }
+  }
+
+  .caption {
+    text-transform: none
+  }
+
+  .flex {
+    display: flex
+  }
+}
+
+.ly-btn {
+  display: block;
+  text-align: center;
+  border: 1px solid;
+  @include palette-divider;
+  border-radius: 4px;
+  margin: $spacing1;
+  text-transform: uppercase;
+  font-weight: $font-bold;
+  font-size: 12px;
+  &.active {
+    border: 2px solid;
+    border-color: $palette-primary-main
+  }
+  img {
+    width: 100%;
+    display: block;
+    margin: 0 auto $spacing1;
+    border-radius: 4px;
+    @include shade;
+  }
+}
+
+.material-tooltip {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.header-component, .footer-component, .corner-component {
+  display: none;
+  &.active {
+    display: block;
+  }
+}
+

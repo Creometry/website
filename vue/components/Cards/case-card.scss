@@ -1,0 +1,153 @@
+$frame-deco: '/images/decoration/frame-deco.png';
+
+/* Case Studies Card */
+.case-card {
+  box-shadow: none;
+  max-height: 390px;
+  height: auto !important;
+  border-radius: 24px !important;
+  margin-bottom: $spacing3;
+  overflow: hidden;
+  position: relative;
+  text-transform: none !important;
+  padding: 0 !important;
+  background: $palette-secondary-light !important;
+  @include shadow10;
+  @include breakpoints-up(lg) {
+    min-height: 148px
+  }
+  ::v-deep .v-btn__content{
+    display: block;
+    width: auto;
+    flex: auto;
+    height: auto;
+    position: static;
+  }
+  .figure {
+    margin: 0;
+    display: inline-block;
+    width: 100%;
+    img {
+      width: 100%;
+      left: -3px;
+      position: relative;
+    }
+  }
+  .title {
+    line-height: 22px;
+    font-weight: 500;
+  }
+  .logo {
+    display: block;
+    position: relative;
+    img {
+      width: 100%;
+    }
+  }
+  &.small {
+    .title {
+      display: block
+    }
+    .logo {
+      margin: -16px auto 16px !important
+    }
+    .property {
+      text-align: center;
+      bottom: 0 !important
+    }
+    .figure {
+      @include breakpoints-down(xs) {
+        width: 100%
+      }
+    }
+  }
+  &.big {
+    .property {
+      bottom: 0px;
+      @include breakpoints-down(md) {
+        text-align: center;
+        bottom: 0
+      }
+    }
+  }
+  &:hover {
+    .property {
+      @include breakpoints-up(lg) {
+        background: $palette-primary-main;
+        height: 100%;
+        opacity: 0.9;
+        p {
+          opacity: 1;
+          bottom: 0
+        }
+      }
+    }
+  }
+}
+
+.property {
+  transition: all 0.3s ease-out;
+  position: absolute;
+  width: 100%;
+  height: 150%;
+  min-height: 170px;
+  padding: $spacing3;
+  bottom: 0px;
+  @include text-align(left);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  @include left(0);
+  color: $palette-common-white;
+  background: linear-gradient(to bottom, rgba(238, 238, 238, 0) 30%, #000 110%);
+  .desc {
+    font-weight: $font-regular;
+    font-size: 16px;
+    white-space: normal
+  }
+  @include breakpoints-down(md) {
+    padding: $spacing1;
+    text-align: center;
+    bottom: 0;
+    .desc {
+      display: none
+    }
+  }
+  .title {
+    white-space: normal;
+    @include breakpoints-up(lg) {
+      display: flex;
+      align-items: center;
+    }
+  }
+  .logo {
+    width: 64px;
+    height: 64px;
+    background: url($frame-deco) no-repeat;
+    padding: $spacing2;
+    text-align: center;
+    @include margin-right($spacing2);
+    background-size: 100%;
+    @include breakpoints-down(md){
+      display: none;
+    }
+    img {
+      display: block
+    }
+  }
+  h6 {
+    color: $palette-common-white;
+    margin-bottom: $spacing2;
+    line-height: 22px
+  }
+  &.full-hide {
+    background: none;
+    opacity: 0;
+  }
+  p {
+    opacity: 0;
+    transition: bottom 0.5s ease-out;
+    position: relative;
+    bottom: -20px
+  }
+}

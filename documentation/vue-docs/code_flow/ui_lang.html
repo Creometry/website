@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Vue - Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    
+    <!-- Syntax Hightlighter CSS -->
+    <link href="../css/prism.css" rel="stylesheet">
+  
+    <!-- Custom CSS -->
+    <link href="../css/style.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div id="wrapper" class="toggled">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li>
+                    <a class="back" href="../index.html"><i class="glyphicon glyphicon-arrow-left"></i> Back to Main Docs</a>
+                </li>
+                <li>
+                    <a href="#brand" class="cur">Brand/Project Name</a>
+                </li>
+                <li>
+                    <a href="#menu">Navigation Menu</a>
+                </li>
+                <li>
+                    <a href="#components">Component Variants</a>
+                </li>
+                <li>
+                    <a href="#theme">Theme &amp; Layout(RTL)</a>
+                </li>
+                <li>
+                    <a href="#youtube" class="cur">Youtube Config</a>
+                </li>
+                <li>
+                    <a href="#lang">Set Language</a>
+                </li>
+            </ul>
+            <span class="copy">&copy; Copyright 2022</span>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- main content -->
+        <div id="page-content-wrapper">
+          <div class="container-fluid">
+            <!-- BRANDING -->
+            <section class="row" id="brand">
+                <br /><br />
+                <div class="col-lg-10">
+                    <h1>Brand/Project Name</h1>
+                    <hr />
+                    <ul>
+                      <li>Open <code>/static/text/brand.js</code></li>
+                      <li>
+                        Here's bellow the available brand attribute
+                        <pre><code class="language-js">
+const brand = {
+  agency: {
+    name: 'Agency',
+    desc: 'Aworara Agency - Vue Single Landing Page Template',
+    prefix: 'awrora',
+    footerText: 'Awrora Theme - All Rights Reserved 2020',
+    logoText: 'Awrora Agency',
+    projectName: 'Agency Theme',
+    url: 'awrora.indisains.com/agency',
+    img: '/static/images/logo_grin.png',
+    notifMsg:
+      'Donec sit amet nulla sed arcu pulvinar ultricies commodo id ligula.'
+  }
+}
+
+export default brand
+</code></pre>
+                      </li>
+                      <li>
+                        Those attribute will affect in HTML &lsaquo;head&rsaquo; content and other branding name
+                      </li>
+                    </ul>
+                </div>
+            </section>
+            <!-- END -->
+
+            <!-- NAVIGATION -->
+            <section class="row" id="menu">
+                <br /><br />
+                <div class="col-lg-12">
+                    <h1>Navigation Menu</h1>
+                    This template has 2 type of menu, there are desktop and mobile version. And has 3 header navigation (accross the routes) layout, there are Mixed, Dropdown List and Mega Menu.
+                    <hr />
+                    <ul>
+                      <li>For Desktop: <code>/components/Header/TopNav/[MegaMenu, MixedNav, MultiLevel].vue</code></li>
+                      <li>For Mobile: <code>/components/Header/SideNav/[MegaMobile, MixedMobile, MultiMobile].vue</code></li>
+                      <li>
+                        Those components get the list data from <code>/components/Header/data/*.js</code>
+                      </li>
+                      <li>
+                        Once create a new page, then if you want to add in navigation menu (header and mobile sidebar),
+                        you can put the page route in <code>/components/Header/data/sample-pages.js</code>. The format is in JSON, you can put the URL in link attribute.
+                        <pre><code class="language-js">// components/Header/data/sample-pages.js
+{
+  name: 'Sample Page',
+  link: '/sample-page'
+},
+        </code></pre>
+                        By default this template uses variable object from <code>static/text/link.js</code>. But it can be uses by hardcoded as well.
+                      </li>
+                      <li>
+                        Here's bellow the diagram routing menu to be displayed in UI Component
+                        <iframe frameborder="0" style="width:100%;height:700px;" src="./diagram.html"></iframe>
+                      </li>
+                    </ul>
+                </div>
+            </section>
+            <!-- END -->
+            
+            
+            <!-- COMPONENTS -->
+            <section class="row" id="components">
+              <div class="col-lg-10">
+                <h1>Component Variants</h1>
+                <p>
+                  This template come with some variant main components that easy to use.
+                  To change Header, Footer, and Corner component, please open in global store <code>store/ui.js</code>, and just change value then all components will be updated.
+                  Here's the available values:
+                </p>
+                <table class="tg" width="100%">
+                  <tbody>
+                    <tr>
+                      <th class="tg-yw4l">Key</th>
+                      <th class="tg-yw4l">Type</th>
+                      <th class="tg-yw4l">Available Value</th>
+                      <th class="tg-yw4l">Example</th>
+                    </tr>
+                    <tr>
+                      <td class="tg-yw4l"><code>Header</code></td>
+                      <td valign="top">String</td>
+                      <td>
+                        <code>mixed</code>,
+                        <code>basic</code>,
+                        <code>droplist</code>,
+                        <code>mega</code>,
+                        <code>hamburger</code>,
+                        <code>navscroll</code>,
+                        <code>search</code>
+                      </td>
+                      <td valign="top"><code>header: 'mixed'</code></td>
+                    </tr>
+                    <tr>
+                      <td class="tg-yw4l"><code>Header</code></td>
+                      <td valign="top">String</td>
+                      <td>
+                        <code>basic</code>,
+                        <code>sitemap</code>,
+                        <code>blog</code>,
+                        <code>contact</code>
+                      </td>
+                      <td valign="top"><code>footer: 'blog'</code></td>
+                    </tr>
+                    <tr>
+                      <td class="tg-yw4l"><code>Footer</code></td>
+                      <td valign="top">String</td>
+                      <td>
+                        <code>chat</code>,
+                        <code>nav</code>
+                      </td>
+                      <td valign="top"><code>corner: 'chat'</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <br />
+                <hr />
+                <h4>Header</h4>
+                <p>
+                  Header component used for navigation and some site settings. 
+                  It's more flexible with 7 type of headers:
+                </p>
+                <ul>
+                  <li>Basic: <code>basic</code></li>
+                  <li>Search: <code>search</code></li>
+                  <li>DropList: <code>droplist</code> <em>(it has routing navigation)</em></li>
+                  <li>MegaMenu: <code>mega</code> <em>(it has routing navigation)</em></li>
+                  <li>Hamburger Menu: <code>hamburger</code> <em>(it has scroll navigation)</em></li>
+                  <li>Scroll Navigation: <code>navscroll</code> <em>(it has scroll navigation)</em></li>
+                  <li>Mixed: <code>mixed</code> <em>(Scroll Navigation + Mega Menu)</em></li>
+                </ul>
+                <p>
+                  In <code>store/ui.js</code> you can edit <code>header</code> value to change the header type. 
+                  The changes will affected to all pages containing header except Blog and Auth (login &amp; register).
+                </p>
+                <pre><code class="language-js">// store/ui.js
+export const state = () => ({
+  header: 'mixed', /* available: mixed, basic, droplist, mega, hamburger, navscroll, search */
+})
+  </code></pre>
+              <br />
+              <p>
+                <strong>Mega menu and Dropdown menu</strong> have submenu that can be accessed by clicking the parent menu.
+                But It can be accessed using hover instead of clicking by change the data.
+              </p>
+              <ul>
+                <li>
+                  In <code>components/Header/TopNav/MegaMenu.vue</code> or <code>components/Header/TopNav/MultiLevel.vue</code>
+                </li>
+                <li>
+                  Please change the data <code>hover: true</code>
+                </li>
+                <li>
+                  *For Droplist (MultiLevel.vue) you have to import <code>Submenu</code>
+                  component from <code>./SubMenuHover</code>
+                  <pre><code class="language-js">// components/Header/TopNav/MultiLevel.vue
+
+  // 1. Don't forget to import SubMenuHover for Droplist menu only. For Mega menu just skip thip step        
+  import Submenu from './SubMenuHover'
+
+  // 2. Change the hover value to true
+  export default {                
+    data() {
+      return {
+        hover: true
+      }
+    }
+  }
+    </code></pre>
+                </li>
+              </ul>
+              <br />
+                <hr />
+                <h4>Footer</h4>
+                <p>
+                  Footer component used for many purpose, such as navigation, contact, additional link, or just copyright mark. 
+                  This template provide 4 Footer variants
+                </p>
+                <ul>
+                  <li>Basic: <code>basic</code></li>
+                  <li>Sitemap: <code>sitemap</code></li>
+                  <li>Blog: <code>blog</code></li>
+                  <li>Contact: <code>contact</code></li>
+                </ul>
+                <p>
+                  In <code>store/ui.js</code> you can edit <code>footer</code> value to change the footer type. 
+                  The changes will affected to all pages except Maintenance and Coming Soon which doesn't uses footer.
+                </p>
+                <pre><code class="language-js">// store/ui.js
+export const state = () => ({
+  header: 'mixed', /* available: mixed, basic, droplist, mega, hamburger, navscroll, search */
+})
+  </code></pre>
+                 <br />
+                <hr />
+                <h4>Bottom Corner</h4>
+                <p>
+                  The additional components for homepage placed on the bottom right corner.
+                  There are 2 variant, Chat Panel and Single Page Navigation. 
+                  The Corner component itself imported from <code>'~/components/Home/Corner'</code>
+                </p>
+                <pre><code class="language-js">
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;corner /&gt;
+  &lt;/div&gt;
+&lt;/template&gt; 
+
+&lt;script&gt; 
+import Corner from '~/components/Home/Corner'
+
+export default {
+  components: {
+    Corner
+  }
+}
+&lt;/script&gt; 
+  </code></pre>
+                <ul>
+                  <li>Chat Panel: <code>chat</code></li>
+                  <li>Single Page Navigation: <code>nav</code></li>
+                </ul>
+                <p>
+                  To use it, in <code>store/ui.js</code> you can edit <code>corner</code> value to change the corner type. 
+                  The changes only affected in homepage.
+                  By default it's only implemented in homepage, but you can use <code>Corner</code> component for another page
+                </p>
+                <pre><code class="language-js">// store/ui.js
+export const state = () => ({
+  corner: 'chat' /* chat, nav */
+})
+  </code></pre>
+                
+              </div>
+            </section>
+            <!-- END -->
+            
+            <!-- THEME -->
+            <section class="row" id="theme">
+              <div class="col-lg-10">
+                <h1>Theme and Layout(RTL)</h1>
+                <br />
+                <hr />
+                  <h4>Theme Color</h4>
+                    <br /><br />
+                    This template has <strong>24 Themes with dark/light</strong> appearance.
+                    You can change the layout via theme panel but not permanently. To make the layout permanent just follow this step. <br /> <br />
+                    <ul>
+                      <li>Open <code>/config/vuetify.options.js</code></li>
+                      <li>Open the available theme list <code>/config/theme.txt</code></li>
+                      <li>
+                        Then change the <code>theme</code> value.
+                        For theme color, since nuxt.js cannot import external file in the config,
+                        so please pick and copy manually one of theme value from <code>/config/theme.txt</code> to <code>/config/vuetify.options.js</code> in <code>const palette</code>
+                      </li>
+                      <li>Example theme to pick:
+                        <pre><code class="language-js">greenLeaf: {
+  primary: colors.green.base, // primary main
+  primarylight: colors.green.lighten4, // primary light
+  primarydark: colors.green.darken4, // primary dark
+  secondary: colors.blueGrey.base, // secondary main
+  secondarylight: colors.blueGrey.lighten4, // secondary light
+  secondarydark: colors.blueGrey.darken3, // secondary dark
+  anchor: colors.green.base // link
+}</code></pre>
+                      </li>
+                      <li>
+                        And here's the available themes api:
+                        <table class="tg">
+                          <tbody>
+                            <tr>
+                              <th class="tg-yw4l">Key</th>
+                              <th class="tg-yw4l">Type</th>
+                              <th class="tg-yw4l">Available Value</th>
+                              <th class="tg-yw4l">Example</th>
+                            </tr>
+                            <tr>
+                              <td class="tg-yw4l"><code>theme.themes:</code></td>
+                              <td valign="top">Object</td>
+                              <td>
+                                <code>'...palette.oceanBlue'</code>,
+                                <code>'...palette.greenLeaf'</code>,  <br />
+                                <code>'...palette.greyscale'</code>,
+                                <code>'...palette.cloud'</code>,  <br />
+                                <code>'...palette.violet'</code>,
+                                etc
+                              </td>
+                              <td valign="top"><code>theme = { ...palette.oceanBlue }</code></td>
+                            </tr>
+                            <tr>
+                              <td class="tg-yw4l"><code>theme.dark:</code></td>
+                              <td valign="top">Boolean</td>
+                              <td>
+                                <code>true</code>,
+                                <code>false</code>
+                              </td>
+                              <td valign="top"><code>dark: true</code></td>
+                            </tr>
+                            <tr>
+                              <td class="tg-yw4l"><code>rtl:</code></td>
+                              <td valign="top">Boolean</td>
+                              <td>
+                                <code>true</code>,
+                                <code>false</code>
+                              </td>
+                              <td valign="top"><code>rtl: true</code></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <br />
+                        <strong>Here's the complete code, for greenLeaf color in dark mode with RTL direction</strong>
+                         <pre><code class="language-js">// file: config/vuetify.options.js
+const palette = {                        
+  greenLeaf: {
+    primary: colors.green.base, // primary main
+    primarylight: colors.green.lighten4, // primary light
+    primarydark: colors.green.darken4, // primary dark
+    secondary: colors.blueGrey.base, // secondary main
+    secondarylight: colors.blueGrey.lighten4, // secondary light
+    secondarydark: colors.blueGrey.darken3, // secondary dark
+    anchor: colors.green.base // link
+  }
+}
+export const theme = {
+  ...palette.greenLeaf
+}
+
+export default {
+  rtl: true,
+  theme: {
+    dark: true,
+    themes: {
+      light: {
+        ...theme
+      },
+      dark: {
+        ...theme
+      }
+    },
+    options: {
+      customProperties: true
+    }
+  }
+}
+    </code></pre>
+                      </li>
+                      <li>
+                        <strong>!IMPORTANT</strong><br />
+                        <p>If you change the palette const, don't forget to update this following files as well </p>
+** Crytpo Theme: <code>/crypto-theme/components/GradientDeco/GradientDeco.vue</code><br />
+<p>Make sure the const palette has same value as vuetify.options const palette</p>
+                      </li>
+                    </ul>
+                  <br /><br />
+                  <hr />
+                  <h4>Layout Direction</h4>
+                  <p>This template also support for <strong>RTL</strong> direction. To set RTL as default direction please follow this step.</p>
+                  <ul>
+                    <li>Open <code>/config/vuetify.options.js</code></li>
+                    <li>
+                      To set layout as RTL direction please change <code>rtl: true</code>, and change to <code>rtl: false</code> for LTR layout
+                      <pre><code class="language-js">// file: config/vuetify.options.js
+export default {
+  rtl: true,
+  // rest code
+}
+    </code></pre>
+                    </li>
+                    <li>
+                      And in <code>nuxt.config.js</code> change <code>htmlAttrs.dir</code> to <code>'rtl'</code>
+                      <pre><code class="language-js">// nuxt.config.js
+module.exports = {
+  /*
+  ** Headers of the page
+  */
+  head: {
+    htmlAttrs: {
+      dir: 'rtl'
+    }
+  }
+}
+    </code></pre>
+                    </li>
+                    <li>
+                      Finally, it's an optional, in <code>app.html</code> change the <code>lang</code> attribute following your default site language. In example
+                      &lt;html {{ HTML_ATTRS }} lang="en"&gt;
+                      <pre><code class="language-js">// app.html
+&lt;html {{ HTML_ATTRS }} lang="en"&gt;
+    </code></pre>
+                    </li>
+                  </ul>
+                  <br /><br />
+                  <hr />
+                  <h4>Theme Illustration</h4>
+                  <p>
+                    Artwork Illlustration as part of UI visual explanation of a text, concept or process.
+                    3D or 2D styles are in trending now, and this template has both. 
+                    To configure the style mode please follow tihs step
+                  </p>
+                  <ul>
+                    <li>All images assets listed in javascript files, so please open <code>static/images/imgAPI.js</code></li>
+                    <li>By default this template uses 3D style, to switch to 2D style please search <code>...img3d</code></li>
+                    <li>
+                      Then change from  <code>...img3d</code> to <code>...img2d</code>, and reverse allowed as well.
+                    </li>
+                    <li>
+                      Example:<br /><br />
+                      <div class="row">
+                        <div class="col-md-6">
+                          <strong>From</strong><br />
+                          <img src="../images/banner2_3D@2x.png" alt="img3d" width="200" />
+                          <pre><code class="language-js">// imgAPI.js
+    crypto: [
+        ...img3d.main,
+        // rest images
+    ],
+    cryptoInner: [
+      ...img3d.inner
+    ]</code></pre>
+                        </div>
+                        <div class="col-md-6">
+                          <strong>To</strong><br />
+                          <img src="../images/banner2_2D@2x.png" alt="img2d" width="200" />
+                          <pre><code class="language-js">// imgAPI.js
+    crypto: [
+        ...img2d.main,
+        // rest images
+    ],
+    cryptoInner: [
+      ...img2d.inner
+    ]</code></pre>
+                        </div>
+                      </div>
+
+                    </li>
+                  </ul>
+              </div>
+            </section>
+            
+            
+            
+            <!-- Youtube -->
+            <section class="row" id="youtube">
+              <div class="col-lg-10">
+                <h1>Youtube Config</h1>
+                <hr />
+                <p>
+                  This template use <strong>Vue Youtube</strong> a simple vue component acting as a thin layer over the YouTube IFrame Player API.
+                  To use this feature we recommend to use https in production. If not there will be some warnings in browser console related cookies and security.
+                </p>
+                <p>
+                  You can disable this feature by open <code>/youtube.js</code> then set set <code>use: false</code>.
+                </p>
+              </div>
+            </section>
+            
+            <!-- End -->
+            
+            
+            
+            <!-- NAVIGATION -->
+            <section class="row" id="lang">
+                <br /><br />
+                <div class="col-lg-10">
+                    <h1>Set Language</h1>
+                    <hr />
+                    <br />
+                    <ul>
+                      <li>
+                        <h5>
+                          To set default language
+                        </h5>
+                        <ol>
+                          <li>Open <code>/nuxt.config.js</code></li>
+                          <li>change <code>defaultLocale: 'en'</code> to other initial locale i.e. <code>id</code> for Bahasa Indonesia</li>
+                          <li>And also for <code>vueI18n: { fallbackLocale: 'en' }</code> to other fallback locale i.e. <code>id</code> for Bahasa Indonesia</li>
+                        </ol>
+                      </li>
+                      <li>
+                        <h5>
+                          Add new language
+                        </h5>
+                        <ol>
+                          <li>
+                            By default, nuxt-i18n expects your translations to be organised as such by create new language JS library in <code>/static/lang/[localCode]/</code>
+                            <pre>
+└── static
+    └── lang
+        ├── en-US.js
+        └── de-DE.js</pre>
+                          </li>
+                          <li>You can check the available local code here <a href="https://github.com/ladjs/i18n-locales" target="_blank">https://github.com/ladjs/i18n-locales</a></li>
+                          <li>
+                            Then register it in <code>/static/lang/languages.js</code>
+                            <pre><code class="language-js">
+export default [
+  {
+    code: 'de',
+    iso: 'de-DE',
+    name: 'Deutch',
+    file: 'de-DE.js',
+    dir: 'ltr'
+  },
+  {
+    code: 'en',
+    iso: 'en-US',
+    name: 'English',
+    file: 'en-US.js',
+    dir: 'ltr'
+  }
+]
+    </code></pre>
+                          </li>
+                        </ol>
+                      </li>
+                      <li>
+                            <h5>
+                              Put the messages to the Vue Components
+                            </h5>
+                            <ol>
+                              <li>Pick one of sample <strong>Components</strong> with cointaining text, i.e <code>/componens/Footer.vue</code></li>
+                              <li>Basically the message return is <strong>String</strong>. And next step is replace/add every string in components</li>
+                              <li>
+                                Add a translated text inside components <br />
+                                <pre>
+                                  <code class="language-js">
+&lt;p&gt;
+  {{ $t('agencyLanding.footer_paragraph') }}
+&lt;/p&gt;
+                                  </code>
+                                </pre>
+                              </li>
+                              <li>
+                                Then open your translated page.
+                              </li>
+                            </ol>
+                          </li>
+                    </ul>
+                </div>
+            </section>
+          </div>
+        </div>
+        <!-- END -->
+      
+      <br /><br />
+            <!-- END -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="../js/jquery.js"></script>
+  
+    <!-- Syntax Highligher -->
+    <script src="../js/prism.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.bundle.js"></script>
+
+    <!-- Jquery scrollTo -->
+    <script src="../js/jquery.nav.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $(document).ready(function() {
+        	$('#sidebar-wrapper .sidebar-nav').onePageNav();
+        });
+    </script>
+
+</body>
+
+</html>

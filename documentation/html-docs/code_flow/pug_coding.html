@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>HTML - Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    
+    <!-- Syntax Hightlighter CSS -->
+    <link href="../css/prism.css" rel="stylesheet">
+  
+    <!-- Custom CSS -->
+    <link href="../css/style.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div id="wrapper" class="toggled">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <h4>Pug.js Coding</h4>
+                </li>
+                <li>
+                    <a href="#page" class="cur">Create Page and Component</a>
+                </li>
+                <li>
+                    <a href="#brand">Brand/Project Name</a>
+                </li>
+                <li>
+                    <a href="#menu">Navigation Menu</a>
+                </li>
+                <li>
+                    <a href="#theme">Change Theme and Layout(RTL)</a>
+                </li>
+                <li>
+                    <a href="#youtube">Youtube Config</a>
+                </li>
+                <li>
+                    <a href="#lang">Set Language</a>
+                </li>
+            </ul>
+            <a class="back" href="../index.html"><i class="glyphicon glyphicon-arrow-left"></i> Back to Main Docs</a>
+            <span class="copy">&copy; Copyright 2022</span>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- main content -->
+        <div id="page-content-wrapper">
+          <div class="container-fluid">
+           <!-- CREATE PAGE -->
+                <section class="row" id="page">
+                    <div class="col-lg-12">
+                        <h1>Create New Page</h1>
+                        <hr />
+                        <ul>
+                            <li>In example we will create an "About" page in "starter-project" by adding the following content to <code>starter-project/src/pug/pages/about.pug</code></li>
+                            <li>
+                              <pre><code class="language-pug">
+extends ../layouts/app.pug
+
+block variables
+  - var pageTitle = " - About"
+  
+block content
+  div
+    #home
+    .main-wrap
+      include ../components/header/header.pug
+      +header(true)
+      .container-wrap.py-10.py-sm-4
+        section.space-top.space-bottom
+          h2.display-3.text-center.mb-4 About Us
+      section.space-top
+        include ../components/footer.pug
+                              </code></pre>
+                            </li>
+                            <li>
+                              <p>Generate the HTML</p>
+                              <pre><code class="language-js">gulp build</code></pre>
+                            </li>
+                            <li>
+                              <p>It will generate file <strong>about.html</strong> in root directory.</p>
+                            </li>
+                            <li>
+                              <p>And watch the changes result</p>
+                              <pre><code class="language-js">gulp</code></pre>
+                            </li>
+                            <li>Then we can access that page with <a target="_blank" href="http://localhost:9000/about">http://localhost:9000/about</a></li>
+                        </ul>
+                        <br />
+                        <br />
+                    </div>
+                  <br /><br />
+              </section>
+                <!-- END -->
+              
+				<!-- CREATE COMPONENT -->
+                <section class="row" id="create_component">
+                    <div class="col-lg-12">
+                        <h1>Create New Component</h1>
+                        <hr />
+                        <ul>
+                          <li>Go to <code>src/pug/components/</code></li>
+                          <li>Create new file <code>hello.pug</code></li>
+                          <li>
+                              In that file create a simple code <br />
+                              <pre><code class="language-pug">// file: /src/pug/components/hello.pug
+div
+  h4 Hello World
+  h5.display-1.text-center Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+  p Vestibulum dignissim orci vitae eros rutrum euismod. Vestibulum tempor, sem et molestie egestas, dui tortor laoreet tellus, id rhoncus mauris neque malesuada augue. Duis tristique metus magna, lobortis aliquam risus euismod sit amet.
+  p Suspendisse porttitor velit nisl, feugiat tincidunt nisl mattis ut. Nulla lobortis nunc vitae nisi semper semper. Sed mi neque, convallis at ipsum at, blandit pretium enim. Nunc quis sem quis velit tincidunt congue a sit amet ante. In hac habitasse platea dictumst.
+</code></pre>
+                            </li>
+                            <li>Open a <b>target page</b> where you want use it. Ex: Open <code>src/pug/pages/about.pug</code>. <em>(Example page that we've made in previous section)</em></li>
+                            <li>
+                              Then include it inside template<br />
+                              <pre><code class="language-pug">
+include ../components/hello.pug
+                            </code></pre>
+                                </li>
+                                <li>
+                                  Here's complete code <br />
+                                  <pre><code class="language-pug">// file: src/pug/pages/about.pug
+extends ../layouts/app.pug
+
+block variables
+  - var pageTitle = " - About"
+  
+block content
+  div
+    #home
+    .main-wrap
+      include ../components/header/header.pug
+      +header(true)
+      .container-wrap.py-10.py-sm-4
+        section.space-top.space-bottom
+          h2.display-3.text-center.mb-4 About Us
+          // Add new component
+          include ../components/footer.pug
+      section.space-top
+        include ../components/footer.pug
+</code></pre>
+                                </li>
+                                <li>If you run with <code>gulp</code> command, the updates will change immediately. And the physical file will be updated in <strong>about.html</strong></li>
+                                <li>Then you can check the result at <a target="_blank" href="http://localhost:9000/about">http://localhost:9000/about</a></li>
+                        </ul>
+                    </div>
+                </section>
+                <!-- END -->
+
+            
+            <!-- BRANDING -->
+            <section class="row" id="brand">
+                <br /><br />
+                <div class="col-lg-10">
+                    <h1>Brand/Project Name</h1>
+                    <hr />
+                    <ul>
+                      <li>Open <code>src/api.json</code></li>
+                      <li>
+                        Here's bellow the available brand attribute for example Agency THeme
+                        <pre><code class="language-js">brand": {
+  "agency": {
+    "name": "Agency",
+    "desc": "Nirwana Agency - HTML5 Bootstrap Landing Page Template",
+    "prefix": "Nirwana",
+    "footerText": "Nirwana Agency - All Rights Reserved 2020",
+    "logoText": "Nirwana Theme",
+    "projectName": "Agency Project",
+    "url": "nirwana.ux-maestro.com/agency",
+    "img": "/images/logo_grin.png",
+    "notifMsg": "Donec sit amet nulla sed arcu pulvinar ultricies commodo id ligula"
+  }
+},
+</code></pre>
+                      </li>
+                      <li>
+                        Those attribute is used pug as variable object. After run <code>gulp build</code> it will affect in HTML &lsaquo;head&rsaquo; content and other branding purpose.
+                      </li>
+                      <li>
+                        Example use in <code>src/pug/layouts/document.pug</code>
+                        <pre><code class="language-pug">meta(
+  name="description"
+  content=brand.agency.desc
+)
+meta(property="og:url" content=brand.agency.url)
+meta(property="og:title" content=brand.agency.projectName)
+title #{brand.agency.name} - #{pageTitle}       
+                        </code></pre>
+                      </li>
+                    </ul>
+                </div>
+            </section>
+            <!-- END -->
+
+            <!-- NAVIGATION -->
+            <section class="row" id="menu">
+                <br /><br />
+                <div class="col-lg-12">
+                    <h1>Navigation Menu</h1>
+                    This template use 2 type of menu. There are desktop and mobile version
+                    <hr />
+                    <ul>
+                      <li>For Desktop: <code>src/pug/components/header/header.vue</code></li>
+                      <li>For Mobile: <code>src/pug/components/header/mobile-menu.vue</code></li>
+                      <li>
+                        Those components get the list data from <code>src/api.js</code> in "link" and "menu" object.
+                        <pre><code class="language-js">"link": {
+  "movie": {
+    "home": "index.html",
+    "detail": "detail-movie.html",
+    "login": "login.html",
+    "register": "register.html"
+  }
+},
+"menu": {
+  "movie": [
+    {
+      "name": "promotions",
+      "offset": 0
+    },
+    {
+      "name": "featured",
+      "offset": 0
+    },
+    {
+      "name": "top",
+      "offset": 0
+    },
+    {
+      "name": "all",
+      "offset": 0
+    },
+    {
+      "name": "pricing",
+      "offset": 0
+    }
+  ]
+},
+                        </code></pre>
+                      </li>
+                    </ul>
+                </div>
+            </section>
+            <!-- END -->
+            
+            <!-- THEME -->
+            <section class="row" id="theme">
+              <div class="col-lg-10">
+                <h1>Change Theme</h1>
+                <hr />
+                    <br /><br />
+                    This template has <strong>24 Themes with dark/light</strong> appearance.
+                    And also support for <strong>RTL</strong> direction.
+                    You can change the layout via theme panel but not permanently. To make the layout permanent just follow this step. <br /> <br />
+                    <ul>
+                      <li>Open <code>src/pug/layouts/app.pug</code></li>
+                      <li> In pug file just change the class name</li>
+                      <li>
+                        For dark/light mode in <code>.m-application</code> by switch between <code>.theme--dark</code> or <code>.theme--light</code><br />
+                        - Dark mode: 
+                        <pre><code class="language-pug">#app.m-application.theme--dark.transition-page</code></pre>
+                        - Light mode: 
+                        <pre><code class="language-html">#app.m-application.theme--light.transition-page</code></pre>
+                      </li>
+                      <li>
+                        For theme color in <code>.m-content</code> by change <code>.[theme-name]-var</code> with available theme from <code>src/scss/utils/_color-var.scss</code>
+                        - In example joker theme color
+                        <pre><code class="language-pug">#main-wrap.m-content.passion.joker-var</code></pre>
+                      </li>
+                      <li>
+                        <strong>Here's the complete code, for joker color in dark mode</strong>
+                         <pre><code class="language-pug">// file: src/pug/layouts/app.pug
+extends ./document.pug
+
+block variables
+block layout
+  #app.m-application.theme--dark.transition-page
+    .loading
+    #main-wrap.m-content.passion.joker-var
+      block content-
+    </code></pre>
+                      </li>
+                      <li>
+                        <strong>!IMPORTANT</strong><br>
+                        <p>If you change the palette variable, don't forget to update this following files as well </p>
+** Crytpo Theme: <code>crypto-theme/src/pug/components/gradient-deco.pug</code><br>
+** Saas Theme: <code>saas-theme/src/pug/components/testimonials.pug</code><br>
+** Hosting Theme: <code>hosting-theme/src/js/banner-animation.js</code><br>
+<p>Make sure the stop-color has same value as in <code>src/scss/utils/_color-var.scss</code></p>
+
+                      </li>
+                    </ul>
+                  <br /><br />
+              </div>
+            </section>
+            
+            <section class="row" id="illustration">
+              <div class="col-lg-10">
+                <h1>Use 2D/3D Illustration images</h1>
+                <hr />
+                    <br /><br />
+                    <p>
+                      This template including illustration vector images. And for the HTML uses PNG format with 2 version, <strong>Flat(2D) and 3D</strong>.
+                      You can switch between them and applied to all HTML files. 
+                    </p>
+                    <ul>
+                      <li>Open <code>src/pug/layouts/base.pug</code></li>
+                      <li>In pug file just change the variable <code>img_artwork</code> (For homepage) and <code>img_artworkInner</code> (for inner page) with avalable value (commented) </li>
+                      <li>All the source images get from <code>src/api.json</code></li>
+                      <li>
+                        Here's the code <br /><br />
+                          <div class="row">
+                            <div class="col-md-6">
+                              <img height="220px" src="../images/banner2_3d@2x.png" alt="illustration" />
+                              <br />
+                              <strong>3D Version</strong>
+                              <br />
+                           <pre><code class="language-pug">
+  - var img_artwork = imgAPI.agency3d
+  - var img_artworkInner = imgAPI.agencyInner3d
+      </code></pre>
+                            </div>
+                            <div class="col-md-6">
+                              <img height="220px" src="../images/banner2_2d@2x.png" alt="illustration" />
+                              <br />
+                              <strong>2D Version</strong>
+                              <br />
+                           <pre><code class="language-pug">
+  - var img_artwork = imgAPI.agency2d
+  - var img_artworkInner = imgAPI.agencyInner2d
+      </code></pre>
+                            </div>
+                          </div>
+                      </li>
+                      <li>
+                        <p>Generate the HTML</p>
+                        <pre class=" language-js"><code class=" language-js">gulp build</code></pre>
+                      </li>
+                    </ul>
+                  <br /><br />
+              </div>
+            </section>
+            
+            <section class="row" id="components">
+              <div class="col-lg-10">
+                <h1>Change Header, Footer and Corner</h1>
+                <hr />
+                    <br /><br />
+                    <p>
+                      This template coming with <strong>7 variant headers, 4 variant footers and 2 type bottom corner</strong>.
+                      As You can see in <code>custom-components/</code>, but for implementatin, that's need to copy manually.
+                      With Pug.js, You can use them and generate all html files instantly.
+                    </p>
+                    <ul>
+                      <li>Open <code>src/pug/layouts/base.pug</code></li>
+                      <li>In pug file just change the variable <code>headerType</code>, <code>footerType</code> and cornerType</li>
+                      <li> Change with avalable value (commented) </li>
+                      <li>
+                        <strong>Here's the code</strong>
+                         <pre><code class="language-pug">// file: src/pug/layouts/base.pug
+//- UI Header
+- var headerType = 'basic' // available: mixed, basic, droplist, mega, hamburger, navscroll, search
+
+//- UI Footer
+- var footerType = 'blog' // available: basic, blog, contact, sitemap
+
+//- UI Floating corner
+- var cornerType = 'nav' // available: chat, nav
+    </code></pre>
+                      </li>
+                      <li>
+                        <p>Generate the HTML</p>
+                        <pre class=" language-js"><code class=" language-js">gulp build</code></pre>
+                      </li>
+                    </ul>
+                  <br /><br />
+              </div>
+            </section>
+            
+            
+            <section class="row" id="direction">
+              <div class="col-lg-10">
+                <h1>Change Layout direction (LTR &amp; RTL)</h1>
+                <hr />
+                    <br /><br />
+                    This template support for <strong>RTL</strong> direction.
+                    You can change the layout via theme panel but not permanently. To make the layout permanent just follow this step. <br /> <br />
+                    <ul>
+                      <li>Open <code>src/pug/layouts/base.pug</code></li>
+                      <li>In pug file just change the variable <code>doc_dir</code> to <strong>RTL</strong> or <strong>LTR</strong>. And you need to adjust the language variable <code>doc_lang</code> as well.</li>
+                      
+                      <li>
+                        <strong>Here's the code for RTL</strong>
+                         <pre><code class="language-pug">// file: src/pug/layouts/base.pug
+
+//- HTML attribute
+- var doc_lang = 'ar'
+- var doc_dir = 'rtl'</code></pre>
+                      </li>
+                    </ul>
+                  <br /><br />
+              </div>
+            </section>
+            
+            <!-- Youtube -->
+            <section class="row" id="youtube">
+              <div class="col-lg-10">
+                <h1>Youtube Config</h1>
+                <hr />
+                <p>
+                  This template us <strong>Youtube API</strong>
+                  To use this feature we recommend to use https in production. If not there will be some warnings in browser console related cookies and security.
+                </p>
+                <p>
+                  You can disable this feature by open <code>src/api.json</code> in "youtube" object then set set <code>use: false</code>.
+                </p>
+                  <pre><code class="language-js">"youtube": {
+    "use": true
+  }</code></pre>
+              </div>
+            </section>
+            
+            <!-- End -->
+            
+            
+            
+            <!-- NAVIGATION -->
+            <section class="row" id="lang">
+                <br /><br />
+                <div class="col-lg-10">
+                    <h1>Set Language</h1>
+                    <hr />
+                    <br /><br />
+                    <ul>
+                      <li>
+                        <h5>
+                          To set default language
+                        </h5>
+                        <ol>
+                          <li>Open <code>gulpfile.js</code></li>
+                          <li>in function <code>view()</code> change the locales to any locale json file</li>
+                          <li>
+                            In example for Português
+                            <pre><code class="language-js">locales: 'src/locales/pt.json'</code></pre>
+                          </li>
+                          <li>
+                            Full code
+                            <pre><code class="language-js">function views() {
+  var options = {
+    i18n: {
+      dest: './',
+      namespace: '$t',
+      localeExtension: true,
+      locales: 'src/locales/pt.json'
+    },
+    data: JSON.parse(fs.readFileSync('./src/api.json'))
+  };
+  return (
+    gulp.src('src/pug/pages/*.pug')
+    .pipe(plumber())
+    .pipe(pugI18n(options))
+    .pipe(prettyHtml({ indent_size: 2 }))
+    .pipe(ext_replace('.html', '.en.html'))
+    .pipe(gulp.dest(options.i18n.dest))
+    .pipe(connect.reload())
+  )
+}</code></pre>
+                          </li>
+                        </ol>
+                      </li>
+                      <li>
+                        <h5>
+                          Add new language
+                        </h5>
+                        <ol>
+                          <li>
+                            By default, gulp-i18n-pug expects your translations to be organised as such by create new language JSON library in <code>src/locales/[localeCode].json</code>
+                            <pre>
+└── src
+    └── locales
+        ├── en.json
+        ├── de.json
+        └── pt.json</pre>
+                          </li>
+                        </ol>
+                      </li>
+                      <li>
+                        <h5>
+                          Write object as text translation 
+                        </h5>
+                        <p>For example portuguese in <code>src/locales/pt.json</code></p>
+                          <pre><code class="language-js">"agency_landing": {
+    "header_login": "Conecte-se",
+    "header_register": "registro"
+}</code></pre>
+                      </li>
+                      <li>
+                            <h5>
+                              Put the messages to the Pug file
+                            </h5>
+                            <ol>
+                              <li>Pick one of sample <strong>Components</strong> with cointaining text, i.e <code>/componens/header/header.pug</code></li>
+                              <li>Basically the message return is <strong>String</strong>. And next step is replace/add every string in components</li>
+                              <li>
+                                Add a translated text inside components <br />
+                                <pre><code class="language-js">h4.use-text-title2 #{$t.agency_landing.header_login}
+h4.use-text-title2 #{$t.agency_landing.header_register}</code></pre>
+                              </li>
+                              <li>Then run <code>gulp build</code>. The translated result will in root directory.</li>
+                              <li>
+                                To generate all available languages, please change variable <code>assets</code> in <code>src/pug/layouts/base.pug</code>
+                            <pre><code class="language-pug">
+//- Assets Path
+- var multilang = '../../assets'
+- var prod = '../assets'
+- var dev = './assets'
+
+//- Use assets path
+- var assets = multilang // Change this
+                        
+                            </code></pre>
+                                Then please run
+                                <pre><code class="language-pug">gulp translate</code></pre>
+                              </li>
+                              <li>
+                                The translated result will available in <code>multilang/**/*.html</code>
+                              </li>
+                            </ol>
+                          </li>
+                    </ul>
+                </div>
+            </section>
+          </div>
+        </div>
+        <!-- END -->
+      
+      <br /><br />
+            <!-- END -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="../js/jquery.js"></script>
+  
+    <!-- Syntax Highligher -->
+    <script src="../js/prism.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.bundle.js"></script>
+
+    <!-- Jquery scrollTo -->
+    <script src="../js/jquery.nav.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $(document).ready(function() {
+        	$('#sidebar-wrapper .sidebar-nav').onePageNav();
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+#about {
+  .root {
+    @include breakpoints-up(md) {
+      margin-bottom: 200px
+    }
+    h4 {
+      @include breakpoints-down(sm) {
+        text-align: center;
+        margin-top: $spacing1 * -3;
+      }
+    }
+  }
+
+  .puzzle {
+    position: relative;
+    @include left(60px);
+    top: -40px;
+    div {
+      [dir="rtl"] & {
+        transform: rotate(-45deg);
+      }
+      [dir="ltr"] & {
+        transform: rotate(45deg);
+      }
+      overflow: hidden;
+      position: absolute;
+      background: #dedede;
+    }
+    span {
+      background-size: 100%;
+      [dir="rtl"] & {
+        transform: rotate(45deg);
+      }
+      [dir="ltr"] & {
+        transform: rotate(-45deg);
+      }
+      width: 320px;
+      height: 320px;
+      display: block;
+      position: relative;
+      top: -110px;
+    }
+  }
+
+  .piece-small-top {
+    width: 100px;
+    height: 100px;
+    border-radius: 16px;
+    top: -180px;
+    @include left(120px);
+    span {
+      @include left(-80px);
+      background-image: url($imgAPI-agency1);
+      background-repeat: no-repeat;
+      background-position: 40px center;
+    }
+  }
+
+  .piece-small-bottom {
+    width: 100px;
+    height: 100px;
+    border-radius: 16px;
+    top: 70px;
+    @include left(80px);
+    span {
+      @include left(-50px);
+      top: -130px;
+      background-image: url($imgAPI-agency0);
+      background-repeat: no-repeat;
+      background-position: 40px center;
+    }
+  }
+
+  .deco {
+    position: relative;
+    top: -300px;
+    left: -150px;
+    @include breakpoints-down(sm) {
+      display: none;
+    }
+    & > * {
+      transform: rotate(45deg);
+      position: absolute;
+    }
+    .big {
+      background: $palette-primary-main;
+      width: 350px;
+      height: 350px;
+      opacity: 0.08;
+      border-radius: 80px;
+      top: 60px;
+      @include left($spacing15);
+    }
+    .medium {
+      background: $palette-secondary-main;
+      width: 180px;
+      height: 180px;
+      opacity: 0.1;
+      border-radius: 40px;
+      top: 20px;
+      @include left($spacing10);
+    }
+    .small {
+      border: 8px solid $palette-primary-main;
+      opacity: 0.3;
+      border-radius: 10px;
+      width: 60px;
+      height: 60px;
+      top: 250px;
+      @include left(380px);
+    }
+  }
+}

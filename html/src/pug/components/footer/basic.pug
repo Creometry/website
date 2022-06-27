@@ -1,0 +1,30 @@
+footer.footer-basic
+  include ./decoration
+  .root
+    .container.max-lg
+      nav
+        ul
+          each item in menu.agency
+            li
+              a(href="#" + item.name) #{$t.agency_landing["header_"+item.name]}
+      .socmed
+        |
+        |
+        a.btn.icon.waves-effect.waves-light(href="#")
+          i.ion-social-twitter
+        |
+        |
+        a.btn.icon.waves-effect.waves-light(href="#")
+          i.ion-social-facebook
+        |
+        |
+        a.btn.icon.waves-effect.waves-light(href="#")
+          i.ion-social-instagram
+        |
+        |
+    .copyright
+      |
+      |
+      p.body-2.text-center
+        | &copy; #{brand.agency.footerText}
+

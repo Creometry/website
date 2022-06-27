@@ -1,0 +1,78 @@
+include ../cards/product-card.pug
+include ./slider-art
+
+-
+  var servicesList = [
+    {
+      title: 'Technical support',
+      desc:
+        'After launch, we keep up with our clients and provide technical support.',
+      img: img_artwork[4]
+    },
+    {
+      title: 'Resource Augmentation',
+      desc:
+        'We have accumulated many years of experience in sourcing for IT professionals.',
+      img: img_artwork[3]
+    },
+    {
+      title: 'UX Design',
+      desc:
+        'We build products with modernized processes which incentivizes people to come back to.',
+      img: img_artwork[3]
+    },
+    {
+      title: 'Professional Services',
+      desc:
+        'With an in-depth understanding of business process in the Banking and Financial industry.',
+      img: img_artwork[4]
+    },
+    {
+      title: 'Managed Services',
+      desc:
+        'Our Managed Services offering provides the ideal cost-saving outsourcing alternative for companies.',
+      img: img_artwork[2]
+    },
+    {
+      title: 'Software Development',
+      desc:
+        'Our software development outsourcing service is ideal for fixed-scope self-managed projects.',
+      img: img_artwork[2]
+    },
+  ]
+
+.root
+  .container.carousel-header
+    h4.title-primary
+      | #{$t.agency_landing.services_title}
+    a.btn-flat.primary-text.waves-effect.view-all(href=link.agency.product)
+      | #{$t.common.btn_seeall}
+      i.material-icons.icon arrow_forward
+  .carousel-handle
+    .carousel-wrap
+      .carousel
+        #services_carousel(data-length=servicesList.length)
+          each item in servicesList
+            .item
+              +product-card(0, 0, item.img, item.title, item.desc, 'over', 'portrait')
+          .item.show-lg-up
+            .carousel-prop
+              div
+  .floating-artwork
+    .container.fixed-width
+      .artwork
+        +slider-art('services')
+          .wow.fadeInLeftShort(data-wow-offset="-60" data-wow-delay="0.3s" data-wow-duration="0.5s")
+            div
+              img.img-2d3d(src=img_assets+img_artwork[17] data-2d=img_assets+img_artwork[16] data-3d=img_assets+img_artwork[17] alt='services 3d')
+        nav.arrow
+          |
+          |
+          button#next_services.btn-floating.margin
+            i.material-icons arrow_back
+          |
+          |
+          button#prev_services.btn-floating.margin
+            i.material-icons arrow_forward
+          |
+          |

@@ -1,0 +1,179 @@
+extends ../layouts/app.pug
+
+block variables
+  - var pageTitle = " Card Collection"
+  - var pageName = "card"
+  - var headerHome = false
+
+block content
+  #collection-page
+    .main-wrap
+      include ../components/header/main.pug
+      .container
+        .container-wrap
+          |
+          |
+          |
+          include ../components/filter/search
+          |
+          |
+          |
+          .search-content
+            div
+              .row.align-items-start.justify-content-center
+                .col-md-8.px-md-3.px-0
+                  include ../components/cards/profile-card
+                  include ../components/cards/product-card
+                  include ../components/cards/media-card
+                  include ../components/cards/post-card
+                  include ../components/cards/news-card
+                  |
+                  |
+                  |
+                  // ##### PROFILE CARD PORTRAIT #####
+                  #profile_p
+                    h4.use-text-primary.use-text-subtitle.mb-3.ms-4
+                      | Profile Cards Portrait
+                    .row
+                      - var profile_p = 0
+                      while profile_p < 2
+                        .col-sm-6.px-0.px-sm-2(data-index=profile_p++)
+                          +profile-card(imgAPI.photo[41], imgAPI.avatar[2], 'John Dalton', 'Web Designer', 100, 10, 12, 'over', 'portrait')
+                  // ##### END CARD #####
+                  |
+                  |
+                  |
+                  // ##### PROFILE CARD LANDSCAPE #####
+                  #profile_l.space-top-short
+                    h4.use-text-primary.use-text-subtitle.mb-3.ms-4
+                      | Profile Cards Landscape
+                    .row
+                      - var profile_l = 0
+                      while profile_l < 3
+                        .col-md-12.px-0(data-index=profile_l++)
+                          +profile-card(imgAPI.photo[43], imgAPI.avatar[5], 'John Dalton', 'Web Designer', 100, 10, 12, 'over', 'landscape')
+                          |
+                          |
+                  // ##### END CARD #####
+                  |
+                  |
+                  |
+                  // ##### PROFILE CARD PRODUCT PRODUCT #####
+                  #product_p.space-top-short
+                    h4.use-text-primary.use-text-subtitle.mb-3.ms-4
+                      | Product Cards Portrait
+                    .row
+                      - var product_p = 0
+                      while product_p < 3
+                        .col-sm-4.px-0.px-sm-2(data-index=product_p++)
+                          +product-card(3, 20, imgAPI.photo[29], 'Sed lacinia velit', 'Proin pretium arcu eget metus porta consecteturc', 'over', 'portrait')
+                          |
+                          |
+                  // ##### END CARD #####
+                  |
+                  |
+                  |
+                  // ##### PROFILE CARD PRODUCT LANDSCAPE #####
+                  #product_l.space-top-short
+                    h4.use-text-primary.use-text-subtitle.use-text-subtitle.mb-3.ms-3
+                      | Product Cards Landscape
+                    .row
+                      - var product_l = 0
+                      while product_l < 3
+                        .col-md-12.px-md-3.px-0(data-index=product_l++)
+                          +product-card(3, 20, imgAPI.photo[25], 'Sed lacinia velit', 'Proin pretium arcu eget metus porta consecteturc', 'over', 'landscape')
+                  // ##### END CARD #####
+                  |
+                  |
+                  |
+                  // ##### VIDEO CARD #####
+                  #media_video.space-top-short
+                    h4.use-text-primary.use-text-subtitle.mb-3.ms-4
+                      | Video Cards
+                    .row
+                      - var video = 0
+                      while video < 2
+                        .col-sm-6.px-0.px-sm-2(data-index=video++)
+                          +media-card('Sed lacinia velit, ut malesuada eros interdum a', 'portrait', 'video', imgAPI.photo[9], '')
+                  // ##### END CARD #####
+                  |
+                  |
+                  |
+                  // ##### PHOTO CARD #####
+                  #media_photo.space-top-short
+                    h4.use-text-subtitle.use-text-primary.mb-3.ms-4
+                      | Image Cards
+                    .row
+                      - var image = 0
+                      while image < 2
+                        .col-sm-6.px-0.px-sm-2(data-index=image++)
+                          +media-card('Sed lacinia velit, ut malesuada eros interdum a', 'portrait', 'photo', imgAPI.photo[10], '')
+                  // ##### END CARD #####
+                  |
+                  |
+                  |
+                  // ##### NEWS CARD PORTRAIT #####
+                  #news_p.space-top-short
+                    h4.use-text-subtitle.use-text-primary.mb-3.ms-3
+                      | News Cards Portrait
+                    .row
+                      - var news_p = 0
+                      while news_p < 3
+                        .col-sm-4.px-0.px-sm-2(data-index=news_p++)
+                          +news-card('Ut sed eros finibus, placerat orci id, dapibus mauris. Vestibulum consequat hendrerit lacus.', 'news', 'portrait', 'over', imgAPI.photo[34], '#')
+                  // ##### END CARD #####
+                  |
+                  |
+                  |
+                  // ##### NEWS CARD LANDSCAPE #####
+                  #news_l.space-top-short
+                    h4.use-text-subtitle.use-text-primary.mb-3.ms-3
+                      | News Cards Landscape
+                    .row
+                      - var news_l = 0
+                      while news_l < 3
+                        .col-md-12.px-0(data-index=news_l++)
+                          +post-card('Maecenas rutrum dolor sed nisi', 'Vestibulum faucibus eget erat eget pretium. Donec commodo convallis ligula, eget suscipit orci. Suspendisse potenti. Proin pretium arcu eget metus porta consectetur Pellentesque habitant. Vestibulum faucibus eget erat eget pretium. Donec commodo convallis ligula, eget suscipit orci. Suspendisse potenti. Proin pretium arcu eget metus porta consectetur Pellentesque habitant', '12 Nov 2021', 'landscape', 'over', imgAPI.photo[37], '#')
+                  // ##### END CARD #####
+                  |
+                  |
+                  |
+                  // ##### POST CARD PORTRAIT #####
+                  #post_p.space-top-short
+                    h4.use-text-subtitle.use-text-primary.mb-3.ms-3
+                      | Post Cards Portrait
+                    .row
+                      - var post_p = 0
+                      while post_p < 3
+                        .col-sm-4.px-0.px-sm-2(data-index=post_p++)
+                          +post-card('Maecenas rutrum dolor sed nisi', 'Vestibulum faucibus eget erat eget pretium. Donec commodo convallis ligula, eget suscipit orci. Suspendisse potenti. Proin pretium arcu eget metus porta consectetur Pellentesque habitant. Vestibulum faucibus eget erat eget pretium. Donec commodo convallis ligula, eget suscipit orci. Suspendisse potenti. Proin pretium arcu eget metus porta consectetur Pellentesque habitant', '12 Nov 2021', 'portrait', 'over', imgAPI.photo[36], '#')
+                  // ##### END CARD #####
+                  |
+                  |
+                  |
+                  // ##### POST CARD PORTRAIT #####
+                  #post_l.space-top-short
+                    h4.use-text-subtitle.use-text-primary.mb-3.ms-3
+                      | Post Cards Landscape
+                    .row
+                      - var post_l = 0
+                      while post_l < 3
+                        .col-md-12.px-0(data-index=post_l++)
+                          +post-card('Maecenas rutrum dolor sed nisi', 'Vestibulum faucibus eget erat eget pretium. Donec commodo convallis ligula, eget suscipit orci. Suspendisse potenti. Proin pretium arcu eget metus porta consectetur Pellentesque habitant. Vestibulum faucibus eget erat eget pretium. Donec commodo convallis ligula, eget suscipit orci. Suspendisse potenti. Proin pretium arcu eget metus porta consectetur Pellentesque habitant', '12 Nov 2021', 'landscape', 'over', imgAPI.photo[32], '#')
+                  // ##### END CARD #####
+                |
+                |
+                |
+                // ##### SIDEBAR #####
+                .col-md-4.px-1
+                  include ../components/list/sidebar/sidebar
+                // ##### END #####
+        |
+        |
+        |
+      // ##### FOOTER #####
+      #footer
+        include ../components/footer/main.pug
+      |
+      |
+      |

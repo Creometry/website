@@ -1,0 +1,57 @@
+.slider-art {
+  .deco {
+    @include breakpoints-up(lg) {
+      width: 450px
+    }
+    img {
+      position: relative;
+      width: 100%;
+    }
+    &:before {
+      content: "";
+      width: 480px;
+      height: 480px;
+      .theme--dark & {
+        background: $dark-background-default
+      }
+      .theme--light & {
+        background: $light-background-paper
+      }
+      border-radius: 24px;
+      [dir="rtl"] & {
+        transform: rotate(-45deg);
+      }
+      [dir="ltr"] & {
+        transform: rotate(45deg);
+      }
+      position: absolute;
+      top: $spacing15;
+      right: $spacing10;
+      @include breakpoints-down(sm) {
+        display: none
+      }
+    }
+    .theme--dark & {
+      &:before {
+        box-shadow: -30px 20px 0px 0px $palette-secondary-dark
+      }
+    }
+    .theme--light & {
+      &:before {
+        box-shadow: -30px 20px 0px 0px $palette-secondary-light
+      }
+    }
+  }
+
+  .figure {
+    height: 460px;
+    display: flex;
+    align-items: flex-end;
+    transition: all 0.3s ease;
+  }
+
+  .faded {
+    opacity: 0.15;
+    filter: blur(10px)
+  }
+}

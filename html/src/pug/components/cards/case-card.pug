@@ -1,0 +1,29 @@
+mixin case-card(bg, logo, title, desc, size, simple)
+  a.waves-effect.case-card(class=size href=bg || logo)
+    |
+    |
+    span.figure
+      img(
+        src=simple ? logo : bg
+        alt='img'
+      )/
+    |
+    |
+    span.property(class=simple && "full-hide")
+      span.title
+        if !simple
+          span.logo
+            img(src=logo alt='logo')/
+        span.text
+          span.title #{title}
+          span.desc #{desc}
+        |
+        |
+      |
+      |
+      |
+      |
+    |
+    |
+  |
+  |

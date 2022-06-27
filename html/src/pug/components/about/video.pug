@@ -1,0 +1,23 @@
+include ../cards/media-card
+
+.about-style
+  .video-root
+    if youtube.use
+      #video_modal.modal.video-popup
+        .modal-content
+          |
+          |
+          h4.use-text-subtitle.mb-3 Vestibulum consequat hendrerit lacus
+          |
+          |
+          button.btn-icon.modal-close.close-btn.waves-effect
+            i.material-icons close
+          .text-center
+            #video_iframe
+    h4.use-text-title2.mb-3.use-text-primary
+      | Lorem ipsum dolor sit amet.
+    p.pb-2.use-text-subtitle2
+      | Proin scelerisque sapien at enim faucibus, ut scelerisque urna consequat.
+    .video-wrap
+      div.modal-trigger(data-target="video_modal" data-video="sf15CtXuw9M")
+        +media-card('Sed lacinia velit, ut malesuada eros interdum a', 'landscape', 'video', imgAPI.photo[11], '', '02:30')

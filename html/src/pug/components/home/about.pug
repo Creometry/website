@@ -1,0 +1,23 @@
+include ../titles/with-decoration.pug
+.root
+  .container.fixed-width
+    .row
+      .col-md-5.py-6.ps-lg-15
+        .ms-md-12.ps-md-3
+          +title-deco($t.agency_landing.about_title)
+          .wow.zoomInShort(data-wow-offset='10' data-wow-delay='0.1s' data-wow-duration='0.3s')
+            .puzzle.show-lg-up
+              .piece-small-top
+                span
+              .piece-small-bottom
+                span
+          .wow.zoomInShort(data-wow-offset='10' data-wow-delay='0.3s' data-wow-duration='0.5s')
+            .deco
+              .big
+              .medium
+              .small
+      .col-md-7.px-sm-6.px-0
+        div
+          h4.title-default.use-text-subtitle
+            | #{$t.agency_landing.about_subtitle}
+          include counter.pug

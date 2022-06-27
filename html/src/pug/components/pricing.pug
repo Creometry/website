@@ -1,0 +1,69 @@
+include cards/pricing-card.pug
+
+-
+  var tiers = [
+    {
+      title: 'Free',
+      price: '0',
+      description: [
+        '15 users included',
+        '10 GB of storage',
+        'Help center access'
+      ],
+      info: 'Interdum et malesuada fames ac ante ipsum primis in faucibus.',
+      buttonText: 'pricing_free',
+      buttonVariant: 'outlined'
+    },
+    {
+      title: 'Personal',
+      price: '5',
+      description: [
+        '15 users included',
+        '10 GB of storage',
+        'Help center access',
+        'Priority email support'
+      ],
+      info: 'Interdum et malesuada fames ac ante ipsum primis in faucibus.',
+      buttonText: 'pricing_buy',
+      buttonVariant: 'outlined'
+    },
+    {
+      title: 'Pro',
+      subheader: 'Most popular',
+      price: '15',
+      description: [
+        '20 users included',
+        '10 GB of storage',
+        'Help center access',
+        'Priority email support'
+      ],
+      info: 'Interdum et malesuada fames ac ante ipsum primis in faucibus.',
+      buttonText: 'pricing_buy',
+      buttonVariant: 'contained'
+    },
+    {
+      title: 'Enterprise',
+      price: '30',
+      description: [
+        '50 users included',
+        '30 GB of storage',
+        'Help center access',
+        'Priority email support', 
+        'Phone & email support'
+      ],
+      info: 'Interdum et malesuada fames ac ante ipsum primis in faucibus.',
+      buttonText: 'btn_contact',
+      buttonVariant: 'outlined'
+    }
+  ]
+
+.container
+  h3.use-text-title.use-text-primary.text-capitalize.text-center.mb-4
+    | #{$t.common.pricing_title}
+  p.use-text-subtitle2.text-center.mb-4
+    | #{$t.common.pricing_desc}
+  .pricing-wrap
+    .row.align-items-end
+      each tier in tiers
+        .col-md-3.col-sm-6.px-3
+          +pricing-card(tier.price, tier.description, tier.title, tier.info, tier.buttonText, tier.buttoenVariant)

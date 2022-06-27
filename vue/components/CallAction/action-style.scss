@@ -1,0 +1,63 @@
+.root {
+  position: relative;
+  p {
+    margin: 0
+  }
+}
+
+.button.v-btn {
+  color: $palette-primary-main;
+  height: 48px;
+  font-size: 18px;
+  @include breakpoints-up(sm) {
+    height: 64px;
+    font-size: 20px
+  }
+}
+
+.paper {
+  border-radius: 24px !important;
+  &.v-sheet.v-card:not(.v-sheet--outlined) {
+    padding: $spacing4;
+    color: $palette-common-white;
+    @include use-theme(background-color, $palette-primary-main, $palette-primary-dark);
+    @include breakpoints-up(lg) {
+      padding: spacing(4, 10);
+      margin: spacing(0, 4);
+    }
+    @include breakpoints-down(xs) {
+      padding: spacing(4, 2);
+      text-align: center
+    }
+  }
+  @include breakpoints-down(sm) {
+    text-align: center
+  }
+  @include breakpoints-down(sm) {
+    margin-bottom: $spacing5
+  }
+  h4 {
+    font-weight: 700;
+    @include breakpoints-down(xs) {
+      font-size: 28px !important;
+      margin-bottom: $spacing2
+    }
+  }
+  p {
+    font-size: 24px;
+    @include breakpoints-down(sm) {
+      margin-bottom: $spacing5
+    }
+    @include breakpoints-down(xs) {
+      font-size: 18px;
+      margin-bottom: $spacing3
+    }
+  }
+}
+
+.right-icon {
+  @include margin-left($spacing1);
+  .v-application--is-rtl & {
+    transform: rotate(180deg)
+  }
+}

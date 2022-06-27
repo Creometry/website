@@ -1,0 +1,55 @@
+include ../../paper.pug
+
+-
+  var people = [
+    {
+      img: imgAPI.avatar[6],
+      name: 'John Doe',
+      title: 'Web Designer'
+    },
+    {
+      img: imgAPI.avatar[1],
+      name: 'Jean Doe',
+      title: 'Executive Merketing'
+    },
+    {
+      img: imgAPI.avatar[7],
+      name: 'Jim Doe',
+      title: 'Dev Ops'
+    },
+    {
+      img: imgAPI.avatar[2],
+      name: 'Jihan Doe',
+      title: 'Director'
+    },
+    {
+      img: imgAPI.avatar[0],
+      name: 'Jena Doe',
+      title: 'CEO'
+    },
+    {
+      img: imgAPI.avatar[9],
+      name: 'Johan Doe',
+      title: 'iOS Developer'
+    }
+  ]
+
++paper('You may know', 'people', 'Donec commodo convallis ligula eget suscipit orci.')
+  ul.collection
+    each item in people
+      li.collection-item.avatar
+        |
+        |
+        img.circle(src=item.img alt=item.name)/
+        |
+        |
+        p.use-text-medium
+          | #{item.name}
+        |
+        |
+        p.caption #{item.title}
+        |
+        |
+        a.secondary-content.primary.btn-outlined.btn-small(href='#!') follow
+        |
+        |

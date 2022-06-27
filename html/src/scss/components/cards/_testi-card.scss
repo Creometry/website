@@ -1,0 +1,60 @@
+/* Testimonial Card */
+.testi-card {
+  direction: ltr;
+  position: relative;
+  .paper.card {
+    padding: $spacing3;
+    width: 240px;
+    height: 240px;
+    border-radius: 50px 50px 50px 0;
+    p {
+      height: 130px;
+    }
+  }
+
+  .rating {
+    margin-top: $spacing4
+  }
+
+  .star-icon {
+    color: $palette-accent-main
+  }
+
+  .star-icon-disable {
+    .theme--light & {
+      color: $light-divider;
+    }
+    .theme--dark & {
+      color: $dark-divider;
+    }
+  }
+
+  .person {
+    display: flex;
+    margin-top: $spacing3;
+    .avatar {
+      width: 55px;
+      height: 55px;
+    }
+    .name {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      @include margin-left($spacing2);
+      h6 {
+        font-weight: $font-medium
+      }
+    }
+    .caption {
+      font-style: italic;
+      font-weight: 300
+    }
+  }
+
+  .avatar {
+    border: 4px solid #FFF;
+    box-sizing: content-box;
+    @include shadow2;
+  }
+}
+

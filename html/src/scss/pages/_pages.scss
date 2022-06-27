@@ -1,0 +1,140 @@
+@function section-margin($margin) {
+  @return $margin * 15;
+}
+.main-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.space-bottom {
+  margin-bottom: section-margin($spacing1);
+   @include breakpoints-down(md) {
+    margin-bottom: section-margin(calc($spacing1 / 1.5));
+  }
+}
+.space-bottom-short {
+  margin-bottom: section-margin(calc($spacing1 / 1.5));
+  @include breakpoints-down(md) {
+    margin-bottom: section-margin(calc($spacing1 / 2.5));
+  }
+}
+.space-bottom-short-md {
+  @include breakpoints-down(md) {
+    margin-bottom: section-margin(calc($spacing1 / 2.5));
+  }
+}
+.space-bottom-short-sm {
+  @include breakpoints-down(sm) {
+    margin-bottom: section-margin(calc($spacing1 / 2.5));
+  }
+}
+.space-bottom-short-xs {
+  @include breakpoints-down(xs) {
+    margin-bottom: section-margin(calc($spacing1 / 2.5));
+  }
+}
+
+.space-top {
+  margin-top: section-margin(calc($spacing1));
+  @include breakpoints-down(md) {
+    margin-top: section-margin(calc($spacing1 / 1.5));
+  }
+}
+.space-top-short {
+  margin-top: section-margin(calc($spacing1 / 1.5));
+  @include breakpoints-down(md) {
+    margin-top: section-margin(calc($spacing1 / 2.5));
+  }
+}
+.space-top-short-md {
+  @include breakpoints-down(md) {
+    margin-top: section-margin(calc($spacing1 / 2.5));
+  }
+}
+.space-top-short-sm {
+  @include breakpoints-down(sm) {
+    margin-top: section-margin(calc($spacing1 / 2.5));
+  }
+}
+.space-top-short-xs {
+  @include breakpoints-down(xs) {
+    margin-top: section-margin(calc($spacing1 / 2.5));
+  }
+}
+
+.container-wrap {
+  & > section {
+    position: relative;
+  }
+}
+
+.container-general {
+  position: relative;
+  padding-top: 32px;
+  margin-top: $spacing7;
+  margin-bottom: $spacing5;
+  @include breakpoints-up(sm) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+.full-screen-container {
+  height: 100vh;
+  display: flex;
+  .socmed-btn {
+    .ion-social-facebook {
+      color: #3f51b5
+    }
+    .ion-social-twitter {
+      color: #2196f3
+    }
+    .ion-social-instagram {
+      color: #9c27b0
+    }
+    .ion-social-linkedin {
+      color: #2196f3
+    }
+  }
+}
+
+.full-width {
+  width: 100% !important
+}
+
+.coloured-page {
+  color: $palette-common-white;
+  @include use-theme(background-color, $palette-primary-main, $palette-primary-dark);
+}
+
+.maintenance-icon {
+  border-radius: 50%;
+  margin: $spacing1;
+  padding: $spacing2;
+  &.icon {
+    font-size: 48px;
+  }
+  @include use-theme(background, $light-divider, $dark-divider);
+  @include breakpoints-up(sm) {
+    padding: $spacing3;
+    margin: $spacing3;
+  }
+  &.primary-color {
+    color: $palette-primary-dark;
+    background: $palette-primary-light;
+  }
+  &.secondary-color {
+    color: $palette-secondary-dark;
+    background: $palette-secondary-light;
+  }
+  &.accent-color {
+    color: $palette-accent-dark;
+    background: $palette-accent-light;
+  }
+}
+
+.arrow {
+  .btn-flat i {
+    @include rtl-flip;
+  }
+}

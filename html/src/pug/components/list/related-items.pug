@@ -1,0 +1,10 @@
+.row.justify-content-center
+  .col-lg-10.col-md-12.py-6.px-sm-0.px-md-6
+    h4.use-text-subtitle.mb-3
+      | #{$t.common.list_related}
+    .row.scroll-tablet.mb-0
+      - var n = 0;
+      while n < 4
+        .col-md-3.col-sm-4.col-10.px-2(data-index=n++)
+          include ../cards/product-card
+          +product-card(3, 20, imgAPI.photo[20 + n], 'Sed lacinia velit', 'Proin pretium arcu eget metus porta consecteturc', 'over', 'portrait')

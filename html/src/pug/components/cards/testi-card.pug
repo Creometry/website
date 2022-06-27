@@ -1,0 +1,22 @@
+mixin testimonial-card(avatar, title, name, text, star)
+  .testi-card
+    .card.paper
+      p #{text}
+      .rating
+        - var n = 1
+        - var m = 1
+        - var left = 5 - star
+        while n <= star
+          i.material-icons.star-icon(title=n++) star
+        while m <= left
+          i.material-icons.star-icon-disable(title=m++) star
+    .person
+      .avatar-img.avatar
+        |
+        |
+        img(src=avatar alt="name")/
+        |
+        |
+      .name
+        h6 #{name}
+        span.caption #{title}
