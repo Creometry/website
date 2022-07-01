@@ -65,7 +65,7 @@
 </style>
 
 <script>
-import logo from '~/static/images/logo_grin.svg'
+import logo from '~/static/images/agency-logo.svg'
 import brand from '~/static/text/brand'
 import PageDeco from '~/components/Decoration/PageDeco'
 

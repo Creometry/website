@@ -1,15 +1,15 @@
 const link = {
   agency: {
     home: '/',
-   /* about: '/about',*/
-   /* team: '/about/team',*/
+    about: '/about',
+    team: '/about/team',
     blog: '/blog',
     blogDetail: '/blog/detail-blog',
     login: '/login',
     register: '/register',
     contact: '/contact',
-    /*contactMap: '/contact/with-map',*/
-    /*card: '/collection',*/
+    contactMap: '/contact/with-map',
+    card: '/collection',
     product: '/collection/products',
     productDetail: '/collection/detail-product',
     pricing: '/utils/pricing',

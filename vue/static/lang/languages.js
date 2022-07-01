@@ -21,10 +21,10 @@ export default [
     dir: 'ltr'
   },
   {
-    code: 'fr',
-    iso: 'fr-FR',
-    name: 'Français',
-    file: 'fr-FR.js',
+    code: 'id',
+    iso: 'id-ID',
+    name: 'Bahasa Indonesia',
+    file: 'id-ID.js',
     dir: 'ltr'
   },
   {

@@ -3,7 +3,7 @@ import link from '~/static/text/link';
 
 const sample = [
   {
-    name: 'creometry',
+    name: 'company',
     thumb: imgAPI.ui[3],
     child: [
       {

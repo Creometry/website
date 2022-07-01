@@ -15,7 +15,7 @@
                   {{ $t('common.about_ready') }}
                 </h4>
                 <p>
-                  Let's build the next big thing together!
+                  Pellentesque ac bibendum tortor. Nulla eget lobortis lacus.
                 </p>
               </v-col>
               <v-col cols="12" lg="3" md="4" class="ps-sm-8">

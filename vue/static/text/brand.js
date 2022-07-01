@@ -1,13 +1,13 @@
 const brand = {
   agency: {
-    name: 'Creometry',
-    desc: 'Creometry | The "cloud", made easy!',
-    prefix: 'Creometry',
-    footerText: 'Creometry 2022',
-    logoText: 'Creometry',
-    projectName: 'Creometry',
-    url: 'creometry.com',
-    img: '/static/images/logo_grin.png'
+    name: 'Agency',
+    desc: 'Awrora Agency | Vue Landing Page Template',
+    prefix: 'awrora',
+    footerText: 'Awrora Theme 2022',
+    logoText: 'Awrora Theme',
+    projectName: 'Agency Theme',
+    url: 'awrora1.indisains.com/agency',
+    img: '/static/images/agency-logo.png'
   }
 }
 

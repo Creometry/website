@@ -49,7 +49,7 @@
                 {{ $t('common.footer_news') }}
               </span>
               <span class="content">
-                change me footer/blog.
+                Sed imperdiet enim ligula vitae viverra.
               </span>
             </span>
           </v-btn>
@@ -79,14 +79,14 @@
               icon
               class="button"
             >
-              <span class="ion-logo-linkedin icon" />
+              <span class="ion-logo-instagram icon" />
             </v-btn>
             <v-btn
               text
               icon
               class="button"
             >
-              <span class="ion-logo-github icon" />
+              <span class="ion-logo-linkedin icon" />
             </v-btn>
           </div>
           <v-select

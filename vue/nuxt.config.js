@@ -18,7 +18,7 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'description', content: brand.agency.desc },
       { name: 'msapplication-TileColor', content: '#FFFFFF' },
-      { name: 'msapplication-TileImage', content: '/favicons/logo-grin-144x144.png' },
+      { name: 'msapplication-TileImage', content: '/favicons/ms-icon-144x144.png' },
       // PWA primary color
       { name: 'theme-color', content: theme.primary},
       // Facebook
@@ -45,16 +45,16 @@ module.exports = {
     link: [
       // Favicon
       { rel: 'shortcut icon', href: '/favicons/favicon.ico' },
-      { rel: 'apple-touch-icon', sizes: '57x57', href: '/favicons/logo-grin-57x57.png' },
-      { rel: 'apple-touch-icon', sizes: '60x60', href: '/favicons/logo-grin-60x60.png' },
-      { rel: 'apple-touch-icon', sizes: '72x72', href: '/favicons/logo-grin-72x72.png' },
-      { rel: 'apple-touch-icon', sizes: '76x76', href: '/favicons/logo-grin-76x76.png' },
-      { rel: 'apple-touch-icon', sizes: '114x114', href: '/favicons/logo-grin-114x114.png' },
-      { rel: 'apple-touch-icon', sizes: '120x120', href: '/favicons/logo-grin-120x120.png' },
-      { rel: 'apple-touch-icon', sizes: '144x144', href: '/favicons/logo-grin-144x144.png' },
-      { rel: 'apple-touch-icon', sizes: '152x152', href: '/favicons/logo-grin-152x152.png' },
-      { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicons/logo-grin-180x180.png' },
-      { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/favicons/logo-grin-192x192.png' },
+      { rel: 'apple-touch-icon', sizes: '57x57', href: '/favicons/apple-icon-57x57.png' },
+      { rel: 'apple-touch-icon', sizes: '60x60', href: '/favicons/apple-icon-60x60.png' },
+      { rel: 'apple-touch-icon', sizes: '72x72', href: '/favicons/apple-icon-72x72.png' },
+      { rel: 'apple-touch-icon', sizes: '76x76', href: '/favicons/apple-icon-76x76.png' },
+      { rel: 'apple-touch-icon', sizes: '114x114', href: '/favicons/apple-icon-114x114.png' },
+      { rel: 'apple-touch-icon', sizes: '120x120', href: '/favicons/apple-icon-120x120.png' },
+      { rel: 'apple-touch-icon', sizes: '144x144', href: '/favicons/apple-icon-144x144.png' },
+      { rel: 'apple-touch-icon', sizes: '152x152', href: '/favicons/apple-icon-152x152.png' },
+      { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicons/apple-icon-180x180.png' },
+      { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/favicons/android-icon-192x192.png' },
       { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
       { rel: 'manifest', href: '/favicons/manifest.json' },
@@ -85,7 +85,6 @@ module.exports = {
   plugins: [
     '~/plugins/vue-fragment-config',
     '~/plugins/vue-wow-config',
-    
     { src: '~plugins/i18n-config.js' },
     { src: '~/plugins/vue-youtube-config', ssr: false },
     { src: '~/plugins/vue-lightbox-config', ssr: false },
@@ -98,7 +97,6 @@ module.exports = {
   */
   buildModules: [
     '@nuxtjs/vuetify',
-    
   ],
   /*
   ** Nuxt.js modules
@@ -123,7 +121,6 @@ module.exports = {
         }
       }
     ],
-  
     ['nuxt-gmaps', { key: '' }],
     '@nuxtjs/i18n',
   ],
