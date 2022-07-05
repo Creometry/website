@@ -10,7 +10,7 @@
 </style>
 
 <script>
-import logo from '~/static/images/agency-logo.svg'
+import logo from '~/static/images/company-logo.png'
 import brand from '~/static/text/brand'
 
 export default {
