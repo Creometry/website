@@ -1,4 +1,4 @@
-FROM golang:1.18.3-alpine3.16 AS build
+FROM golang:1.18.3-alpine3.16 AS builder
 
 WORKDIR /build
 
@@ -14,14 +14,9 @@ RUN apk add build-base
 
 RUN go build -ldflags="-s -w" -o apiserver .
 
-##
-## Deploy
-##
-FROM gcr.io/distroless/static-debian11
+FROM alpine
 
-COPY --from=build ["/build/apiserver", "/"]
-
-RUN mkdir data
+COPY --from=builder ["/build/apiserver", "/"]
 
 EXPOSE 5000
 
