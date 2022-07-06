@@ -53,7 +53,7 @@ export default () => {
         btn_read_more: 'read more',
         btn_detail: 'see detail',
         btn_submit: 'submit',
-        btn_seeall: 'see all',
+        btn_seeall: 'more details',
         btn_next: 'next',
         btn_prev: 'prev',
         btn_contact: 'contact us',
@@ -155,7 +155,7 @@ export default () => {
       },
       agency: {
         header_about: 'about',
-        header_services: 'services',
+        header_pricing: 'pricing',
         'header_our-expertise': 'features',
         'header_case-studies': 'case studies',
         header_testimonials: 'testimonials',
@@ -171,7 +171,7 @@ export default () => {
         about_client: 'clients',
         about_quote:
           "It leaves a taste that's bittersweet That's called the blues",
-        services_title: 'Pricing',
+        services_title: 'pricing',
         services_button: 'see detail',
         expertise_title: 'Features',
         expertise_subtitle:

@@ -21,7 +21,7 @@
           :class="title === 'Free' ? 'use-text-secondary' : 'use-text-primary'"
           class="use-text-title text-xs-center"
         >
-          ${{ price }}
+          DT{{ price }}
         </h2>
         <h6 class="title">
           &nbsp;/ mo

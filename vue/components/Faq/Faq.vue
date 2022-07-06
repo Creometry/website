@@ -66,29 +66,34 @@ import imgAPI from '~/static/images/imgAPI'
 import Hidden from '../Hidden'
 const faqData = [
   {
-    q: 'Pellentesque ac bibendum tortor?',
+    q: 'What is serverless?',
     a:
-      'Vivamus sit amet interdum elit. Proin lacinia erat ac velit tempus auctor.'
+      'Essentially, it means "no server operations". The classic definition of "server-less" refers to an arhitecture pattern known as (FaaS).'
   },
   {
-    q: 'In mi nulla, fringilla vestibulum?',
+    q: 'What is a container? ',
     a:
-      'Vivamus sit amet interdum elit. Proin lacinia erat ac velit tempus auctor. '
+      ' A container is a standard unit of software that packages code with all of its dependencies, to be shipped to the cloud, deployed, and replicated together repeatedly. Containers can package all kinds of software from static HTML to an entire operating system.'
   },
   {
-    q: 'Quisque lacinia purus ut libero?',
+    q: 'What is GitOps? And Why do I need it? ',
     a:
-      'Vivamus sit amet interdum elit. Proin lacinia erat ac velit tempus auctor. '
+      'GitOps is an operational framework that takes DevOps best practices used for application development such as version control, collaboration, compliance, and CI/CD, and applies them to infrastructure automation.'
   },
   {
-    q: 'Quisque ut metus sit amet augue?',
+    q: 'What are serverless containers? ',
     a:
-      'Vivamus sit amet interdum elit. Proin lacinia erat ac velit tempus auctor. '
+      'Containers can package any application. When cobined with serverless concepts, a function may be anything; a micro-service, a web-site, a data-base or even a monolithic application.'
   },
   {
-    q: 'Pellentesque ac bibendum tortor?',
+    q: 'How is Creometry secure?',
     a:
-      'Vivamus sit amet interdum elit. Proin lacinia erat ac velit tempus auctor. '
+      'Serverless automates infrastructure operations and removes human intervention by default, thus lowering the risk of error occurence. Additionally, all services get automatic TLS to encrypt traffic and default isolation to prevent them from talkng to other services when they are not supposed to.'
+  },
+  {
+    q: 'How can I run serverless containers on my own servers?',
+    a:
+      "Whether your servers are on the cloud or on-premise, you can use creometry's stack to run containers on kubernetes. For assistance planning and executing your migration strategy, contact our sales team."
   }
 ]
 

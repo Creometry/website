@@ -14,7 +14,7 @@
           md="3"
           sm="6"
           cols="12"
-          class="px-lg-2 px-1"
+          class="px-lg-2 px-6"
         >
           <pricing-card
             :title="tier.title"
@@ -27,6 +27,16 @@
           />
         </v-col>
       </v-row>
+      <br>
+      <pricing-card
+            :title="entrepriseTier.title"
+            :subheader="entrepriseTier.subheader"
+            :price="entrepriseTier.price"
+            :description="entrepriseTier.description"
+            :info="entrepriseTier.info"
+            :button-text="entrepriseTier.buttonText"
+            :button-variant="entrepriseTier.buttonVariant"
+          />
     </div>
   </v-container>
 </template>
@@ -46,25 +56,12 @@ export default {
     return {
       tiers: [
         {
-          title: 'Free',
-          price: '0',
+          title: 'Starter',
+          price: '49',
           description: [
-            '15 users included',
-            '10 GB of storage',
-            'Help center access'
-          ],
-          info: 'Interdum et malesuada fames ac ante ipsum primis in faucibus.',
-          buttonText: 'pricing_free',
-          buttonVariant: 'outlined'
-        },
-        {
-          title: 'Personal',
-          price: '5',
-          description: [
-            '15 users included',
-            '10 GB of storage',
-            'Help center access',
-            'Priority email support'
+            '1 CPU',
+            '2GB RAM',
+            '30GB Storage',
           ],
           info: 'Interdum et malesuada fames ac ante ipsum primis in faucibus.',
           buttonText: 'pricing_buy',
@@ -72,33 +69,39 @@ export default {
         },
         {
           title: 'Pro',
-          subheader: 'Most popular',
-          price: '15',
+          price: '99',
           description: [
-            '20 users included',
-            '10 GB of storage',
-            'Help center access',
-            'Priority email support'
+            '2 CPU',
+            '4GB RAM',
+            '80GB Storage',
+          ],
+          info: 'Interdum et malesuada fames ac ante ipsum primis in faucibus.',
+          buttonText: 'pricing_buy',
+          buttonVariant: 'outlined'
+        },
+        {
+          title: 'Elite',
+          subheader: 'Most popular',
+          price: '149',
+          description: [
+            '4 CPU',
+            '8GB RAM',
+            '120GB Storage',
+            'Chat Support',
           ],
           info: 'Interdum et malesuada fames ac ante ipsum primis in faucibus.',
           buttonText: 'pricing_buy',
           buttonVariant: 'contained'
         },
-        {
+        
+      ],
+      entrepriseTier : {
           title: 'Enterprise',
-          price: '30',
-          description: [
-            '50 users included',
-            '30 GB of storage',
-            'Help center access',
-            'Priority email support', 
-            'Phone & email support'
-          ],
+          description: [],
           info: 'Interdum et malesuada fames ac ante ipsum primis in faucibus.',
           buttonText: 'btn_contact',
           buttonVariant: 'outlined'
-        }
-      ]
+      }
     }
   }
 }
