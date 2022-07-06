@@ -9,8 +9,9 @@ import (
 func main() {
 	app := fiber.New()
 
-	app.Post("/subscription", controller.AddEmail)
-	app.Get("/subscription/:type", controller.GetByType)
+	app.Post("/newsletter", controller.AddEmail)
+	app.Get("/newsletter", controller.GetCSV)
+	app.Post("/mail", controller.SendMail)
 
 	app.Listen(":5000")
 }
