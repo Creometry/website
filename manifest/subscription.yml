@@ -37,6 +37,17 @@ spec:
         image: ImageNameHere
         ports:
         - containerPort: 3000
+        env:
+          - name: SENDER_PWD
+            valueFrom:
+              configMapKeyRef:
+                name: subs-configmap
+                key: SENDER_PWD 
+          - name: SENDER_ADRESS
+            valueFrom:
+              configMapKeyRef:
+                name: subs-configmap
+                key: SENDER_ADRESS 
         volumeMounts:
           - name: subscription-volume
             mountPath: /creometry-db
