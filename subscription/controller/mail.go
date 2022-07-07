@@ -20,18 +20,18 @@ func SendMail(c *fiber.Ctx) error {
 	}
 	m.SetHeader("From", os.Getenv("SENDER_ADRESS"))
 
-	m.SetHeader("To", mail.Receiver)
+	m.SetHeader("To", mail.SenderAdress)
 
 	m.SetHeader("Subject", mail.Title)
 
-	m.SetBody("text/plain", mail.Body)
+	m.SetBody("text/plain", fmt.Sprintf("From: %s \nEmail Adress: %s \nPhone Number: %s \nBody: %s", mail.SenderName, mail.SenderAdress, mail.SenderNumber, mail.Body))
 
 	d := gomail.NewDialer("smtp.gmail.com", 587, os.Getenv("SENDER_ADRESS"), os.Getenv("SENDER_PWD"))
 
 	d.TLSConfig = &tls.Config{InsecureSkipVerify: true}
 
 	if err := d.DialAndSend(m); err != nil {
-		fmt.Println(err)
+		return err
 	}
-	return c.JSON("something")
+	return c.JSON("sent")
 }

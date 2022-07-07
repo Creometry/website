@@ -1,7 +1,9 @@
 package models
 
 type Email struct {
-	Receiver string `json:"receiver"`
-	Body     string `json:"body"`
-	Title    string `json:"title"`
+	SenderAdress string `json:"adress"`
+	Body         string `json:"body"`
+	Title        string `json:"title"`
+	SenderName   string `json:"name"`
+	SenderNumber string `json:"number"`
 }
