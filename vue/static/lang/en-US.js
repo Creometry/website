@@ -12,6 +12,8 @@ export default () => {
         error_without_status: 'An error occurred on the server',
         contact_title: 'Free Project Quote',
         contact_title2: 'Say Hello to Us',
+        subscribe_title: 'Subscribe to out newsletter',
+        subscribe_send: 'Subscribe',
         contact_subtitle:
           'Do you have any questions? Are you ready to reduce cost and create new revenue? Or you simply want to say hi? Drop us a message.',
         form_name: 'What is your name? *',

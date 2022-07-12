@@ -42,7 +42,8 @@
         >
           <call-action />
         </div>
-      </div>
+        <Subscribe></Subscribe>
+  </div>
       <main-footer />
       <hidden point="smDown">
         <corner />
@@ -73,6 +74,7 @@ import Hidden from '~/components/Hidden'
 import Corner from '~/components/Home/Corner'
 import Notification from '~/components/Notification'
 import brand from '~/static/text/brand'
+import Subscribe from '~/components/forms/Subscribe'
 
 export default {
   components: {
@@ -88,6 +90,7 @@ export default {
     Hidden,
     Corner,
     Notification,
+    Subscribe,
     'main-footer': Footer
   },
   head() {
