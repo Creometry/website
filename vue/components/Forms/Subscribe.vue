@@ -7,10 +7,10 @@
       right
       v-model="snackbar"
       class="notification"
-      color="green"
+      :color="color"
     >
       <div class="action">
-        Message Sent
+        {{ message }}
       </div>
       <v-btn
         text
@@ -94,6 +94,8 @@ export default {
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
       ],
+      color: "",
+      message: ""
     }
   },
   methods: {
@@ -104,8 +106,18 @@ export default {
         .then(res=>{
             if(res.data == "inserted"){
                 this.snackbar = true
+                this.color = "green"
+                this.message = "Welcome aboard!!"
+            }else if(res.data == "email adress already exists"){
+                this.snackbar = true
+                this.color = "orange"
+                this.message = "Already subscribed"
             }
-        }).catch(err=> console.log(err))
+        }).catch(err=> {
+          this.snackbar = true
+                this.color = "red"
+                this.message = "Server Error: Please try again later"
+        })
         
       }
     }
