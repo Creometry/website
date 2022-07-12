@@ -7,9 +7,10 @@
       right
       v-model="snackbar"
       class="notification"
+      :color="color"
     >
       <div class="action">
-        Message Sent
+        {{ message }}
       </div>
       <v-btn
         text
@@ -60,36 +61,34 @@
                   color="white"
                 />
               </v-col>
-              <v-col cols="12" sm="6" class="px-6">
+              <v-col cols="12" sm="12" class="px-6">
                 <v-text-field
-                  v-model="company"
-                  :label="$t('common.form_company')"
+                  v-model="title"
+                  :rules="titleRules"
+                  :label="$t('common.form_title')"
                   color="white"
+                  required
                 />
               </v-col>
               <v-col cols="12" class="px-6">
                 <v-textarea
-                  v-model="message"
+                  v-model="body"
+                  :rules="bodyRules"
                   rows="6"
                   color="white"
                   :label="$t('common.form_message')"
+                  required
                 />
               </v-col>
             </v-row>
             <div class="btn-area">
               <div class="form-control-label">
                 <v-checkbox
+                  ref="checkbox"
                   v-model="checkbox"
                   color="primary"
-                  :rules="[v => !!v || 'You must agree to continue!']"
-                  :label="$t('common.form_terms')"
-                  required
+                  :label="$t('common.subscribe_title')"
                 />
-                <span>
-                  <a href="#" class="link">
-                    {{ $t('common.form_privacy') }}
-                  </a>
-                </span>
               </div>
               <v-btn
                 :block="isMobile"
@@ -117,7 +116,7 @@ import brand from '~/static/text/brand'
 import link from '~/static/text/link'
 import FormDeco from '../Decoration/FormDeco'
 import Hidden from '../Hidden'
-
+import axios from 'axios'
 export default {
   components: {
     Hidden,
@@ -129,24 +128,51 @@ export default {
       snackbar: false,
       name: '',
       nameRules: [v => !!v || 'Name is required'],
+      bodyRules: [v => !!v || 'Body is required'],
+      titleRules: [v => !!v || 'Title is required'],
       email: '',
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
       ],
       phone: '',
-      company: '',
+      title: '',
       message: '',
       checkbox: false,
       logo: logo,
       brand: brand,
-      routeLink: link
+      routeLink: link,
+      body: "",
+      color: ""
     }
   },
   methods: {
     validate() {
+      console.log(process.env.SUBSCRIPTION_URL)
+      if (this.$refs.checkbox.inputValue){
+        axios.post(`${process.env.SUBSCRIPTION_URL}/newsletter`, { email: this.email, name: this.name })
+        .catch(err=> console.log(err))
+      }
       if (this.$refs.form.validate()) {
-        this.snackbar = true
+
+        axios.post(`${process.env.SUBSCRIPTION_URL}/mail`, {
+          adress: this.email,
+          body: this.body,
+          title: this.title,
+          name: this.name,
+          number: this.phone
+        })
+        .then(res=>{
+            if(res.data == "sent"){
+                this.snackbar = true
+                this.color = "green"
+                this.message = "Thank you for contacting us"
+            }
+        }).catch(err=> {
+                this.snackbar = true
+                this.color = "red"
+                this.message = "Server Error: Please try again later"
+        })
       }
     }
   },

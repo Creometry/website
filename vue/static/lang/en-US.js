@@ -13,6 +13,7 @@ export default () => {
         contact_title: 'Free Project Quote',
         contact_title2: 'Say Hello to Us',
         subscribe_title: 'Subscribe to out newsletter',
+        form_title: "Write the title here",
         subscribe_send: 'Subscribe',
         contact_subtitle:
           'Do you have any questions? Are you ready to reduce cost and create new revenue? Or you simply want to say hi? Drop us a message.',
