@@ -9,12 +9,6 @@
           {{ $t('common.login_create') }}
         </h3>
       </div>
-      <social-auth />
-      <div class="separator">
-        <p>
-          {{ $t('common.register_or') }}
-        </p>
-      </div>
       <v-form
         ref="form"
         v-model="valid"
@@ -22,46 +16,21 @@
         <v-row class="spacing3">
           <v-col cols="12" sm="12" class="px-3">
             <v-text-field
-              v-model="name"
-              :label="$t('common.register_name')"
+              v-model="username"
+              :label="$t('common.register_username')"
               :rules="requiredRules"
               color="secondary"
-              name="name"
+              name="Username"
               required
             />
           </v-col>
-          <v-col cols="12" sm="12" class="px-3">
-            <v-text-field
-              v-model="email"
-              :label="$t('common.register_email')"
-              :rules="emailRules"
-              color="secondary"
-              name="email"
-              required
-            />
-          </v-col>
-          <v-col cols="12" md="6" class="px-3">
-            <v-text-field
-              v-model="password"
-              :label="$t('common.register_password')"
-              :rules="requiredRules"
-              color="secondary"
-              type="password"
-              name="email"
-              required
-            />
-          </v-col>
-          <v-col cols="12" md="6" class="px-3">
-            <v-text-field
-              v-model="confirmPassword"
-              :label="$t('common.register_confirm')"
-              :rules="passwordRules"
-              color="secondary"
-              type="password"
-              name="confirm"
-              required
-            />
-          </v-col>
+          <div v-if="this.password">
+            Password : {{this.password}} <v-btn
+            small
+            color="primary"
+            @click="copyPasswordToClipboard"
+            >COPY AND CONTINUE</v-btn>
+          </div>
         </v-row>
         <div class="btn-area flex">
           <div class="form-helper">
@@ -99,19 +68,17 @@
 </style>
 
 <script>
-import SocialAuth from './SocialAuth'
 import AuthFrame from './AuthFrame'
-
+import * as Cookie from 'js-cookie'
 export default {
   components: {
-    SocialAuth,
     AuthFrame
   },
   data() {
     return {
       valid: true,
       email: '',
-      name: '',
+      username: '',
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
@@ -129,8 +96,19 @@ export default {
   methods: {
     handleSubmit() {
       if (this.$refs.form.validate()) {
-        console.log('data submited')
+        console.log("making post request to go-provisioner/api/v1/register")
+        // get password from api
+        // on success: store username in local storage and go to the next step
+        Cookie.set('username', this.username)
+        Cookie.set('userId', 'u-a2s6')
+        Cookie.set('rancher_token','token:asd2asd43a1sd21as2d1')
+        this.password = "sda332asd5ASD31232asda"
       }
+    },
+    copyPasswordToClipboard(){
+      navigator.clipboard.writeText(this.password)
+      // redirect to query paaram redirect
+      window.location.href = this.$route.query.redirect
     }
   },
   computed: {
@@ -147,6 +125,11 @@ export default {
       const smDown = this.$store.state.breakpoints.smDown
       return smDown.indexOf(this.$mq) > -1
     }
+  },
+  mounted() {
+     if (Cookie.get('rancher_token') !== undefined) {
+        window.location.href = '/dashboard'
+}
   }
 }
 </script>

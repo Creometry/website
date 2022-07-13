@@ -10,12 +10,6 @@
           {{ $t('common.login_title') }}
         </h3>
       </div>
-      <social-auth />
-      <div class="separator">
-        <p>
-          {{ $t('common.login_or') }}
-        </p>
-      </div>
       <v-form
         ref="form"
         v-model="valid"
@@ -23,11 +17,11 @@
         <v-row class="spacing3">
           <v-col cols="12" sm="12" class="px-3">
             <v-text-field
-              v-model="email"
-              :label="$t('common.login_email')"
-              :rules="emailRules"
+              v-model="username"
+              :label="$t('common.register_username')"
+              :rules="requiredRules"
               color="secondary"
-              name="email"
+              name="Username"
               required
             />
           </v-col>
@@ -82,6 +76,7 @@
 <script>
 import SocialAuth from './SocialAuth'
 import AuthFrame from './AuthFrame'
+import * as Cookie from 'js-cookie'
 
 export default {
   components: {
@@ -92,6 +87,7 @@ export default {
     return {
       valid: true,
       email: '',
+      username: '',
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
@@ -104,7 +100,30 @@ export default {
   methods: {
     handleSubmit() {
       if (this.$refs.form.validate()) {
-        console.log('data submited')
+        // make post request to go-provisioner to login and 
+        // get rancher_token and userId
+        // axios.post('/api/login', {
+        //   username: this.username,
+        //   password: this.password
+        // }).then(response => {
+        //   if (response.data.success) {
+        //     // save rancher_token and userId to cookies
+        //     Cookie.set('rancher_token', "response.data.token")
+        //     Cookie.set('userId', "response.data.userId")
+        //     Cookie.set('username', username)
+        //     // redirect to project page
+        //     window.location.href = this.$route.query.redirect
+        //   } else {
+        //     this.valid = false
+        //   }
+        // }).catch(error => {
+        //   console.log(error)
+        // })
+        console.log('data submitted')
+        Cookie.set('rancher_token', "response.data.token")
+        Cookie.set('userId', "response.data.userId")
+        Cookie.set('username', this.username)
+        window.location.href = this.$route.query.redirect
       }
     }
   },
@@ -112,7 +131,13 @@ export default {
     isMobile() {
       const smDown = this.$store.state.breakpoints.smDown
       return smDown.indexOf(this.$mq) > -1
-    }
-  }
+    },
+  },
+  mounted() {
+     if (Cookie.get('rancher_token') !== undefined) {
+        window.location.href = '/dashboard'
+      }
+}
 }
 </script>
+

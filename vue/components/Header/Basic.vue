@@ -22,6 +22,7 @@
             <v-btn
               :href="href"
               color="primary"
+              v-if="buttons===true"
             >
               {{ $t('common.header_'+text) }}
             </v-btn>
@@ -91,6 +92,10 @@ export default {
     href: {
       type: String,
       default: '/'
+    },
+    buttons: {
+      type: Boolean,
+      default: true
     }
   }
 }

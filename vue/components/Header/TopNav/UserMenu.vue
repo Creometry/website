@@ -1,18 +1,18 @@
 <template>
   <nav class="user-menu">
     <v-btn
-      :href="link.agency.login"
+      :href="link.agency.register"
       v-if="isDesktop"
       text
     >
-      {{ $t('common.login') }}
+      {{ $t('common.join') }}
     </v-btn>
     <v-btn
       v-if="isDesktop"
-      :href="link.agency.register"
+      :href="link.agency.login"
       color="primary"
     >
-      {{ $t('common.register') }}
+      {{ $t('common.dashboard') }}
     </v-btn>
     <v-spacer
       v-if="isDesktop"
