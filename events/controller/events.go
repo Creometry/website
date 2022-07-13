@@ -8,10 +8,10 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"time"
 	"website/events/models"
 
 	"github.com/gofiber/fiber/v2"
+	clov "github.com/ostafen/clover"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/api/calendar/v3"
@@ -95,42 +95,115 @@ func getSVC() *calendar.Service {
 }
 
 func GetEvents(c *fiber.Ctx) error {
+	//Get Service
 	srv := getSVC()
 
-	t := time.Now().Format(time.RFC3339)
-	events, err := srv.Events.List("primary").ShowDeleted(false).
-		SingleEvents(true).TimeMin(t).MaxResults(100).OrderBy("startTime").Do()
-	if err != nil {
-		log.Fatalf("Unable to retrieve next ten of the user's events: %v", err)
-	}
+	//Open Db
+	db, _ := clov.Open("events-db")
+	defer db.Close()
+
+	docs, _ := db.Query("Events").FindAll()
 
 	myEvents := []models.Event{}
-	for _, item := range events.Items {
-		myEvents = append(myEvents, models.Event{Id: item.Id, Summary: item.Summary, Description: item.Description, StartTime: item.Start.DateTime, EndTime: item.End.DateTime})
-	}
+	tempEvent := new(models.EventDB)
 
+	for _, doc := range docs {
+		doc.Unmarshal(tempEvent)
+		//Get Event Info from Google API
+		event, err := srv.Events.Get("primary", tempEvent.EventId).Do()
+		if err != nil {
+			return err
+		}
+		myEvents = append(myEvents, models.Event{
+			Id:          event.Id,
+			Summary:     event.Summary,
+			Description: event.Description,
+			StartTime:   event.Start.DateTime,
+			EndTime:     event.End.DateTime,
+			Price:       tempEvent.Price,
+		})
+	}
 	return c.JSON(myEvents)
 
 }
 
 func AddAttendee(c *fiber.Ctx) error {
+	//Get Service
 	srv := getSVC()
 
+	//Parse Body
 	attendee := new(models.Attendee)
 	if err := c.BodyParser(attendee); err != nil {
 		return err
 	}
 
+	//Get Event Info
 	event, err := srv.Events.Get("primary", attendee.EventId).Do()
 	if err != nil {
 		return err
 	}
+
+	//Add new Email
 	event.Attendees = append(event.Attendees,
 		&calendar.EventAttendee{Email: attendee.Email},
 	)
+
+	//Update event
 	newEvent, err := srv.Events.Patch("primary", attendee.EventId, event).Do()
 	if err != nil {
 		return err
 	}
 	return c.JSON("email added")
+}
+
+func CreateEvent(c *fiber.Ctx) error {
+	//Get Service
+	srv := getSVC()
+
+	//Open DB
+	db, _ := clov.Open("events-db")
+	defer db.Close()
+	db.CreateCollection("Events")
+
+	//Parse Body
+	event := new(models.Event)
+	if err := c.BodyParser(event); err != nil {
+		return err
+	}
+
+	//Fill Event Info
+	NewEvent := &calendar.Event{
+		Summary:     event.Summary,
+		Description: event.Description,
+		Start: &calendar.EventDateTime{
+			DateTime: event.StartTime,
+			TimeZone: "Africa/Tunis",
+		},
+		End: &calendar.EventDateTime{
+			DateTime: event.EndTime,
+			TimeZone: "Africa/Tunis",
+		},
+		Attendees:               []*calendar.EventAttendee{},
+		GuestsCanInviteOthers:   &[]bool{false}[0],
+		GuestsCanSeeOtherGuests: &[]bool{false}[0],
+	}
+
+	//Create new Calendar Event
+	calendarId := "primary"
+	NewEvent, err := srv.Events.Insert(calendarId, NewEvent).Do()
+	if err != nil {
+		return err
+	}
+
+	//Add event to DB
+	doc := clov.NewDocument()
+	doc.Set("eventId", NewEvent.Id)
+	doc.Set("price", event.Price)
+
+	_, err = db.InsertOne("Events", doc)
+	if err != nil {
+		return err
+	}
+
+	return c.JSON("inserted")
 }
