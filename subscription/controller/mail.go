@@ -20,7 +20,7 @@ func SendMail(c *fiber.Ctx) error {
 	}
 	m.SetHeader("From", os.Getenv("SENDER_ADRESS"))
 
-	m.SetHeader("To", mail.SenderAdress)
+	m.SetHeader("To", os.Getenv("SENDER_ADRESS"))
 
 	m.SetHeader("Subject", mail.Title)
 
