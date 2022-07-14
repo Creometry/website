@@ -24,7 +24,7 @@
               color="primary"
               v-if="buttons===true"
             >
-              {{ $t('common.header_'+text) }}
+              {{ text }}
             </v-btn>
             <v-spacer
               v-if="isDesktop"
