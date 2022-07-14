@@ -171,6 +171,13 @@ export default {
           console.log(event.data)
         }
       }, false);
+      // make api call to get all the user's billing accounts
+      // this.billingAccounts = response.data.data;
+      // axios.get('go-billing/api/v1/getBillingAccounts/admin/'+Cookie.get('userId')).then(response => {
+      //   this.billingAccounts = response.data.data;
+      // }).catch(error => {
+      //   console.log(error)
+      // })
   },
   computed: {
       PAYMEE_URL() {
