@@ -179,8 +179,8 @@
             @click="gotoSlide(0)"
             text
           >
-            <strong>First Slide</strong>
-            Interdum et malesuada fames ac ante
+            <strong>Who are we</strong>
+            Intro 
           </v-btn>
           <v-divider class="divider" vertical inset />
           <v-btn

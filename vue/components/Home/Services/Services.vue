@@ -6,7 +6,7 @@
           {{ $t('agency.services_title') }}
         </h4>
         <v-btn
-          :href="link.agency.product"
+          :href="link.agency.pricing"
           color="primary"
           text
           class="view-all"
@@ -139,37 +139,19 @@ export default {
       },
       servicesList: [
         {
-          title: 'Lorem Ipsum',
+          title: 'Monthly plans',
           desc:
             'Proin ac arcu nisl. Duis eu molestie lectus. Nam quis mauris faucibus, aliquet elit eu, rhoncus ipsum.',
           img: imgAPI.agency[2]
         },
         {
-          title: 'Etiam rhoncus',
+          title: 'Pay per use',
           desc:
             'Proin quis pellentesque dui. Ut sed leo neque. Nullam aliquet iaculis neque a commodo.',
           img: imgAPI.agency[3]
         },
         {
-          title: 'Duis fermentum',
-          desc:
-            'Quisque consectetur lectus vel orci porttitor gravida ac eu erat. Nullam accumsan nibh tortor.',
-          img: imgAPI.agency[4]
-        },
-        {
-          title: 'Lorem Ipsum',
-          desc:
-            'Proin ac arcu nisl. Duis eu molestie lectus. Nam quis mauris faucibus, aliquet elit eu, rhoncus ipsum.',
-          img: imgAPI.agency[2]
-        },
-        {
-          title: 'Etiam rhoncus',
-          desc:
-            'Proin quis pellentesque dui. Ut sed leo neque. Nullam aliquet iaculis neque a commodo.',
-          img: imgAPI.agency[3]
-        },
-        {
-          title: 'Duis fermentum',
+          title: 'Enterprise',
           desc:
             'Quisque consectetur lectus vel orci porttitor gravida ac eu erat. Nullam accumsan nibh tortor.',
           img: imgAPI.agency[4]

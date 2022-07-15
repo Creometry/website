@@ -18,9 +18,12 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'description', content: brand.agency.desc },
       { name: 'msapplication-TileColor', content: '#FFFFFF' },
-      { name: 'msapplication-TileImage', content: '/favicons/ms-icon-144x144.png' },
+      {
+        name: 'msapplication-TileImage',
+        content: '/favicons/ms-icon-144x144.png'
+      },
       // PWA primary color
-      { name: 'theme-color', content: theme.primary},
+      { name: 'theme-color', content: theme.primary },
       // Facebook
       { property: 'author', content: 'awrora' },
       { property: 'og:site_name', content: 'awrora.ux-maestro.com' },
@@ -45,22 +48,79 @@ module.exports = {
     link: [
       // Favicon
       { rel: 'shortcut icon', href: '/favicons/favicon.ico' },
-      { rel: 'apple-touch-icon', sizes: '57x57', href: '/favicons/apple-icon-57x57.png' },
-      { rel: 'apple-touch-icon', sizes: '60x60', href: '/favicons/apple-icon-60x60.png' },
-      { rel: 'apple-touch-icon', sizes: '72x72', href: '/favicons/apple-icon-72x72.png' },
-      { rel: 'apple-touch-icon', sizes: '76x76', href: '/favicons/apple-icon-76x76.png' },
-      { rel: 'apple-touch-icon', sizes: '114x114', href: '/favicons/apple-icon-114x114.png' },
-      { rel: 'apple-touch-icon', sizes: '120x120', href: '/favicons/apple-icon-120x120.png' },
-      { rel: 'apple-touch-icon', sizes: '144x144', href: '/favicons/apple-icon-144x144.png' },
-      { rel: 'apple-touch-icon', sizes: '152x152', href: '/favicons/apple-icon-152x152.png' },
-      { rel: 'apple-touch-icon', sizes: '180x180', href: '/favicons/apple-icon-180x180.png' },
-      { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/favicons/android-icon-192x192.png' },
-      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
-      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '57x57',
+        href: '/favicons/apple-icon-57x57.png'
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '60x60',
+        href: '/favicons/apple-icon-60x60.png'
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '72x72',
+        href: '/favicons/apple-icon-72x72.png'
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '76x76',
+        href: '/favicons/apple-icon-76x76.png'
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '114x114',
+        href: '/favicons/apple-icon-114x114.png'
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '120x120',
+        href: '/favicons/apple-icon-120x120.png'
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '144x144',
+        href: '/favicons/apple-icon-144x144.png'
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '152x152',
+        href: '/favicons/apple-icon-152x152.png'
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/favicons/apple-icon-180x180.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '192x192',
+        href: '/favicons/android-icon-192x192.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon-32x32.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon-16x16.png'
+      },
       { rel: 'manifest', href: '/favicons/manifest.json' },
       // Fonts and Icons
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' },
-      { rel: 'stylesheet', href: 'https://unpkg.com/ionicons@3.0.0/dist/css/ionicons.min.css' }
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/icon?family=Material+Icons'
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://unpkg.com/ionicons@3.0.0/dist/css/ionicons.min.css'
+      }
     ]
   },
   /*
@@ -95,9 +155,7 @@ module.exports = {
   /*
   ** Nuxt.js dev-modules
   */
-  buildModules: [
-    '@nuxtjs/vuetify',
-  ],
+  buildModules: ['@nuxtjs/vuetify'],
   /*
   ** Nuxt.js modules
   */
@@ -122,13 +180,13 @@ module.exports = {
       }
     ],
     ['nuxt-gmaps', { key: '' }],
-    '@nuxtjs/i18n',
+    '@nuxtjs/i18n'
   ],
   i18n: {
     locales: languages,
     defaultLocale: 'en',
     vueI18n: {
-      fallbackLocale: 'en',
+      fallbackLocale: 'en'
     },
     strategy: 'prefix',
     detectBrowserLanguage: {
@@ -154,8 +212,8 @@ module.exports = {
         shouldPreload: (file, type) => {
           return ['script', 'style', 'font'].includes(type)
         },
-        scroll: function (el, binding) {
-          let f = function (evt) {
+        scroll: function(el, binding) {
+          let f = function(evt) {
             if (binding.value(evt, el)) {
               window.removeEventListener('scroll', f)
             }
@@ -177,33 +235,40 @@ module.exports = {
       vus: { cacheBusting: true },
       scss: { sourceMap: false }
     },
-    extend (config, ctx) {
+    extend(config, ctx) {
       config.plugins.push(
         new FilterWarningsPlugin({
           exclude: /Critical dependency: the request of a dependency is an expression/
         })
-      );
+      )
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
-          enforce: "pre",
+          enforce: 'pre',
           test: /\.(js|vue)$/,
-          loader: "eslint-webpack-plugin",
+          loader: 'eslint-webpack-plugin',
           exclude: /([node_modules, static])/,
           options: {
             fix: false
           }
-        });
+        })
       }
     }
   },
+  publicRuntimeConfig: {
+    PAYMEE_URL: process.env.PAYMEE_URL,
+    PAYMEE_IFRAME_URL: process.env.PAYMEE_IFRAME_URL,
+    PAYMEE_API_KEY: process.env.PAYMEE_API_KEY,
+    VENDOR: process.env.VENDOR
+  },
+  privateRuntimeConfig: {},
   /*
   ** Page Layout transition
   */
   layoutTransition: {
     name: 'layout',
     mode: 'out-in',
-    beforeEnter (el) {
-      console.log('Before enter...');
+    beforeEnter(el) {
+      console.log('Before enter...')
     },
     afterLeave(el) {
       console.log('afterLeave', el)
@@ -213,6 +278,6 @@ module.exports = {
   ** Application Port
   */
   server: {
-    port: 8001, // default: 3000
+    port: 8001 // default: 3000
   }
 }

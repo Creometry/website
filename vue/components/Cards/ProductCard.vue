@@ -70,7 +70,7 @@ export default {
     },
     href: {
       type: String,
-      default: '#'
+      default: '/utils/pricing'
     }
   }
 }

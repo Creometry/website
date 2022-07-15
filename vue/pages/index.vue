@@ -13,7 +13,7 @@
           <about />
         </section>
         <section
-          id="services"
+          id="pricing"
           :class="[isTablet ? 'space-top-short' : 'space-top']"
         >
           <services />

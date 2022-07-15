@@ -1,5 +1,5 @@
-import imgAPI from '~/static/images/imgAPI';
-import link from '~/static/text/link';
+import imgAPI from '~/static/images/imgAPI'
+import link from '~/static/text/link'
 
 const sample = [
   {
@@ -22,7 +22,7 @@ const sample = [
         name: 'blog detail',
         link: link.agency.blogDetail
       }
-    ],
+    ]
   },
   {
     name: 'Form',
@@ -44,7 +44,7 @@ const sample = [
         name: 'contact map',
         link: link.agency.contactMap
       }
-    ],
+    ]
   },
   {
     name: 'items',
@@ -62,7 +62,7 @@ const sample = [
         name: 'product detail',
         link: link.agency.productDetail
       }
-    ],
+    ]
   },
   {
     name: 'utilities',
