@@ -1,0 +1,47 @@
+extends ../layouts/app.pug
+
+block variables
+  - 
+    var pageTitle = " Product Detail"
+    var pageName = "product detail"
+    var headerHome = false
+
+block content
+  #detail-product-page
+    .main-wrap
+      |
+      |
+      |
+      include ../components/header/main.pug
+      |
+      |
+      |
+      .container-general
+        // ##### DETAIL #####
+        include ../components/list/detail.pug
+        // ##### END DETAIL #####
+        |
+        |
+        |
+        // ##### DESCRIPTION #####
+        include ../components/list/description.pug
+        // ##### END DESCRIPTION #####
+        |
+        |
+        |
+        // ##### RELATED ITEMS #####
+        include ../components/list/related-items.pug
+        // ##### END RELATED #####
+        |
+        |
+        |
+        // ##### COMMENT #####
+        include ../components/comment/group.pug
+        // ##### END COMMENT #####
+      |
+      |
+      |
+      // ##### FOOTER #####
+      #footer
+        include ../components/footer/main.pug
+      // ##### END FOOTER #####

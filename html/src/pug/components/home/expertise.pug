@@ -1,0 +1,47 @@
+include ../titles/with-decoration.pug
+
+.root
+  .container
+    .row.spacing8
+      .col-lg-1.show-lg-up
+      .col-md-4.px-6
+        .title-deco.mb-4.mb-md-0
+          svg.decoration.show-md-up(fill='#cccccc' width='845px' height='1099px')
+            include ../svg/wave-decoration.pug
+          +title-deco($t.agency_landing.expertise_title)
+        .wow.zoomInShort(data-wow-offset="-50" data-wow-delay='0.3s' data-wow-duration='0.3s')
+          .illustration-wrap
+            div
+              span.icon-green
+            div
+              span.icon-violet
+            div
+              span.icon-blue
+      .col-lg-7.col-md-8.px-6
+        h4.title-default.use-text-subtitle
+          | #{$t.agency_landing.expertise_subtitle}
+        p.desc.use-text-paragraph
+          | #{$t.agency_landing.expertise_paragraph}
+        .list
+          .row
+            .col-sm-6.px-0.py-2
+              .desc-icon.icon-primary
+                i.material-icons.icon check
+              h3.use-text-subtitle Dedicated Team
+              p.use-text-paragraph We quickly allocate independent software developers for your projects.
+            .col-sm-6.px-0.py-2
+              .desc-icon.icon-secondary
+                i.material-icons.icon my_location
+              h3.use-text-subtitle Our Target
+              p.use-text-paragraph
+                | We design bold and unique digital products that help you achieve your business goals.
+            .col-sm-6.px-0.py-2
+              .desc-icon.icon-accent
+                i.material-icons.icon network_check
+              h3.use-text-subtitle High Performance
+              p.use-text-paragraph We build products with modernized processes and enhance performance.
+            .col-sm-6.px-0.py-2
+              .desc-icon.icon-accent2
+                i.material-icons.icon lightbulb_outline
+              h3.use-text-subtitle Custom Development
+              p.use-text-paragraph Every feature is designed to boost your company’s value, customer base, and profitability.

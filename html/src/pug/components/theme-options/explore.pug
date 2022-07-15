@@ -1,0 +1,71 @@
+.explore
+  -
+    var themeList = [
+      {
+        link: "https://nirwana.vercel.app/saas/en/index.html",
+        thumb: imgAPI.showcase[8],
+        name: "SaaS"
+      },
+      {
+        link: "https://nirwana.vercel.app/agency/en/index.html",
+        thumb: imgAPI.showcase[2],
+        name: "agency"
+      },
+      {
+        link: "https://nirwana.vercel.app/crypto/en/index.html",
+        thumb: imgAPI.showcase[1],
+        name: "cryptocurrency"
+      },
+      {
+        link: "https://nirwana.vercel.app/cloud/en/index.html",
+        thumb: imgAPI.showcase[6],
+        name: "cloud hosting"
+      },
+      {
+        link: "https://nirwana.vercel.app/education/en/index.html",
+        thumb: imgAPI.showcase[4],
+        name: "education"
+      },
+      {
+        link: "https://nirwana.vercel.app/fintech/en/index.html",
+        thumb: imgAPI.showcase[7],
+        name: "fintech"
+      },
+      {
+        link: "https://nirwana.vercel.app/social-apps/en/index.html",
+        thumb: imgAPI.showcase[11],
+        name: "social media apps"
+      },
+      {
+        link: "https://nirwana.vercel.app/marketing/en/index.html",
+        thumb: imgAPI.showcase[3],
+        name: "marketing"
+      },
+      {
+        link: "https://nirwana.vercel.app/medical/en/index.html",
+        thumb: imgAPI.showcase[5],
+        name: "medical"
+      },
+      {
+        link: "https://nirwana.vercel.app/retail/en/index.html",
+        thumb: imgAPI.showcase[9],
+        name: "retail"
+      },
+       {
+        link: "https://nirwana.vercel.app/saas2/en/index.html",
+        thumb: imgAPI.showcase[10],
+        name: "Software"
+      },
+      {
+        link: "https://ilhammeidi.github.io/nirwana-docs",
+        thumb: imgAPI.showcase[12],
+        name: "documentation"
+      },
+    ]
+  ul
+    each item, index in themeList
+      li
+        a(href=item.link target="_blank")
+          figure
+            img(src=item.thumb alt=item.name)/
+          | #{item.name}

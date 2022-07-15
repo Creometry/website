@@ -1,0 +1,48 @@
+.banner-basic {
+  .banner-wrap {
+    position: relative;
+    display: block;
+    position: relative;
+    display: block;
+    .img {
+      text-align: center;
+      @include breakpoints-down('xs') {
+        margin-top: $spacing3
+      }
+      img {
+        max-width: 100%;
+        @include breakpoints-up(sm) {
+          max-height: 350px;
+        }
+      }
+    }
+    .inner {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      @include breakpoints-down('md') {
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+    .text {
+      h4 {
+        font-weight: $font-bold;
+        margin-bottom: $spacing2;
+        display: block;
+      }
+      h5 {
+        display: block;
+        @include palette-text-secondary
+      }
+    }
+    @include breakpoints-up('md') {
+      height: 500px;
+      padding-top: $spacing10
+    }
+    @include breakpoints-down('sm') {
+      padding-top: spacing(20);
+      text-align: center;
+    }
+  }
+}

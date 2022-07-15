@@ -1,0 +1,81 @@
+// #### HEADER ####
+include side-nav/mixed-mobile.pug
+header.app-bar.header#header
+  .container
+    .header-content
+      nav.nav-menu
+        |
+        |
+        button.btn-icon.waves-effect.sidenav-trigger.hamburger.hamburger--spin.show-md-down(
+          id="mobile_menu"
+          type="button"
+          data-target="slide_menu"
+        )
+          span.hamburger-box
+            span.bar.hamburger-inner
+        |
+        |
+        .header-hamburger.header-component
+          button#hamburger_menu.btn-icon.waves-effect.hamburger.hamburger--spin.mobile-menu
+            |
+            |
+            span.hamburger-box
+              |
+              |
+              span.bar.hamburger-inner
+              |
+              |
+            |
+            |
+        .logo
+          |
+          |
+          a(href=link.agency.home)
+            include ../logo.pug
+            +logo('landscape')
+          |
+          |
+        .header-mixed.header-component.flex-grow-1.active
+          include ./top-nav/mixed-nav
+        .header-mega.header-component.flex-grow-1
+          .scrollactive-nav.show-lg-up.multi-menu
+            include ./top-nav/mega-menu
+        .header-droplist.header-component.flex-grow-1
+          .scrollactive-nav.show-lg-up.multi-menu
+            include ./top-nav/multi-level-click
+        .header-navscroll.header-component.flex-grow-1
+          include ./top-nav/single-nav
+        .header-search.header-component.flex-grow-1
+          .hidden-xs-down
+            include ./top-nav/search-field
+            +search-field()
+        .header-hamburger.header-component.flex-grow-1
+        .header-basic.header-component.flex-grow-1
+        nav.user-menu
+          |
+          |
+          a.btn-flat.primary.waves-effect(href=basicMenuLink !== undefined ? basicMenuLink : link.agency.login)
+            | #{basicMenuText !== undefined ? basicMenuText : $t.common.login}
+          |
+          |
+          a.btn.waves-effect.primary.show-sm-up(href=link.agency.register)
+            | #{$t.common.register}
+          |
+          |
+          span.spacer.vertical-divider.show-md-up
+          include ./top-nav/settings
+      #container_menu
+  .header-search.header-component
+    .hidden-sm-up
+      include ./top-nav/search-field
+      +search-field()
+.paper-nav#main_menu
+  .full-nav
+    .scrollactive-nav.scrollnav
+      ul.menu
+        each item, index in menu.agency
+          li
+            a.btn-flat.waves-effect(
+              href='#'+item.name
+            ) #{$t.agency_landing['header_'+item.name]}
+// #### END HEADER ####

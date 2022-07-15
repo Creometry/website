@@ -1,0 +1,72 @@
+.error-style {
+  .error-wrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: $spacing10;
+    margin-top: $spacing10;
+    @include breakpoints-down(sm) {
+      margin: spacing(10, 0)
+    }
+  }
+  .flex {
+    display: flex;
+    justify-content: center
+  }
+  .illustration {
+    position: relative;
+    &:before {
+      content: "";
+      border-radius: 20px;
+      transform: rotate(45deg);
+      position: absolute;
+      @include left(40px);
+      top: 30px;
+      width: 250px;
+      height: 250px;
+      @include use-theme(background-color, $palette-primary-light, $palette-primary-dark);
+      @include breakpoints-down(xs) {
+        width: 200px;
+        height: 200px;
+        @include left(0px);
+        top: 20px;
+      }
+    }
+    img {
+      position: relative;
+      max-width: 350px;
+      @include breakpoints-up(sm) {
+        @include right($spacing10);
+      }
+      @include breakpoints-down(xs) {
+        max-width: 100%;
+      }
+    }
+  }
+  .text {
+    @include breakpoints-up(md) {
+      @include border-left(1px solid);
+      @include palette-divider;
+      @include padding-left($spacing5);
+    }
+    @include breakpoints-down(sm) {
+      text-align: center;
+      margin-top: $spacing10
+    }
+    h3 {
+      font-size: 106px;
+      text-transform: capitalize;
+      font-weight: $font-bold;
+    }
+    h4 {
+      margin-bottom: $spacing3  
+    }
+    p {
+      @include palette-text-secondary
+    }
+  }
+  .button {
+    margin-top: $spacing2
+  }
+  
+}

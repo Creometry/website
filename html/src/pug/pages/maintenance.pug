@@ -1,0 +1,53 @@
+extends ../layouts/app.pug
+
+block variables
+  - var pageTitle = " Under Maintenance"
+  - var pageName = "maintenance"
+  - var headerHome = false
+
+block content
+  #maintenace-page
+    .coloured-page
+      |
+      |
+      |
+      // ##### DECORATION #####
+      include ../components/decoration/page-deco
+      // ##### END DECORATION #####
+      |
+      |
+      |
+      .container.max-md
+        .full-screen-container
+          .row.align-items-center
+            .col-md-12.text-center
+              |
+              |
+              |
+              // ##### ICONS #####
+              section
+                |
+                |
+                i.icon.medium.material-icons.primary-color.maintenance-icon.hidden-xs-down settings_input_composite
+                |
+                |
+                i.icon.medium.material-icons.secondary-color.maintenance-icon settings
+                |
+                |
+                i.icon.medium.material-icons.accent-color.maintenance-icon.hidden-xs-down warning
+                |
+                |
+              // ##### END ICONS #####
+              |
+              |
+              |
+              // ##### TEXT #####
+              .text-center
+                h3.use-text-title2
+                  | #{$t.common.util_maintenance}
+                h5.use-text-subtitle2
+                  | #{$t.common.util_maintenance_dec}
+              // ##### END TEXT #####
+              |
+              |
+              |

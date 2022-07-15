@@ -1,0 +1,23 @@
+mixin pricing-card(price, featureList, title, desc, buttonText, buttonVariant)
+  .card.pricing-card(class=title === 'Pro' ? 'bg' : '')
+    .title-card
+      p(class=title === 'Free' ? 'use-text-secondary-color' : 'use-text-primary-color')
+        | #{title}
+      if title === 'Pro'
+        i.material-icons.icon star_border
+      .card-pricing
+        h2.use-text-title(class=title === 'Free' ? 'use-text-secondary' : 'use-text-primary')
+          | $#{price}
+        h6.use-text-paragraph
+          | &nbsp;/mo
+    ul
+      each item in featureList
+        li #{item}
+    .btn-area(class=title === 'Free' ? 'secondary-color' : 'primary-color')
+      p #{desc}
+      |
+      |
+      a.btn.button.full-width.waves-effect(href="#" class=title === 'Free' ? 'secondary' : 'primary')
+        | #{$t.common[buttonText]}
+      |
+      |

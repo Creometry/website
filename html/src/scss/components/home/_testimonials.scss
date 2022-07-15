@@ -1,0 +1,99 @@
+#testimonials {
+  .carousel-header {
+    position: relative;
+    z-index: 1
+  }
+
+  .root {
+    width: 100%;
+    position: relative;
+    padding: spacing(10, 0);
+    .theme--dark & {
+      @include bg-color-darken($palette-primary-light, 0.8)
+    }
+    .theme--light & {
+       @include bg-color-lighten($palette-primary-light, 0.8)
+    }
+  }
+
+  .carousel {
+    position: relative;
+    z-index: 6;
+    & > div {
+      @include breakpoints-up(lg) {
+        @include margin-left(-80px)
+      }
+    }
+    .slick-dots {
+      bottom: $spacing8 * -1;
+      li {
+        width: 10px;
+        height: 10px;
+        transition: width 0.3s ease;
+        background: $palette-secondary-light;
+        border-radius: 15px;
+        margin: spacing(0, 0.5);
+        &.slick-active {
+          width: 35px
+        }
+        button {
+          opacity: 0
+        }
+      }
+    }
+  }
+
+  .item {
+    padding: spacing(0, 2);
+    &:focus {
+      outline: none
+    }
+  }
+
+  .floating-artwork {
+    position: absolute;
+    width: 100%;
+    @include left(0);
+    top: $spacing5;
+    @include breakpoints-up(lg) {
+      @include left($spacing3);
+      top: $spacing10 * -1
+    }
+    @media (min-width: 1400px) {
+      @include left($spacing10)
+    }
+    .artwork {
+      display: flex;
+      align-items: flex-end;
+      height: 540px;
+      @include breakpoints-up(md) {
+        margin-right: $spacing5
+      }
+      @include breakpoints-up(lg) {
+        float: right
+      }
+      @media (min-width: 1400px) {
+        margin-right: -40px;
+      }
+    }
+  }
+
+  .item-props {
+    &-first {
+      [dir="rtl"] & {
+        width: 450px
+      }
+      [dir="ltr"] & {
+        width: 160px
+      }
+    }
+    &-last {
+      [dir="rtl"] & {
+        width: 160px
+      }
+      [dir="ltr"] & {
+        width: 100px
+      }
+    }
+  }
+}

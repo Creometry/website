@@ -1,0 +1,36 @@
+extends ../layouts/app.pug
+
+block variables
+  - var pageTitle = " Pricing"
+  - var pageName = "pricing"
+  - var headerHome = false
+
+block content
+  div#pricing-page
+    .main-wrap
+      |
+      |
+      |
+      include ../components/header/main.pug
+      |
+      |
+      |
+      // ##### PRICING #####
+      .container-general
+        .mt-5
+          include ../components/pricing.pug
+      // ##### END  PRICING #####
+      |
+      |
+      |
+      // ##### FAQ #####
+      .space-top-short
+        include ../components/faq/faq.pug
+      // ##### END FAQ #####
+      |
+      |
+      |
+      // ##### FOOTER #####
+      #footer
+        include ../components/footer/main.pug
+      // ##### END FOOTER #####

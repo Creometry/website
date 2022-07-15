@@ -1,0 +1,54 @@
+#case-studies {
+  .root {
+    position: relative;
+    z-index: 10;
+    .nav{
+      @include breakpoints-down(sm) {
+        display: flex;
+        overflow: auto;
+        flex-wrap: nowrap;
+      }
+    }
+  }
+
+  .side-filter {
+    .nav {
+      background: none
+    }
+    .collection {
+      border: none;
+    }
+    .filter {
+      border-radius: $rounded-small;
+      text-transform: capitalize;
+      margin-bottom: $spacing1;
+      width: 90%;
+      padding: 0;
+      min-height: 40px;
+      background: none;
+      border: none;
+      > a {
+        padding: spacing(0.5, 2);
+        display: block;
+        line-height: 32px;
+        overflow: hidden;
+      }
+      
+      @include breakpoints-down(sm) {
+        > a {
+          text-align: center
+        }
+      }
+    }
+    .active{
+      background: $palette-primary-light;
+      color: $palette-primary-dark;
+    }
+  }
+
+  .massonry {
+    button {
+      width: 100%
+    }
+  }
+}

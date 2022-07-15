@@ -1,0 +1,67 @@
+extends ../layouts/app.pug
+
+block variables
+  - var pageTitle = " Blog"
+  - var pageName = "blog"
+
+block content
+  include ../components/cards/post-card.pug
+  div#blog-page
+    .main-wrap
+      include ../components/header/blog-header.pug
+      .container-general
+        .container.mt-12.mt-sm-0
+          .row
+            |
+            |
+            |
+            // ##### HEADLINE #####
+            .col-sm-12.px-0.px-sm-3
+              include ../components/blog/headline.pug
+            // ##### END HEADLINE #####
+            |
+            |
+            |
+            // ##### HIGHLIGHT POST #####
+            .row.mt-8
+              .col-md-6.px-0.px-sm-3
+                +post-card('Maecenas rutrum dolor sed nisi', 'Proin pretium arcu eget metus porta consectetur Pellentesque habitant', '12 Nov 2021', 'landscape', 'over', imgAPI.photo[37], link.agency.blogDetail)
+              .col-md-6.px-0.px-sm-3
+                +post-card('Maecenas rutrum dolor sed nisi', 'Proin pretium arcu eget metus porta consectetur Pellentesque habitant', '12 Nov 2021', 'landscape', 'over', imgAPI.photo[36], link.agency.blogDetail)
+            // ##### END HIGHLIGHT POST #####
+            |
+            |
+            |
+            .row.mt-6
+              // ##### BLOG POST #####
+              .col-md-8.px-0.px-sm-4
+                - var n = 0
+                while n < 6
+                  div(data-index=n++ class= n > 0 ? 'mt-12 pt-3' : '')
+                    +post-card('Maecenas rutrum dolor sed nisi', 'Maecenas rutrum dolor sed nisi maximus rhoncus. Nunc vel dignissim enim. Proin pretium arcu eget', '12 Nov 2021', 'portrait', 'over', imgAPI.photo[30+n], link.agency.blogDetail)
+                .arrow
+                  .d-flex.justify-content-between.mt-10
+                    .btn-flat.waves-effect
+                      i.material-icons.left arrow_back
+                      | #{$t.common.btn_prev}
+                    .btn-flat.waves-effect
+                      | #{$t.common.btn_next}
+                      i.material-icons.right arrow_forward
+              // ##### END BLOG POST #####
+              |
+              |
+              |
+              // ##### SIDEBAR #####
+              .col-md-4.px-0.px-sm-4
+                include ../components/blog/sidebar/sidebar.pug
+              // ##### END SIDEBAR #####
+      |
+      |
+      |
+      // ##### FOOTER #####
+      #footer
+        include ../components/footer/main.pug
+      // ##### END FOOTER #####
+      |
+      |
+      |

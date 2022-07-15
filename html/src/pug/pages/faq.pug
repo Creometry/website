@@ -1,0 +1,47 @@
+extends ../layouts/app.pug
+
+block variables
+  - var pageTitle = " FAQ"
+  - var pageName = "faq"
+  - var headerHome = false
+
+block content
+  #faq-page
+    .main-wrap
+      |
+      |
+      |
+      include ../components/header/main.pug
+      |
+      |
+      |
+      .container-wrap
+        include ../components/filter/search.pug
+        |
+        |
+        |
+        .container.space-top-short
+          .row.justify-content-center
+            // ##### FAQ #####
+            .col-md-6.px-sm-6.px-0
+              include ../components/faq/faq-list.pug
+            // ##### END FAQ #####
+            |
+            |
+            |
+            // ##### SIDEBAR #####
+            .col-md-4.px-sm-6.pt-10.pt-sm-0
+              .space-bottom-short
+                include ../components/faq/topic-list.pug
+              .space-bottom-short
+                .list-style
+                  include ../components/list/sidebar/help-widget.pug
+            // ##### END SIDEBAR #####
+      |
+      |
+      |
+      // ##### FOOTER #####
+      .space-top-short
+        #footer
+          include ../components/footer/main.pug
+      // ##### END FOOTER #####

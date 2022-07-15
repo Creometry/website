@@ -1,0 +1,61 @@
+extends ../layouts/app.pug
+
+block variables
+  - var pageTitle = " Team"
+  - var pageName = "team"
+  - var headerHome = false
+
+block content
+  div#about-page
+    .main-wrap
+      include ../components/header/main.pug
+      |
+      |
+      |
+      // ##### BANNER #####
+      include ../components/about/banner.pug
+      +about-banner
+        img.img-2d3d(src=img_assets+imgAPI.ui[5] data-2d=img_assets+imgAPI.ui[4] data-3d=img_assets+imgAPI.ui[5] alt='services 3d')/
+      // ##### END BANNER #####
+      |
+      |
+      |
+      // ##### COUNTER #####
+      include ../components/counter.pug
+      +counter
+      // ##### END COUNTER #####
+      |
+      |
+      |
+      // ##### TEAM #####
+      .space-bottom-short
+        .container.text-center.text-md-start
+          h4.use-text-title2.use-text-primary.mb-3
+            | #{$t.common.about_team}
+          p.use-text-subtitle2.mb-10 Vestibulum faucibus eget erat eget pretium. Donec commodo convallis eget suscipit orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+          include ../components/about/team-grid.pug
+      // ##### END TEAM #####
+      |
+      |
+      |
+      // ##### PHOTO #####
+      .space-bottom-short
+        include ../components/about/photo-slider.pug
+      // ##### END PHOTO #####
+      |
+      |
+      |
+      // ##### CALL ACTION #####
+      .space-bottom-short
+        include ../components/call-action.pug
+      // ##### END CALL ACTION #####
+      |
+      |
+      |
+      // ##### FOOTER #####
+      #footer
+        include ../components/footer/main.pug
+      // ##### END FOOTER #####
+      |
+      |
+      |

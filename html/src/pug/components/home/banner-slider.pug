@@ -1,0 +1,139 @@
+.banner-slider
+  .banner-wrap
+    .carousel
+      .slider-deco#slider_deco
+        .slide
+          .inner
+            .deco-wrap
+              .deco.bottom.s1 &nbsp;
+              .deco.top.s1 &nbsp;
+        .slide
+          .inner
+            .deco-wrap
+              .deco.bottom.s2 &nbsp;
+              .deco.top.s2 &nbsp;
+        .slide
+          .inner
+            .deco-wrap
+              .deco.bottom.s3 &nbsp;
+              .deco.top.s3 &nbsp;
+      .slider#banner_slider
+        #slide1.slide
+          .inner
+            .container
+              .row
+                .col-md-7.col-lg-6.px-sm-6.d-flex.align-center
+                  .text
+                    h4.use-text-title #{$t.agency_landing.banner_title}
+                    h5.use-text-subtitle #{$t.agency_landing.banner_subtitle}
+                    .btn-area
+                      |
+                      |
+                      a.btn.waves-effect.btn-outlined.btn-large.button.primary.primary-text(href='#')
+                        | #{$t.common.btn_detail}
+                      |
+                      |
+                      a.btn.waves-effect.button.btn-large.primary(href=link.agency.register)
+                        | #{$t.common.btn_get}
+                      |
+                      |
+                .col-md-5.col-lg-6
+                  .img
+                    |
+                    |
+                    img.img-2d3d(
+                      src=img_assets+img_artwork[11]
+                      data-2d=img_assets+img_artwork[10]
+                      data-3d=img_assets+img_artwork[11]
+                      alt='banner 1 3D'
+                    )/
+                    |
+                    |
+        #slide2.slide
+          .inner
+            .container
+              .row
+                .col-md-7.col-lg-6.px-sm-6.d-flex.align-center.order-md-last
+                  .text
+                    h4.use-text-title #{$t.agency_landing.banner_title}
+                    h5.use-text-subtitle #{$t.agency_landing.banner_subtitle}
+                    .btn-area
+                      |
+                      |
+                      a.btn.waves-effect.btn-outlined.btn-large.button.primary(href='#')
+                        | #{$t.common.btn_detail}
+                      |
+                      |
+                      a.btn.waves-effect.button.btn-large.primary(href=link.agency.register)
+                        | #{$t.common.btn_get}
+                      |
+                      |
+                .col-md-5.col-lg-6.order-md-first
+                  .img
+                    |
+                    |
+                    img.img-2d3d(
+                      src=img_assets+img_artwork[13]
+                      data-2d=img_assets+img_artwork[12]
+                      data-3d=img_assets+img_artwork[13]
+                      alt='banner 2 3D'
+                    )/
+                    |
+                    |
+        #slide3.slide.center-content
+          .inner
+            .container
+              .row.justify-content-center
+                .col-12.px-sm-12
+                  .text.text-center
+                    h4.use-text-title #{$t.agency_landing.banner_title}
+                    h5.use-text-subtitle #{$t.agency_landing.banner_subtitle}
+                    .btn-area
+                      |
+                      |
+                      a.btn.waves-effect.btn-outlined.btn-large.button.primary(href='#')
+                        | #{$t.common.btn_detail}
+                      |
+                      |
+                      a.btn.waves-effect.button.btn-large.primary(href=link.agency.register)
+                        | #{$t.common.btn_get}
+                      |
+                      |
+                .col-12
+                  .img.h-banner
+                    |
+                    |
+                    img.img-2d3d(
+                      src=img_assets+img_artwork[15]
+                      data-2d=img_assets+img_artwork[14]
+                      data-3d=img_assets+img_artwork[14]
+                      alt='banner 3 3D'
+                    )/
+                    |
+                    |
+    .hidden-sm-down
+      .container.max-md
+        nav.slide-nav#banner_nav
+          |
+          |
+          a.waves-effect.active(data-slide='0')
+            strong First Slide
+            | Banner with left text and right image
+          |
+          |
+          hr.divider
+          |
+          |
+          a.waves-effect(data-slide='1')
+            strong Second Slide
+            | Banner with left image and right text
+          |
+          |
+          hr.divider
+          |
+          |
+          a.waves-effect(data-slide='2')
+            strong Third Slide
+            | Banner with center text and image
+          |
+          |

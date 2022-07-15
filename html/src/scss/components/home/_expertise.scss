@@ -1,0 +1,133 @@
+$green-buble: '../images/agency/green_buble.png';
+$blue-buble: '../images/agency/blue_buble.png';
+$violet-buble: '../images/agency/violet_buble.png';
+
+#expertise {
+  .root {
+    position: relative;
+    @include breakpoints-down(sm) {
+      text-align: center;
+    }
+    h4 {
+      @include breakpoints-down(sm) {
+        margin-top: $spacing2 * -1;
+        margin-bottom: $spacing3
+      }
+    }
+    h3 {
+      @include breakpoints-down(md) {
+        margin-bottom: $spacing3
+      }
+    }
+  }
+
+  .decoration {
+    .theme--dark & {
+      fill: $palette-primary-dark;
+      stroke: $palette-primary-dark;
+    }
+    .theme--light & {
+      fill: $palette-primary-light;
+      stroke: $palette-primary-light;
+    }
+    height: 600px;
+    width: 600px;
+    position: absolute;
+    top: -180px;
+    @include left(-240px);
+    @include breakpoints-down(md) {
+      transform: scale(0.8);
+    }
+  }
+
+  .desc {
+    line-height: 32px;
+  }
+
+  .illustration-wrap {
+    position: relative;
+    top: -240px;
+    height: 300px;
+    @include left(-230px);
+    transform-origin: top;
+    span {
+      background-size: 100%;
+      display: block;
+      position: relative;
+    }
+    @include breakpoints-down(sm) {
+      display: none
+    }
+  }
+
+  .icon-green {
+    top: -179px;
+    @include left(30px);
+    width: 320px;
+    height: 600px;
+    background: url($green-buble) no-repeat
+  }
+
+  .icon-violet {
+    width: 560px;
+    height: 560px;
+    @include left(-50px);
+    top: -620px;
+    background: url($violet-buble) no-repeat
+  }
+
+  .icon-blue {
+    width: 560px;
+    height: 560px;
+    @include left(0px);
+    top: -1170px;
+    background: url($blue-buble) no-repeat
+  }
+
+
+  .desc-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    transform: rotate(45deg);
+    margin-bottom: $spacing1;
+    @include breakpoints-down(sm) {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    i.icon {
+      transform: rotate(-45deg);
+      margin: 4px 0px 0px 5px;
+      @include breakpoints-down(sm) {
+        margin: 5px 0px 0px 0px;
+      }
+    }
+  }
+
+  .icon {
+    &-primary {
+      background: $palette-primary-light;
+      i.icon {
+        color: $palette-primary-dark;
+      }
+    }
+    &-secondary {
+      background: $palette-secondary-light;
+      i.icon {
+        color: $palette-secondary-dark;
+      }
+    }
+    &-accent {
+      background: $palette-accent-light;
+      i.icon {
+        color: $palette-accent-dark;
+      }
+    }
+    &-accent2 {
+      background: #FBEABB;
+      i.icon {
+        color: #F38D21;
+      }
+    }
+  }
+}

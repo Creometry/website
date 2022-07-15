@@ -1,0 +1,25 @@
+mixin error(errCode, text)
+  .error-style
+    .error-wrap
+      .container.max-lg
+        .row.align-items-center
+          .col-md-5
+            .flex
+              .illustration
+                |
+                |
+                img.img-2d3d(src=img_assets+img_artworkInner[9] data-2d=img_assets+img_artworkInner[8] data-3d=img_assets+img_artworkInner[9] alt='error')/
+                |
+                |
+          .col-md-7
+            .text
+              h3.use-text-primary #{errCode}
+              h4.use-text-subtitle #{text}
+              p.use-text-paragraph #{$t.common['404_subtitle']}
+              |
+              |
+              a.btn.primary.waves-effect.btn-large.button(
+                href=link.agency.home
+              ) #{$t.common.back}
+              |
+              |

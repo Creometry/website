@@ -1,0 +1,39 @@
+.root {
+  position: relative;
+  z-index: 10;
+  .nav > *{
+    @include breakpoints-down(sm) {
+      display: flex;
+      overflow: auto
+    }
+  }
+}
+
+.side-filter {
+  .nav {
+    background: none
+  }
+  .filter {
+    border-radius: $rounded-small;
+    text-transform: capitalize;
+    margin-bottom: $spacing1;
+    padding: spacing(0.5, 2);
+    width: 90%;
+    min-height: 40px;
+    @include breakpoints-down(sm) {
+      > div {
+        text-align: center
+      }
+    }
+  }
+  ::v-deep .v-list-item--active {
+    background: $palette-primary-light;
+    color: $palette-primary-dark;
+  }
+}
+
+.massonry {
+  button {
+    width: 100%
+  }
+}

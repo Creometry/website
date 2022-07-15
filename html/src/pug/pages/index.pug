@@ -1,0 +1,90 @@
+extends ../layouts/app.pug
+
+block variables
+  - var pageTitle = " Homepage"
+  - var pageName = "homepage"
+  - var headerHome = true
+
+block content
+  div#home
+    .main-wrap
+      include ../components/header/main.pug
+      |
+      |
+      |
+      main.container-wrap
+        // ##### BANNER #####
+        section#banner
+          include ../components/home/banner-slider.pug
+        // ##### END BANNER #####
+        |
+        |
+        |
+        // ##### ABOUT #####
+        section#about.space-top
+          include ../components/home/about.pug
+        // ##### END ABOUT #####
+        |
+        |
+        |
+        // ##### SERVICES #####
+        section#services.space-top.space-top-short-md
+          include ../components/home/services.pug
+        // ##### END SERVICES #####
+        |
+        |
+        |
+        // ##### EXPERTISE #####
+        section#expertise.space-top.space-top-short-sm
+          include ../components/home/expertise.pug
+        // ##### END EXPERTISE #####
+        |
+        |
+        |
+        // ##### TESTIMONIALS #####
+        section#testimonials.space-top-short
+          include ../components/home/testimonials.pug
+        // ##### END TESTIMONIALS #####
+        |
+        |
+        |
+        // ##### COMPANY LOGO #####
+        section#company.space-top-short.space-bottom-short
+          include ../components/company-logo.pug
+        // ##### END COMPANY LOGO #####
+        |
+        |
+        |
+        // ##### CASE STUDIES #####
+        section#case-studies
+          include ../components/home/case-studies.pug
+        // ##### END CASE STUDIES #####
+        |
+        |
+        |
+        // ##### CALL ACTION #####
+        section.space-bottom
+          include ../components/call-action.pug
+        // ##### END CALL ACTION #####
+        |
+        |
+        |
+      // ##### FOOTER #####
+      include ../components/footer/main.pug
+      // ##### END FOOTER #####
+      |
+      |
+      |
+      // ##### NOTIFICATIONS #####
+      .hidden-md-down
+        include ../components/notifications.pug
+      // ##### END NOTIFICATIONS #####
+      |
+      |
+      |
+      // ##### CORNER #####
+      .hidden-md-down
+        include ../components/corner.pug
+      // ##### END CORNER #####
+      |
+      |

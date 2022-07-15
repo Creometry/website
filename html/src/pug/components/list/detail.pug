@@ -1,0 +1,50 @@
+.list-style
+  .row.justify-content-center
+    .col-lg-4.col-sm-5.py-0.px-0.pa-md-6
+      .carousel
+        .detail-carousel#detail_carousel
+          - var n = 0
+          while n < 6
+            .image(data-index=n++)
+              |
+              |
+              a.waves-effect(href=imgAPI.photo[20 + n])
+                .figure
+                  |
+                  |
+                  img(src=imgAPI.photo[20 + n] alt='thumb')/
+                  .img.image-detail(style=`background-image: url(${imgAPI.photo[20 + n]})`)
+                  |
+                  |
+                  i.material-icons.zoom-icon zoom_in
+                  |
+                  |
+              |
+              |
+    .col-lg-6.col-sm-7.pa-2.px-md-10
+      .text
+        h4.use-text-title2
+          span.use-text-subtitle2 Vivamus sit amet
+          |  The Lorem Ipsum Dolor Sit Amet
+        .property
+          .star
+            - var star = 0
+            while star < 5
+              i.material-icons.star-icon(data-index=star++) star
+          | 5.0
+          span.divider
+          | 213 Sales
+        article.desc
+          h6.use-text-paragraph
+            | Maecenas nisl libero, tincidunt id odio id, feugiat vulputate quam. Vestibulum feugiat rhoncus metus.
+        .btn-area.main
+          |
+          |
+          a.btn-flat.text-btn.btn-large.waves-effect(href='#')
+            | #{$t.common.list_whislist}
+          |
+          |
+          a.btn.button.primary.btn-large.waves-effect(href='#')
+            | #{$t.common.list_cart}
+          |
+          |

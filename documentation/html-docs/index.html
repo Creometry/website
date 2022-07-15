@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>HTML - Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    
+    <!-- Syntax Hightlighter CSS -->
+    <link href="css/prism.css" rel="stylesheet">
+  
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div id="wrapper" class="toggled">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li><h3>Installation &amp; Usage</h3></li>
+                <li>
+                    <a href="#install">Install NPM (Optional)</a>
+                </li>
+                <li>
+                    <a href="#html">Use HTML, CSS, JS</a>
+                </li>
+                <li>
+                    <a href="#multilang">HTML Multilanguage</a>
+                </li>
+                <li>
+                    <a href="#custom">HTML Custom Components</a>
+                </li>
+                <li>
+                    <a href="#shoot">Troubleshooting</a>
+                </li>
+                <li><h3>Start Coding</h3></li>
+                <li>
+                    <a href="#code_basic">Basic Code Structure</a>
+                </li>
+                <li>
+                    <a href="#gulp">HTML/CSS Generator (Gulp)</a>
+                </li>
+                <li>
+                    <a href="#pug">Pug.js Coding </a>
+                </li>
+                <li>
+                    <a href="#gmaps">Google Maps API </a>
+                </li>
+                <li><h3>Additional Info</h3></li>
+                <li>
+                    <a href="#reference">External Reference</a>
+                </li>
+                <li>
+                    <a href="#credit">Sources and Credits</a>
+                </li>
+            </ul>
+
+            <span class="copy">&copy; Copyright 2022</span>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- main content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <!-- INSTALL -->
+                <section class="row" id="install">
+                    <div class="col-lg-10">
+                        <h1>Install NPM</h1>
+                        <hr />
+                        This template has include the 3rd party plugins and libraries in <code>assets/[css,js]/vendors/</code>
+                        But in modern development exclude 3rd party packages from project and use package manager like npm or yarn to install them.
+                        To begin installation please follow this guide bellow:
+						<ul>
+							<li>Connect to the internet</li>
+							<li>Install NodeJs from <a href="https://nodejs.org/en/" target="_blank" rel="noopener noreferrer">NodeJs Official Page</a></li>
+							<li>Unzip the file to a folder in your computer</li>
+							<li>Open Terminal</li>
+							<li>Go to your file project (where you've unzipped the product)</li>
+                            <li>Go to packages and choose a template. Example <code>packages/agency/</code></li>
+							<li>
+                                <strong>Install Modules</strong><br />
+								Install module dependencies by run this script in terminal
+								<pre><code class="language-js">npm install</code></pre>
+                                It will download some necessary dependencies, and just wait until finish.
+                                <br />
+                                <img src="images/cmd1.png" width="600" alt="process" />
+                                <br />
+							</li>
+                            <li>For installation by use lerna, please check this link <a href="#lerna">Installation using lerna</a></li>
+						</ul>
+                        <div id="lerna">
+                          <h3>Installation With Lerna</h3>
+                          Lerna is A tool for managing JavaScript projects with multiple packages.
+                          This template has 11 packages(projects) inside <code>packages/</code> folder.
+                          So to install them at once you can use lerna. See full docs of lerna here <a href="https://github.com/lerna/lerna">https://github.com/lerna/lerna</a>.
+                          Here's the installation guide:<br /><br />
+                          <ul>
+                            <li>
+                              Let's start by installing Lerna globally with npm:
+                              <pre><code class="language-js">npm install --global lerna</code></pre>
+                            </li>
+                            <li>Go to your root project (where you've unzipped the product)</li>
+                            <li>
+                              Then install all packages
+                              <pre><code class="language-js">lerna bootstrap</code></pre>
+                              Note: This process will take a few minutes, because there's lot of modules to be installed.
+                              If got stuck for this step. Please install the packages(projects) one by one by use <code>npm install</code> instead.
+                            </li>
+                          </ul>
+                        </div>
+                    </div>
+                </section>
+                <!-- END -->
+              
+              
+				<!-- BUILD APP -->
+                <section class="row" id="html">
+                  <div class="col-lg-10">
+                    <h1>Use HTML, CSS, JS</h1>
+                    <hr />
+                    <h4>View and Edit HTML</h4>
+						        <ul>
+                      <li>After extract the package just open the HTML file in <code>packages/[theme-name]/[file.html]</code></li>
+                      <li>In example <code>packages/agency-theme/index.html</code></li>
+							        <li>To view it you can open in browser</li>
+							        <li>To edit it you can open in text editor (sublime, visual studio code, atom, bracket, etc). After edit and save, please open or reload in browser to see the changes</li>
+						        </ul>
+                    <br />
+                    <h4>Change HTML layout and theme</h4>
+                    <p>To change HTML layout and theme is applicable in every .html file</p>
+                    <ul>
+                      <li>
+                        <strong>RTL and LTR layout: </strong><br />
+                        <ol>
+                          <li>
+                            In html file change the <code>dir</code> and <code>lang</code> attribute in <code>body</code> tag <br />
+                            - LTR
+                            <pre><code class="language-html">&lt;html lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;</code></pre>
+                            - RTL
+                            <pre><code class="language-html">&lt;html lang=&quot;ar&quot; dir=&quot;rtl&quot;&gt;</code></pre>
+                          </li>
+                          <li>
+                            Change the css vendor framworks, which are <strong>bootstrap.css and materialize.css</strong> with rtl version
+                            <pre><code class="language-html">&lt;link href=&quot;assets/css/rtl-vendors/bootstrap-rtl.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;assets/css/rtl-vendors/materialize-rtl.css&quot; rel=&quot;stylesheet&quot;&gt;
+</code></pre>
+                          </li>
+                          <li>Note: if you add another css plugin that need transform to rtl verion. Please visit <a href="https://rtlcss.com/">https://rtlcss.com/</a></li>
+                        </ol>
+                      </li>
+                      <li>
+                        <strong>Theme Color</strong><br />
+                        <ol>
+                          <li> In html file just change the class name</li>
+                          <li>
+                            For dark/light mode in <code>.m-application</code> by switch between <code>.theme--dark</code> or <code>.theme--light</code><br />
+                            - Dark mode: 
+                            <pre><code class="language-html">&lt;div class=&quot;m-application theme--dark transition-page&quot; id=&quot;app&quot;&gt;
+                            </code></pre>
+                            - Light mode: 
+                            <pre><code class="language-html">&lt;div class=&quot;m-application theme--light transition-page&quot; id=&quot;app&quot;&gt;
+                            </code></pre>
+                          </li>
+                          <li>
+                            For theme color in <code>.m-content</code> by change <code>.[theme-name]-var</code> with available theme from <code>src/scss/utils/_color-var.scss</code>
+                            - In example joker theme color
+                            <pre><code class="language-html">&lt;div class=&quot;m-content green-leaf joker-var&quot; id=&quot;main-wrap&quot;&gt;
+                            </code></pre>
+                          </li>
+                        </ol>
+                      </li>
+                    </ul>
+                    <br />
+                    <h4>Edit CSS and JS</h4>
+                    <p>This template use SCSS to create CSS by Gulp.js. More than that Gulp.js also use for merge css and js files to a single file.</p>
+                    <div class="alert alert-warning">We recommend to do not edit files: <code>assets/css/styles.css</code> and <code>assets/js/scripts.js</code> Because those are generated files, and will be replaced automatially by gulp.js. Please edit from the source in <code>src/</code> folders</div>
+						        <ul>
+                      <li>
+                        To add or modify css, please open <code>src/scss/</code>. If you add new scss files, don't forget to <strong>register it</strong> in <code>src/scss/styles.scss</code>
+                      </li>
+                      <li>
+                        To add or modify js, please open <code>src/js</code>. If you add new js files, You don't need register it, it will automatically merge in <code>assets/js/scripts</code> after run gulp command bellow.
+                      </li>
+                      <li>
+                        To build the js and css assets run
+                        <pre><code class="language-js">gulp assets</code></pre>
+                        and for watch the changes
+                        <pre><code class="language-js">gulp watch_assets</code></pre>
+                      </li>
+                      <li>
+                        The result will be placed in: <br />
+                        - CSS:  <code>assets/css/styles.css</code> <br />
+                        - JS:  <code>assets/js/scripts.css</code> <br />
+                      </li>
+						        </ul>
+                  </div>
+                </section>
+                <!-- END -->
+              
+              
+				<!-- DEPLOYMENT APP -->
+                <section class="row" id="multilang">
+                    <div class="col-lg-10">
+                        <h1>Use HTML in different language</h1>
+                        <hr />
+                          <ul>
+                          <li>After extracting file, there will be <code>multilang/</code> folder in <code>packages/[theme-name]</code>. Most of the text content is appropriate for that's language </li>
+                          <li>In example for site with Bahasa Indonesia <code>packages/agency-theme/multilang/id/index.html</code></li>
+                          <li>To view it you can open in browser</li>
+                          <li>To edit it you can open in text editor (sublime, visual studio code, atom, bracket, etc). After edit and save, please open or reload in browser to see the changes</li>
+                          <li>The rest modification such as theme, js and css are same as described above.</li>
+                        </ul>
+                    </div>
+                </section>
+                <!-- END -->
+              
+                <!-- HTML Layouts -->
+                <section class="row" id="custom">
+                    <div class="col-lg-10">
+                        <h1>Use HTML with custom components</h1>
+                        <p>This template coming with <strong>7 variant headers, 4 variant footers and 2 type bottom corner</strong>. You can find them in <code>packages/[theme-name]/custom-components/</code></p>
+                        <p>The Implementation to other pages need to do manually to <strong>every HTML file</strong>. Please see the following steps below:</p>
+                        <hr />
+                        <ul>
+                          <li>Example for change the<strong>Header</strong> with <code>header-droplist</code>, open <code>custom-components/header-droplist.html</code></li>
+                          <li>Find the element with <code>id="header"</code> and select then copy that code</li>
+                          <li>Pick your target pages and open it. Find the element with <code>id="header"</code> and select then paste the code. It will replace the previous header with <strong>header-droplist</strong> </li>
+                          <li>And for mobile menu navigation, the element is <code>id="slide_menu"</code>. You can copy and paste to another pages same as above method.</li>
+                          <li>For Footer and Corner nav, basically has te same method. The important thing just replace with same level hirearchy of element</li>
+                        </ul>
+                      <br />
+                        <h4>Header</h4>
+                        <pre><code class="language-markup">
+// Open File index.html (or other HTML files)
+&lt;header class=&quot;app-bar header&quot; id=&quot;header&quot;&gt; Header Default(Mixed) content &lt;/header&gt;
+
+// Replace header with custom-components/header-dropllist.html
+&lt;header class=&quot;app-bar header&quot; id=&quot;header&quot;&gt; Header Droplist content &lt;/header&gt;
+</code></pre>
+                    <br />  
+                      <h4>Mobile Navigation</h4>
+                        <pre><code class="language-markup">
+// Open File index.html (or other HTML files)
+&lt;div class=&quot;sidenav mobile-nav&quot; id=&quot;slide_menu&quot;&gt; Mobile Nav Default (Mixed) &lt;/div&gt;
+
+// Replace mobile nav with custom-components/header-megamenu.html
+&lt;div class=&quot;sidenav mobile-nav&quot; id=&quot;slide_menu&quot;&gt; Mobile Nav Mega Menu &lt;/div&gt;
+</code></pre>
+                    <br />  
+                      <h4>Footer</h4>
+                        <pre><code class="language-markup">
+// Open File index.html (or other HTML files)
+&lt;footer class=&quot;footer-sitemap&quot;&gt; Footer default content (Sitemap) &lt;/footer&gt;
+
+// Replace footer with custom-components/footer-blog.html
+&lt;footer class=&quot;footer-blog&quot;&gt; Footer Blog content &lt;/footer&gt;
+</code></pre>
+                      
+                      <br />  
+                      <h4>Corner</h4>
+                        <pre><code class="language-markup">
+// Open File index.html (or other HTML files)
+&lt;div class=&quot;chat&quot;&gt;
+  &lt;div class=&quot;panel&quot; id=&quot;chat_panel&quot;&gt; 
+    Page Nav Component
+  &lt;/div&gt;
+&lt;/div&gt;
+
+// Replace Corner with custom-components/corner-nav.html
+&lt;div class=&quot;page-nav&quot; id=&quot;page_nav&quot;&gt; Page Nav Component &lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+                <!-- END -->
+              
+                <!-- TROUBLESHOOTING APP -->
+                <section class="row" id="shoot">
+                    <div class="col-lg-10">
+                        <h1>Troublehooting</h1>
+                        <hr />
+                        <p>Here's most common error problem when installation and first setup project</p>
+                        <div class="accordion" id="accordionExample">
+                          <div class="card">
+                            <div class="card-header" id="headingOne">
+                              <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                  Installation Problem: Dependencies Warning
+                                </button>
+                              </h5>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                              <div class="card-body">
+                                <ul>
+                                  <li>
+                                      <em>if got warning like this :</em><br />
+                                      <pre><code class="language-js">
+npm WARN slick-carousel@1.8.1 requires a peer of jquery@>=1.8.0 but none is installed. You must install peer dependencies yourself.
+        </code></pre>
+                                      <strong>Don't worry the app will run as well</strong>
+                                      <p>For warning some of dependencies need another dependencies too, maybe once you install them, there’s some changes from the 3rd party vendor so probably it will make a warning to another dependencies.</p>
+                                    </li>
+                                    <li>
+                                      <em>if got an error with a dependencies installation</em>. Try to remove the all module
+                                      <code>node_modules/</code>. Then install again with <code>npm install</code>. 
+                                      If error still happen, please try to remove the problematic package <code>node_modules/</code> foler. 
+                                      After that try to install the problematic package manually. <code>npm install &lsaquo;package_name&rsaquo; --save-dev</code>
+                                    </li>
+                                    <li>
+                                      if still got an error. Try to update the problematic package instead.
+                                    </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card">
+                            <div class="card-header" id="headingTwo">
+                              <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseThree">
+                                  Start Project Problem: Error SCSS
+                                </button>
+                              </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                              <div class="card-body">
+                                <ul>
+                                  <li>
+                                      If you get error messages when start project <code>npm run dev</code> like this<br />
+                                      <pre><code class="language-js">ERROR in ./app/styles/layout/base.scss (./node_modules/css-loader/dist/cjs.js??ref--8-1!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/lib/loader.js??ref--8-3!./app/styles/layout/base.scss)
+Module build failed (from ./node_modules/sass-loader/lib/loader.js):
+        </code></pre>
+                                    </li>
+                                    <li>
+                                      It's mean the node-sass not installed succesfully. May because connection problem, changed node environment during installation, or blocked node-sass repository
+                                    </li>
+                                    <li>
+                                      Please install <strong>node-sass</strong> manually by <code>npm install node-sass --save</code>
+                                    </li>
+                                    <li>
+                                      Try to start project again <code>npm start</code>
+                                    </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card">
+                            <div class="card-header" id="headingFour">
+                              <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                  Browser console warning
+                                </button>
+                              </h5>
+                            </div>
+                            <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                              <div class="card-body">
+                                <ul>
+                                    <li>
+                                      You will get this warning message if not use HTTPS
+                                      <pre><code class="language-js">A cookie associated with a resource at http://doubleclick.net/ was set with `SameSite=None` but without `Secure`. A future release of Chrome will only deliver cookies marked `SameSite=None` if they are also marked `Secure`. You can review cookies in developer tools under Application>Storage>Cookies and see more details at https://www.chromestatus.com/feature/5633521622188032.
+        </code></pre>
+                                      Here's the guide to setup HTTPS:
+                                      <ul>
+                                        <li>
+                                          <a href="https://mattshull.com/blog/https-on-localhost" target="_blank">
+                                            https://mattshull.com/blog/https-on-localhost
+                                          </a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br />
+                        <br />
+                    </div>
+                </section>
+                <!-- END -->
+              
+                <!-- CODE STRUCTURE -->
+                <section class="row" id="code_basic">
+                    <div class="col-lg-12">
+                        <h1>Basic Code Structure</h1>
+                        <hr />
+                        <h4>Folder structure</h4>
+                        <pre>
+template-theme                                                                          
+├── 404.html
+├── README.md
+├── assets
+│   ├── css
+│   ├── favicon.ico
+│   ├── favicons
+│   ├── images
+│   └── js
+├── blank-page.html
+├── contact.html
+├── crossdomain.xml
+├── gulpfile.js
+├── humans.txt
+├── index.html
+├── multilang
+│   ├── ar
+│   ├── de
+│   ├── en
+│   ├── id
+│   ├── pt
+│   └── zh
+├── package-lock.json
+├── package.json
+├── robots.txt
+└── src
+    ├── api.json
+    ├── js
+    ├── locales
+    ├── pug
+    └── scss                                                                       
+                        </pre>
+                        <h4>Code preview</h4>
+                        <br />
+                        <ul class="nav nav-tabs">
+                          <li><a class="active nav-link" data-toggle="tab" href="#landing-code">Landing Page</a></li>
+                          <li><a class="nav-link" data-toggle="tab" href="#header-code">Header</a></li>
+                          <li><a class="nav-link" data-toggle="tab" href="#scss-code">SCSS</a></li>
+                        </ul>
+                        <div class="tab-content">
+                          <div id="landing-code" class="tab-pane fade in active show">
+                            <br />
+                            <h6>Landing Page</h6>
+                            <p>Landing page structure <code>src/pug/pages/index.pug</code> and <code>index.html</code></p>
+                            <img src="images/ss_code.png" width="1000" alt="code" />
+                          </div>
+                          <div id="header-code" class="tab-pane fade in">
+                            <br />
+                            <h6>Header</h6>
+                            <p>You can put google analytics, font icon, embeded fonts, etc here: <code>src/pug/layout/document.pug</code> and <code>index.html</code></p>
+                            <img src="images/ss_code2.png" width="1000" alt="code2" />
+                          </div>
+                          <div id="scss-code" class="tab-pane fade in">
+                            <br />
+                            <h6>SCSS</h6>
+                            <p><code>/src/scss/styles.scss</code></p>
+                            <img src="images/ss_code3.png" width="500" alt="code2" />
+                          </div>
+                        </div>
+                        <br /><br />
+                        <h4>Directory and File</h4>
+                        <table class="tg">
+                          <thead>
+                            <tr>
+                              <th class="tg-yw4l">Name</th>
+                              <th class="tg-yw4l">Directory</th>
+                              <th class="tg-yw4l">Description</th>
+                              <th class="tg-yw4l">Sample Use</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Pug.js UI Components</td>
+                              <td><strong>src/pug/components/</strong></td>
+                              <td>Modular HTML components written in pug.js</td>
+                              <td><code>include ../components/parallax/dot.pug</code></td>
+                            </tr>
+                            <tr>
+                              <td>Images</td>
+                              <td><strong>assets/images</strong></td>
+                              <td>Store static images</td>
+                              <td>
+                                - HTML <br />
+                                <code>&lt;img src="assets/images/logo_grin.svg" alt="logo" /&gt;</code>
+                                <hr />
+                                - PUG <br />
+                                <code>img(src=assets+"/images/logo_grin.svg" alt="logo")/</code>
+                                <hr />
+                                - SCSS/CSS <br />
+                                <code>background-image: url(../images/logo_grin.svg)</code>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>SCSS</td>
+                              <td><strong>src/scss</strong></td>
+                              <td>Output destination: <strong>assets/css/styles.css</strong></td>
+                              <td><code>@import './components/expertise';</code></td>
+                            </tr>
+                            <tr>
+                              <td>JS</td>
+                              <td><strong>src/js</strong></td>
+                              <td>Output destination: <strong>assets/js/scripts.js</strong></td>
+                              <td>Just create file in <code>src/js</code> then run <code>gulp assets</code> to merge in to assets</td>
+                            </tr>
+                            <tr>
+                              <td>Dummy text and link</td>
+                              <td><strong>src/api.json</strong></td>
+                              <td>It use for pug.js only</td>
+                              <td>span #{brand.agency.name}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <br />
+                        <br />
+                        <br />
+                        <h4>Template Architecture</h4>
+                        <p>
+                          This is template architecture in diagram visualization. Click diagram or full screen button <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVBAMAAABbObilAAAAElBMVEUAAAAAAAAAAAAAAAAAAAAAAADgKxmiAAAABXRSTlMA758vX1Pw3BoAAABJSURBVAjXY8AJQkODGBhUQ0MhbAUGBiYY24CBgRnGFmZgMISwgwwDGRhEhVVBbAVmEQYGRwMmBjIAQi/CTIRd6G5AuA3dzYQBAHj0EFdHkvV4AAAAAElFTkSuQmCC" alt="full screen" />
+                          to show in new tab with full screen
+                      </p>
+                        <iframe frameborder="0" style="width:100%;height:800px;" src="./code_flow/nirwana-code-flow.html"></iframe>
+                    </div>
+                </section>
+                <!-- END -->
+              <!-- PUG -->
+                <section class="row" id="pug">
+                    <div class="col-lg-10">
+                      <h1>Pug.js Coding</h1>
+                      <hr />
+                      Follow this guide bellow to modify user interface, create pages, branding identity, language, etc.
+                      <div class="part-categories">
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <a href="code_flow/pug_coding.html#page" target="_blank">
+                              <span class="icon">
+                                <i class="glyphicon glyphicon-file"></i>
+                              </span>
+                              Create New Page and Component
+                            </a>
+                          </div>
+                          <div class="col-sm-4">
+                            <a href="code_flow/pug_coding.html#brand" target="_blank">
+                              <span class="icon">
+                                <i class="glyphicon glyphicon-flag"></i>
+                              </span>
+                              Brand/Project Name
+                            </a>
+                          </div>
+                          <div class="col-sm-4">
+                            <a href="code_flow/pug_coding.html#menu" target="_blank">
+                              <span class="icon">
+                                <i class="glyphicon glyphicon-list"></i>
+                              </span>
+                              Navigation Menu
+                            </a>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <a href="code_flow/pug_coding.html#youtube" target="_blank">
+                              <span class="icon">
+                                <i class="glyphicon glyphicon-play"></i>
+                              </span>
+                              Youtube Config
+                            </a>
+                          </div>
+                          <div class="col-sm-4">
+                            <a href="code_flow/pug_coding.html#theme" target="_blank">
+                              <span class="icon">
+                                <i class="glyphicon glyphicon-tint"></i>
+                              </span>
+                              Change Layout(RTL) and Theme
+                            </a>
+                          </div>
+                          <div class="col-sm-4">
+                            <a href="code_flow/pug_coding.html#lang" target="_blank">
+                              <span class="icon">
+                                <i class="glyphicon glyphicon-font"></i>
+                              </span>
+                              Set Language
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </section>
+                <!-- END -->   
+              
+                <!-- GMAPS -->
+                <section id="gmaps">
+                  <div class="col-lg-10">
+                      <h1>Google Maps API Config</h1>
+                      <hr>
+                      <p>
+                        Google Maps Platform products are secured from unauthorized use by restricting API calls to those that provide proper authentication credentials. These credentials are in the form of an API key - a unique alphanumeric string that associates your Google billing account with your project, and with the specific API or SDK. For more details please check <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank">https://developers.google.com/maps/documentation/javascript/get-api-key</a>
+                      </p>
+                      <h4>Before you begin</h4>
+                      <p>Before you start using the Maps JavaScript API, you need a project with a billing account and the
+                      Maps JavaScript API enabled. To learn more, see <a href="https://developers.google.com/maps/documentation/javascript/cloud-setup" target="_blank" class="gc-analytics-event" data-category="GMPgetAPIKeyPage" data-label="body" data-action="linkClick">Set up in Cloud Console</a>.
+                      </p>
+                      <h4>Creating API keys</h4>
+                      <p>The API key is a unique identifier that authenticates requests associated with your project for
+                      usage and billing purposes. You must have at least one API key associated with your project.</p>
+                      <p>To create an API key:</p>
+                      <ol>
+                        <li>Go to the Google Maps Platform &gt; Credentials page. <a href="https://console.cloud.google.com/project/_/google/maps-apis/credentials" target="_blank">https://console.cloud.google.com/project/_/google/maps-apis/credentials</a></li>
+                        <li>On the Credentials page, click Create credentials &gt; API key. The API key created dialog displays your newly created API key.</li>
+                        <li>Click Close.The new API key is listed on the Credentials page under API keys.(Remember to restrict the API key before using it in production.)</li>
+                      </ol>
+                      <h4>Adding the API key to your request</h4>
+                      <p>You must include an API key with every Maps JavaScript API request. In the following example, replace YOUR_API_KEY with your API key.</p>
+                      <pre class=" language-markup"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">async</span> <span class="token attr-name">defer</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&amp;callback=initMap<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+                  </div>
+                </section>
+                <!-- END -->
+              
+                <!-- FONTS -->
+                <section id="reference">
+                    <h1>External Reference</h1>
+                    <p>Here's some external reference of library that we used</p> <br />
+                    <ul>
+                      <li>
+                        <strong>MaterializeCSS</strong>
+                        <a href="https://materializecss.com/">https://materializecss.com/</a>
+                      </li>
+                      <li>
+                        <strong>jQuery</strong>
+                        <a href="https://api.jquery.com/">https://api.jquery.com/</a>
+                      </li>
+                      <li>
+                        <strong>Bootstrap</strong>
+                        <a href="https://getbootstrap.com/docs/4.5/getting-started/introduction/">https://getbootstrap.com/docs/4.5/getting-started/introduction/</a>
+                      </li>
+                      <li>
+                        <strong>Pug JS</strong>
+                        <a href="https://pugjs.org/api/getting-started.html">https://pugjs.org/api/getting-started.html</a>
+                      </li>
+                      <li>
+                        <strong>Gulp JS</strong>
+                        <a href="https://gulpjs.com/docs/en/api/concepts/">https://gulpjs.com/docs/en/api/concepts/</a>
+                      </li>
+                      <li>
+                        <strong>Youtube Iframe API</strong>
+                        <a href="https://developers.google.com/youtube/iframe_api_reference">https://developers.google.com/youtube/iframe_api_reference</a>
+                      </li>
+                      <li>
+                        <strong>Animate.css</strong>
+                        <a href="https://daneden.github.io/animate.css/">https://daneden.github.io/animate.css/</a>
+                      </li>
+                      <li>And many more. Check the all dependencies and the repository <a href="#credit">here</a></li>
+                    </ul>
+                </section>
+                <!-- END -->
+                
+                <!-- ICONS -->
+                <section class="row" id="icon">
+                    <div class="col-lg-12">
+                        <h1>Icons Used</h1>
+                        <hr />
+                        <h4>Material Font Icons</h4>
+                        <ul>
+                          <li>
+                            Please make sure Google Material Icons already embeded in <code>head</code> tag
+                            <br />
+                            If not just embed this inside head tag
+                            <pre><code class="language-markup">&lt;head&gt;
+  &lt;link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/&gt;
+&lt;/head&gt;</code></pre>
+                          </li>
+                          <li>
+                            Connect to internet
+                          </li>
+                          <li>
+                            Then use it inside Vue templates. Example for use <code>add</code> icon
+                            <pre><code class="language-markup">&lt;i class="material-icons"&gt;add&lt;/i&gt;</code></pre>
+                          </li>
+                          <li>
+                            Here's the cheatsheet for Material Icon <a target="_blank" href="https://materializecss.com/icons.html">https://materializecss.com/icons.html</a>
+                          </li>
+                        </ul>
+                       <br /><br /><br /><br />
+                        <h4>IonIcons Font</h4>
+                        <li>
+                          Please make sure IonIcons already embeded in <code>head</code> tag.
+                          <br />
+                          If not just embed this inside head tag
+                          <pre><code class="language-markup">&lt;head&gt;
+    &lt;link href=&quot;http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
+&lt;/head&gt;</code></pre>
+                        </li>
+                        <li>
+                          Connect to internet
+                        </li>
+                        <li>
+                          The sample usage
+                          <pre><code class="language-markup">&lt;span class="ion-ios-world-outline" /&gt;</code></pre>
+                        </li>
+                        <li>
+                          Here's the ionicons cheatsheet <a target="_blank" href="https://ionicons.com/v2/cheatsheet.html">https://ionicons.com/v2/cheatsheet.html</a>
+                        </li>
+                    </div>
+                </section>
+                <!-- END -->
+              
+                <!-- CREDIT -->
+                <section class="row" id="credit">
+                    <div class="col-lg-12">
+                        <hr />
+                        <br />
+                        <h1>Sources and Credit</h1>
+                        <hr />
+                        <article>
+                            <strong>Fonts :</strong><br/>
+                            Roboto, Robot Condensed, Lato, Open Sans, Montserrat<br /><br />
+                            <strong>Preview Images Used</strong> 
+                            <br />
+                            <a href="http://unsplash.com/" target="_blank">Unsplash</a><br />
+                            <a href="https://pixabay.com/" target="_blank">Pixabay</a><br />
+                            <a href="https://randomuser.me//" target="_blank">randomuser.me</a><br /><br />
+                            <blockquote>Note: All images are just used for Preview Purpose Only. They are not part of the template and NOT included in the final purchase files.</blockquote>
+                            <br /><br />
+                            <strong>Credits</strong>
+                            <br />
+                            <table class="tg">
+                              <tr>
+                                <th class="tg-yw4l">Name</th>
+                                <th class="tg-yw4l">Repository</th>
+                                <th class="tg-yw4l">License</th>
+                              </tr>
+                              <tr>
+                                <td class="tg-yw4l">materializecss</td>
+                                <td class="tg-yw4l">https://github.com/Dogfalo/materialize</td>
+                                <td class="tg-yw4l">MIT</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-yw4l">animate.css</td>
+                                <td class="tg-yw4l">https://www.npmjs.com/package/animate.css</td>
+                                <td class="tg-yw4l">MIT</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-yw4l">jQuery</td>
+                                <td class="tg-yw4l">https://github.com/jquery/jquery</td>
+                                <td class="tg-yw4l">MIT</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-yw4l">Bootstrap</td>
+                                <td class="tg-yw4l">https://github.com/twbs/bootstrap</td>
+                                <td class="tg-yw4l">MIT</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-yw4l">Pug.js</td>
+                                <td class="tg-yw4l">https://github.com/pugjs/pug</td>
+                                <td class="tg-yw4l">MIT</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-yw4l">node-sass</td>
+                                <td class="tg-yw4l">https://www.npmjs.com/package/node-sass</td>
+                                <td class="tg-yw4l">MIT</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-yw4l">gulp.js</td>
+                                <td class="tg-yw4l">https://github.com/gulpjs/gulp</td>
+                                <td class="tg-yw4l">MIT</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-yw4l">gulp-pug</td>
+                                <td class="tg-yw4l">https://github.com/gulp-community/gulp-pug</td>
+                                <td class="tg-yw4l">MIT</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-yw4l">gulp-i18n-pug</td>
+                                <td class="tg-yw4l">https://github.com/felixzapata/gulp-i18n-pug</td>
+                                <td class="tg-yw4l">MIT</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-yw4l">gulp-saas</td>
+                                <td class="tg-yw4l">https://github.com/dlmanning/gulp-sass</td>
+                                <td class="tg-yw4l">MIT</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-yw4l">rtl-sass</td>
+                                <td class="tg-yw4l">https://www.npmjs.com/package/rtl-sass</td>
+                                <td class="tg-yw4l">ISC</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-yw4l">jquery-navScroll</td>
+                                <td class="tg-yw4l">https://github.com/jhammann/jquery-navScroll</td>
+                                <td class="tg-yw4l">MIT</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-yw4l">slick</td>
+                                <td class="tg-yw4l">https://github.com/kenwheeler/slick/</td>
+                                <td class="tg-yw4l">MIT</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-yw4l">wow.js</td>
+                                <td class="tg-yw4l">https://github.com/graingert/wow</td>
+                                <td class="tg-yw4l">MIT</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-yw4l">jQuery Youtube Background</td>
+                                <td class="tg-yw4l">https://github.com/rochestb/jQuery.YoutubeBackground</td>
+                                <td class="tg-yw4l">MIT</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-yw4l">gulp-rtlcss</td>
+                                <td class="tg-yw4l">https://github.com/jjlharrison/gulp-rtlcss</td>
+                                <td class="tg-yw4l">MIT</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-yw4l">jQuery form validator</td>
+                                <td class="tg-yw4l">https://github.com/victorjonsson/jQuery-Form-Validator</td>
+                                <td class="tg-yw4l">Dual licensed under the MIT or GPL Version 2 licenses</td>
+                              </tr>
+                            </table>
+                        </article>
+                    </div>
+                </section>
+                <!-- END -->
+            </div>
+        </div>
+        <!-- END -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+  
+    <!-- Syntax Highligher -->
+    <script src="js/prism.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.bundle.js"></script>
+
+    <!-- Jquery scrollTo -->
+    <script src="js/jquery.nav.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $(document).ready(function() {
+        	$('#sidebar-wrapper .sidebar-nav').onePageNav();
+        });
+    </script>
+
+</body>
+
+</html>

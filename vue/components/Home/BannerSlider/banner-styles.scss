@@ -1,0 +1,225 @@
+.banner-wrap {
+  position: relative;
+  display: block;
+  ::v-deep .slick-dots {
+    bottom: -50px;
+  }
+}
+
+.slide {
+  position: relative;
+  img {
+    margin: 80px auto 0;
+    max-width: 100%;
+  }
+  &.cur {
+    .deco-wrap {
+      transform: translateX(0px) scale(1);
+      opacity: 0.3;
+    }
+  }
+  @include breakpoints-up(md) {
+    height: 500px
+  }
+  @include breakpoints-up(lg) {
+    height: 600px;
+    &.center-content {
+      padding-top: $spacing5;
+    }
+  }
+  @include breakpoints-down(md) {
+    padding-top: $spacing5;
+  }
+  @include breakpoints-down(sm) {
+    text-align: center;
+    height: auto;
+    padding: spacing(15, 0, 0);
+    img {
+      margin-top: $spacing2 !important;
+    }
+  }
+  @include breakpoints-between(sm, md) {
+    img {
+      width: 40%;
+    }
+  }
+}
+
+.h-banner {
+  text-align: center;
+  img {
+    margin-top: 0;
+    @include breakpoints-up(sm) {
+      width: 60%
+    }
+    @include breakpoints-up(md) {
+      width: 40%
+    }
+  }
+}
+
+.slider-deco {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  ::v-deep .slick-list {
+    @include breakpoints-down(sm) {
+      height: 100%
+    }
+  }
+}
+
+.deco-wrap {
+  width: 100%;
+  height: 100%;
+  transition: all 1s cubic-bezier(0, -0.01, 0, 0.96);
+  transform: translateX(-50px) scale(0.8);
+  opacity: 0;
+  position: relative;
+  @include breakpoints-down(md) {
+    top: -120px
+  }
+}
+
+.deco {
+  border-radius: 80px;
+  transform: rotate(45deg);
+  position: absolute;
+  &.top {
+    @include use-theme(background-color, $palette-primary-light, $palette-primary-dark);
+    width: 800px;
+    height: 800px;
+    &.s1 {
+      top: -400px;
+      right: -250px;
+    }
+    &.s2 {
+      top: -400px;
+      left: -250px;
+    }
+    &.s3 {
+      top: -360px;
+      left: 150px;
+      @include breakpoints-down(xs) {
+        left: -120px
+      }
+    }
+  }
+  &.bottom {
+    @include use-theme(background-color, $palette-secondary-light, $palette-secondary-dark);
+    width: 790px;
+    height: 815px;
+    &.s1 {
+      top: -390px;
+      right: -240px;
+    }
+    &.s2 {
+      top: -390px;
+      left: -240px;
+    }
+    &.s3 {
+      top: -360px;
+      left: 150px;
+      @include breakpoints-down(xs) {
+        left: -140px
+      }
+    }
+  }
+}
+
+.inner {
+  display: flex;
+  height: 100%;
+  position: relative;
+  align-items: center;
+  @include breakpoints-down('md') {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.text {
+  h4 {
+    font-weight: $font-bold;
+    margin-bottom: $spacing2;
+  }
+  h5 {
+    @include palette-text-secondary;
+    margin-bottom: $spacing4
+  }
+}
+
+.btn-area {
+  & > * {
+    @include breakpoints-up(sm) {
+      @include margin-right($spacing3);
+    }
+  }
+  .v-btn {
+    width: 200px;
+    @include breakpoints-down(xs) {
+      width: 100%;
+      margin-bottom: $spacing2
+    }
+  }
+}
+
+.slide-nav {
+  display: flex;
+  .v-btn {
+    text-transform: none;
+    height: auto;
+    padding: $spacing1;
+    flex: 1;
+    font-weight: $font-regular;
+    ::v-deep .v-btn__content {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+    strong {
+      text-transform: capitalize;
+      font-size: 28px;
+      display: block;
+      font-weight: $font-bold;
+      @include margin-left(-2px)
+    }
+    &:after {
+      content: '';
+      border-bottom: 6px solid #fff;
+      border-radius: 6px;
+      width: 0%;
+      position: absolute;
+      bottom: -12px;
+      @include left(-2px);
+      transition: all 0.2s cubic-bezier(0.42, 0.16, 0.21, 0.93);
+      transform-origin: left center;
+    }
+    &:hover {
+      transition: all 0.3s ease-out;
+      background: none;
+      &:after {
+        width: 50%;
+        @include left(10px);
+        border-bottom-color: $palette-primary-main
+      }
+    }
+    &.active {
+      strong {
+        color: $palette-link
+      }
+      &:after {
+        border-bottom-color: $palette-primary-main;
+        width: 50%;
+        @include left(9px);
+      }
+    }
+  }
+}
+
+.divider {
+  margin: spacing(0, 2)
+}

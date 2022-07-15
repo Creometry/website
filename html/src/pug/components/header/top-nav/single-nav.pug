@@ -1,0 +1,12 @@
+.scrollactive-nav.scrollnav.show-lg-up.main-menu
+  ul.main-menu
+    each item in menu.agency
+      |
+      |
+      li
+        a.btn.btn-flat.anchor-link.waves-effect(
+          href=headerHome ? '#'+item.name : link.agency.home+'#'+item.name
+        ) #{$t.agency_landing['header_' + item.name]}
+    li
+      a.btn.btn-flat.waves-effect(href="/") 
+        | #{$t.common.header_sample_page}

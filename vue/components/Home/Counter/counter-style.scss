@@ -1,0 +1,35 @@
+.counter-wrap {
+  margin-top: $spacing3;
+}
+
+.counter-item {
+  p {
+    font-size: 22px;
+    text-transform: uppercase;
+    font-weight: $font-regular;
+  }
+  @include breakpoints-up(md) {
+    display: flex;
+  }
+  align-items: center;
+  justify-content: center;
+  .text {
+    text-align: center;
+    h3 {
+      position: relative;
+      font-weight: $font-bold;
+      padding-bottom: $spacing2;
+      margin-bottom: $spacing4;
+      &:after {
+        content: "";
+        width: 50px;
+        height: 8px;
+        border-radius: 5px;
+        background: $palette-primary-main;
+        position: absolute;
+        bottom: $spacing2 * -1;
+        left: calc(50% - 25px)
+      }
+    }
+  }
+}

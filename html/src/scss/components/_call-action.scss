@@ -1,0 +1,80 @@
+.call-to-action {
+  .root {
+    position: relative;
+    @include breakpoints-up(sm) {
+      margin: spacing(0, 2);
+    }
+    p {
+      margin: 0
+    }
+  }
+  .button {
+    color: $palette-primary-main !important;
+    background: $palette-common-white;
+    font-size: 18px;
+    height: auto;
+    &:hover {
+      color: $palette-primary-main;
+    }
+    i {
+      @include margin-left($spacing1);
+      top: 4px;
+      position: relative;
+      [dir="rtl"] & {
+        transform: rotate(180deg)
+      }
+    }
+    @include breakpoints-up(sm) {
+      padding: spacing(1, 4);
+    }
+    @include breakpoints-down(sm) {
+      margin: 0 auto;
+      width: 100%
+    }
+  }
+  .right-icon {
+    @include margin-left($spacing1);
+    [dir="rtl"] & {
+      transform: rotate(180deg)
+    }
+  }
+
+  .paper {
+    padding: $spacing4;
+    border-radius: 24px;
+    color: $palette-common-white;
+    @include use-theme(background-color, $palette-primary-main, $palette-primary-dark);
+    .row {
+      width: 100% 
+    }
+    @include breakpoints-down(sm) {
+      text-align: center;
+    }
+    @include breakpoints-up(lg) {
+      padding: spacing(4, 10);
+      margin: spacing(0, 2);
+    }
+    @include breakpoints-down(sm) {
+      margin-bottom: $spacing5
+    }
+    @include breakpoints-down(xs) {
+      padding: spacing(4, 3);
+      text-align: center
+    }
+    h4 {
+      @include breakpoints-down(xs) {
+        font-size: 28px !important;
+        margin-bottom: $spacing2
+      }
+    }
+    p {
+      @include breakpoints-down(sm) {
+        margin-bottom: $spacing5
+      }
+      @include breakpoints-down(xs) {
+        font-size: 18px;
+        margin-bottom: $spacing3
+      }
+    }
+  }
+}
