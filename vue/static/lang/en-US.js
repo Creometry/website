@@ -53,6 +53,7 @@ export default () => {
         header_light: 'light',
         header_search: 'Search',
         footer_quick_links: 'Quick Links',
+        btn_join_us: 'join us',
         btn_read_more: 'read more',
         btn_detail: 'see detail',
         btn_submit: 'submit',

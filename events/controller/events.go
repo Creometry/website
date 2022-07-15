@@ -149,7 +149,7 @@ func AddAttendee(c *fiber.Ctx) error {
 	)
 
 	//Update event
-	newEvent, err := srv.Events.Patch("primary", attendee.EventId, event).Do()
+	_, err = srv.Events.Patch("primary", attendee.EventId, event).Do()
 	if err != nil {
 		return err
 	}
