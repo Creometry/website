@@ -27,16 +27,6 @@
           />
         </v-col>
       </v-row>
-      <br>
-      <pricing-card
-            :title="entrepriseTier.title"
-            :subheader="entrepriseTier.subheader"
-            :price="entrepriseTier.price"
-            :description="entrepriseTier.description"
-            :info="entrepriseTier.info"
-            :button-text="entrepriseTier.buttonText"
-            :button-variant="entrepriseTier.buttonVariant"
-          />
     </div>
   </v-container>
 </template>
@@ -64,7 +54,7 @@ export default {
             '30GB Storage',
           ],
           info: 'Interdum et malesuada fames ac ante ipsum primis in faucibus.',
-          buttonText: 'pricing_buy',
+          buttonText: 'pricing_proceed',
           buttonVariant: 'outlined'
         },
         {
@@ -76,7 +66,7 @@ export default {
             '80GB Storage',
           ],
           info: 'Interdum et malesuada fames ac ante ipsum primis in faucibus.',
-          buttonText: 'pricing_buy',
+          buttonText: 'pricing_proceed',
           buttonVariant: 'outlined'
         },
         {
@@ -90,18 +80,17 @@ export default {
             'Chat Support',
           ],
           info: 'Interdum et malesuada fames ac ante ipsum primis in faucibus.',
-          buttonText: 'pricing_buy',
+          buttonText: 'pricing_proceed',
           buttonVariant: 'contained'
         },
-        
-      ],
-      entrepriseTier : {
+        {
           title: 'Enterprise',
           description: [],
           info: 'Interdum et malesuada fames ac ante ipsum primis in faucibus.',
           buttonText: 'btn_contact',
           buttonVariant: 'outlined'
       }
+      ]
     }
   }
 }

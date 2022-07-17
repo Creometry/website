@@ -22,8 +22,9 @@
             <v-btn
               :href="href"
               color="primary"
+              v-if="buttons===true"
             >
-              {{ $t('common.header_'+text) }}
+              {{ text }}
             </v-btn>
             <v-spacer
               v-if="isDesktop"
@@ -91,6 +92,10 @@ export default {
     href: {
       type: String,
       default: '/'
+    },
+    buttons: {
+      type: Boolean,
+      default: true
     }
   }
 }

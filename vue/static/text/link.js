@@ -1,3 +1,5 @@
+const redirect = '/dashboard'
+
 const link = {
   agency: {
     home: '/',
@@ -5,8 +7,8 @@ const link = {
     team: '/about/team',
     blog: '/blog',
     blogDetail: '/blog/detail-blog',
-    login: '/login',
-    register: '/register',
+    login: '/login?redirect=' + redirect,
+    register: '/register?redirect=' + redirect,
     contact: '/contact',
     contactMap: '/contact/with-map',
     card: '/collection',

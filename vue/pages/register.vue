@@ -1,6 +1,6 @@
 <template>
   <div class="main-wrap">
-    <main-header :href="link.agency.login" text="login" />
+    <main-header :href="redirect" text="login" />
     <div class="container-general">
       <register-form />
     </div>
@@ -34,6 +34,16 @@ export default {
     return {
       title: 'Register | ' + brand.agency.desc
     }
-  }
+  },
+  computed: {
+    redirect() {
+      const r = this.$route.query.redirect
+      if (r && r!=='/dashboard'){
+        return '/login?redirect=' + r
+      }else{
+        return link.agency.login
+      }
+    }
+  },
 }
 </script>

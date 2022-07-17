@@ -42,11 +42,13 @@
     <div class="btn-area" :class="title === 'Free' ? 'secondary-color' : 'primary-color'">
       <p>{{ info }}</p>
       <v-btn
-        :color="title === 'Free' ? 'secondary' : 'primary'"
+        :color="title === 'Proceed' ? 'secondary' : 'primary'"
         block
+        @click="redirect"
       >
         {{ $t('common.' + buttonText) }}
       </v-btn>
+      
     </div>
   </v-card>
 </template>
@@ -68,7 +70,6 @@ export default {
     },
     price: {
       type: String,
-      required: true
     },
     description: {
       type: Array,
@@ -86,6 +87,11 @@ export default {
       type: String,
       default: 'outlined'
     }
-  }
+  },
+  methods: {
+    redirect() {
+      window.location.href = '/project?plan='+this.title;
+    }
+  },
 }
 </script>
