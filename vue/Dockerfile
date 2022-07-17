@@ -1,27 +1,9 @@
-FROM node:lts as builder
-
+FROM node:16.15.1-slim
 WORKDIR /app
-
 COPY . .
-
-RUN yarn install \
-  --non-interactive \
-  --production=false
-
-RUN yarn build
-
-RUN rm -rf node_modules && \
-  NODE_ENV=production yarn install \
-  --non-interactive \
-  --production=true
-
-FROM node:lts
-
-WORKDIR /app
-
-COPY --from=builder /app  .
-
-ENV HOST 0.0.0.0
-EXPOSE 80
-
-CMD [ "yarn", "start" ]
+RUN npm install
+RUN npm run build
+ENV NUXT_HOST=0.0.0.0
+ENV NUXT_PORT=80
+EXPOSE 8001
+CMD [ "npm","start" ]
