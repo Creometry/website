@@ -254,6 +254,13 @@ module.exports = {
       }
     }
   },
+  publicRuntimeConfig: {
+    PAYMEE_URL: process.env.PAYMEE_URL,
+    PAYMEE_IFRAME_URL: process.env.PAYMEE_IFRAME_URL,
+    PAYMEE_API_KEY: process.env.PAYMEE_API_KEY,
+    VENDOR: process.env.VENDOR
+  },
+  privateRuntimeConfig: {},
   /*
   ** Page Layout transition
   */

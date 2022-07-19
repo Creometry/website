@@ -43,7 +43,7 @@
       </v-list-group>
     </v-list>
     <v-divider />
-    <v-list dense>
+    <v-list dense v-if="!isLoggedIn">
       <v-list-item
         v-for="(item, index) in ['login', 'register']"
         :key="index"
@@ -56,6 +56,19 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
+    <v-list dense v-if="isLoggedIn">
+      <v-list-item
+        v-for="(item, index) in ['Dashboard', 'Logout']"
+        :key="index"
+        :class="{ current: curURL === (curOrigin+langPath+item)}"
+        link
+        @click="change(item)"
+      >
+        <v-list-item-content>
+          <v-list-item-title class="menu-list">{{item}}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
   </fragment>
 </template>
 
@@ -65,6 +78,7 @@
 
 <script>
 import link from '~/static/text/link'
+import * as Cookie from 'js-cookie'
 
 export default {
   data() {
@@ -76,10 +90,27 @@ export default {
       langPath: ''
     }
   },
+  computed: {
+    isLoggedIn() {
+      return Cookie.get('rancher_token') ? true : false
+    }
+  },
   mounted() {
     this.curURL = window.location.href
     this.curOrigin = window.location.origin
     this.langPath = '/' + this.$i18n.locale
+  },
+  methods: {
+    change(item) {
+      if (item === 'Logout') {
+        Cookie.remove('rancher_token')
+        Cookie.remove('userId')
+        Cookie.remove('username')
+        window.location.href = '/'
+      } else {
+        window.location.href = '/dashboard'
+      }
+    }
   },
   props: {
     menuPrimary: {
