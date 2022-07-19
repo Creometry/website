@@ -12,29 +12,38 @@
       />
     </div>
     <div class="properties">
-      <strong class="use-text-subtitle text-truncate">
-        <span>
-          {{ title }}
+      
+        <v-row>
+          
+          <v-col md="10">
+            <strong class="use-text-subtitle text-truncate">
+             <span>
+          {{ event.summary }}
         </span>
-      </strong>
+        </strong>
+          </v-col>
+          <v-col>
+            <strong v-if="event.price > 0">TND {{ event.price }}</strong>
+            <strong v-else>FREE</strong>
+          </v-col>
+        </v-row>
+       
       <p>
-        {{ date }}
+       From: {{ event.startTime }}
+      </p>
+      <p>
+       To: {{ event.endTime }}
       </p>
       <v-card-text class="desc">
         <span class="text--primary">
-          <span>{{ desc }}</span>
+          <span>{{ event.description }}</span>
         </span>
+        
       </v-card-text>
       <v-card-actions>
-        <v-btn
-          :small="orientation === 'landscape'"
-          :href="href"
-          outlined
-          class="action-btn"
-          color="primary"
-        >
-          {{ $t('common.btn_read_more') }}
-        </v-btn>
+        <dialog-event 
+        :event="event"
+        />
       </v-card-actions>
     </div>
   </v-card>
@@ -45,21 +54,13 @@
 </style>
 
 <script>
+import Dialog from '~/components/dialog/Event'
 export default {
+  components: {
+    "dialog-event": Dialog
+  },
   props: {
     img: {
-      type: String,
-      required: true
-    },
-    title: {
-      type: String,
-      required: true
-    },
-    date: {
-      type: String,
-      required: true
-    },
-    desc: {
       type: String,
       required: true
     },
@@ -74,6 +75,10 @@ export default {
     href: {
       type: String,
       default: '#'
+    },
+    event: {
+      type: Object,
+      required: false
     }
   }
 }
