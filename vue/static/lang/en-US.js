@@ -12,6 +12,9 @@ export default () => {
         error_without_status: 'An error occurred on the server',
         contact_title: 'Free Project Quote',
         contact_title2: 'Say Hello to Us',
+        subscribe_title: 'Subscribe to out newsletter',
+        form_title: "Write the title here",
+        subscribe_send: 'Subscribe',
         contact_subtitle:
           'Do you have any questions? Are you ready to reduce cost and create new revenue? Or you simply want to say hi? Drop us a message.',
         form_name: 'What is your name? *',
@@ -52,6 +55,7 @@ export default () => {
         header_light: 'light',
         header_search: 'Search',
         footer_quick_links: 'Quick Links',
+        btn_join_us: 'join us',
         btn_read_more: 'read more',
         btn_detail: 'see detail',
         btn_submit: 'submit',
