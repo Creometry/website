@@ -18,5 +18,5 @@ func main() {
 	app.Post("/events", controller.CreateEvent)
 	app.Get("/events", controller.GetEvents)
 	app.Put("/events", controller.AddAttendee)
-	app.Listen(":5000")
+	app.Listen(":5001")
 }

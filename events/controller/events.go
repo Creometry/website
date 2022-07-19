@@ -3,6 +3,7 @@ package controller
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -143,6 +144,42 @@ func AddAttendee(c *fiber.Ctx) error {
 		return err
 	}
 
+	//Open DB
+	db, _ := clov.Open("events-db")
+	defer db.Close()
+	db.CreateCollection("Events")
+
+	//search for event by eventId
+	doc, _ := db.Query("Events").Where(clov.Field("eventId").Eq(attendee.EventId)).FindFirst()
+
+	//parse doc to tempEvent
+	tempEvent := new(models.EventDB)
+	doc.Unmarshal(tempEvent)
+
+	if tempEvent.Price > 0 {
+		if attendee.PaymentToken == "" {
+			return errors.New("this event is not free, need payment token")
+		}
+		//send Get request to Paymee
+		client := &http.Client{}
+		req, err := http.NewRequest("GET", os.Getenv("PAYMEE_URL")+"/api/v1/payments/"+attendee.PaymentToken+"/check", nil)
+		req.Header.Set("Authorization", "Token "+os.Getenv("PAYMEE_API_KEY"))
+		resp, err := client.Do(req)
+		defer resp.Body.Close()
+		if err != nil {
+			return err
+		}
+		//Parse paymee response
+		var paymeeResp models.PaymeeResponse
+
+		if err := json.NewDecoder(resp.Body).Decode(&paymeeResp); err != nil {
+			log.Fatal(err)
+		}
+		//check if amount is same
+		if paymeeResp.Data.Amount != tempEvent.Price {
+			return errors.New("Amount is not same, error ")
+		}
+	}
 	//Add new Email
 	event.Attendees = append(event.Attendees,
 		&calendar.EventAttendee{Email: attendee.Email},

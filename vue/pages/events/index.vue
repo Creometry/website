@@ -1,33 +1,37 @@
 <template>
-  <div class="main-wrap">
-    <main-header />
-    <div class="container-general">
-      <v-container>
+    <div class="main-wrap">
+    
+        <main-header />
+    
+        <div class="container-general">
+    
+            <v-container>
+
+                <v-row class="mt-6">
+    
+                    <v-col md="12">
+    
+                        <div v-for="event in events" :key="event.id" :class="{ 'mt-15': true }">
+    
+                            <post-card :href="link.agency.blogDetail" :img="imgAPI.photo[30]" orientation="portrait" type="over" :event="event" />
+    
+                        </div>
         
-        <v-row class="mt-6">
-          <v-col md="12">
-            <div
-              v-for="event in events"
-              :key="event.id"
-              :class="{ 'mt-15': true }"
-            >
-              <post-card
-                :href="link.agency.blogDetail"
-                :img="imgAPI.photo[30]"
-                orientation="portrait"
-                type="over"
-                :event="event"
-              />
-            </div>
-            
-          </v-col>
-          </v-row>
-      </v-container>
+                    </v-col>
+    
+                </v-row>
+    
+            </v-container>
+    
+        </div>
+    
+        <div id="footer">
+    
+            <main-footer />
+    
+        </div>
+    
     </div>
-    <div id="footer">
-      <main-footer />
-    </div>
-  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -45,27 +49,28 @@ import imgAPI from '~/static/images/imgAPI'
 import link from '~/static/text/link'
 import axios from "axios"
 export default {
-  components: {
-    'main-header': BlogHeader,
-    'main-footer': Footer,
-    Headline,
-    Sidebar,
-    PostCard,
-  },
-  data() {
-    return {
-      imgAPI: imgAPI,
-      link: link,
-      events: []
+    components: {
+        'main-header': BlogHeader,
+        'main-footer': Footer,
+        Headline,
+        Sidebar,
+        PostCard,
+    },
+    data() {
+        return {
+            imgAPI: imgAPI,
+            link: link,
+            events: []
+        }
+    },
+    async fetch() {
+        console.log(process.env.EVENTS_URL)
+        this.events = (await axios.get(process.env.EVENTS_URL)).data
+    },
+    head() {
+        return {
+            title: 'Blog Home | ' + brand.agency.desc
+        }
     }
-  },
-  async fetch() {
-    this.events = (await axios.get('http://localhost:5000/events')).data
-  },
-  head() {
-    return {
-      title: 'Blog Home | ' + brand.agency.desc
-    }
-  }
 }
 </script>
