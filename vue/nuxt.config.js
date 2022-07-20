@@ -258,7 +258,8 @@ module.exports = {
     PAYMEE_URL: process.env.PAYMEE_URL,
     PAYMEE_IFRAME_URL: process.env.PAYMEE_IFRAME_URL,
     PAYMEE_API_KEY: process.env.PAYMEE_API_KEY,
-    VENDOR: process.env.VENDOR
+    VENDOR: process.env.VENDOR,
+    INGRESS_URL: process.env.INGRESS_URL
   },
   privateRuntimeConfig: {},
   /*

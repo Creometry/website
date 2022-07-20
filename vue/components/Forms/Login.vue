@@ -77,6 +77,7 @@
 import SocialAuth from './SocialAuth'
 import AuthFrame from './AuthFrame'
 import * as Cookie from 'js-cookie'
+import axios from 'axios'
 
 export default {
   components: {
@@ -102,28 +103,19 @@ export default {
       if (this.$refs.form.validate()) {
         // make post request to go-provisioner to login and 
         // get rancher_token and userId
-        // axios.post('/api/login', {
-        //   username: this.username,
-        //   password: this.password
-        // }).then(response => {
-        //   if (response.data.success) {
-        //     // save rancher_token and userId to cookies
-        //     Cookie.set('rancher_token', "response.data.token")
-        //     Cookie.set('userId', "response.data.userId")
-        //     Cookie.set('username', username)
-        //     // redirect to project page
-        //     window.location.href = this.$route.query.redirect
-        //   } else {
-        //     this.valid = false
-        //   }
-        // }).catch(error => {
-        //   console.log(error)
-        // })
+        axios.post(this.INGRESS_URL+'/api/api/v1/login', {
+          username: this.username,
+          password: this.password
+        }).then(response => {
+            Cookie.set('rancher_token', response.data.token)
+            Cookie.set('userId', response.data.userId)
+            Cookie.set('username', this.username)
+            // redirect to project page
+            window.location.href = this.$route.query.redirect
+        }).catch(error => {
+          console.log(error)
+        })
         console.log('data submitted')
-        Cookie.set('rancher_token', "response.data.token")
-        Cookie.set('userId', "response.data.userId")
-        Cookie.set('username', this.username)
-        window.location.href = this.$route.query.redirect
       }
     }
   },
@@ -132,6 +124,9 @@ export default {
       const smDown = this.$store.state.breakpoints.smDown
       return smDown.indexOf(this.$mq) > -1
     },
+    INGRESS_URL() {
+        return this.$config.INGRESS_URL;
+      },
   },
   mounted() {
      if (Cookie.get('rancher_token') !== undefined) {

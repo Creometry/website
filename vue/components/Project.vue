@@ -152,32 +152,34 @@ export default {
         const paymentToken = event.data.payment_token;
         console.log("paymentToken: ", paymentToken); 
         // make post request to provision project here
-        // axios.post('go-provisioner/api/v1/provisionProject', {
-        //   name: this.project.name,
-        //   billing_account_id: this.project.billingAccountId,
-        //   git_repo_name: this.project.gitRepoName,
-        //   git_repo_url: this.project.gitRepoUrl,
-        //   git_repo_branch: this.project.gitRepoBranch,
-        //   payment_token: paymentToken,
-        // }).then(response => {
-        //   console.log(response)
-        //   window.location.href = '/dashboard';
-        // }).catch(error => {
-        //   console.log(error)
-        //   window.location.href = '/dashboard';
-        // })
+         axios.post(this.INGRESS_URL+'/api/api/v1/provisionProject', {
+           projectName: this.project.name,
+           billingAccountId: this.project.billingAccountId,
+           plan: this.$route.query.plan,
+           gitRepoName: this.project.gitRepoName,
+           gitRepoUrl: this.project.gitRepoUrl,
+           gitRepoBranch: this.project.gitRepoBranch,
+           paymentToken: paymentToken,
+           userId : Cookie.get('userId')
+         }).then(response => {
+           console.log(response.data.projectId)
+           window.location.href = '/dashboard';
+         }).catch(error => {
+           console.log(error)
+           window.location.href = '/dashboard';
+         })
         this.window.location.href = '/dashboard';
         }else{
           console.log(event.data)
         }
-      }, false);
-      // make api call to get all the user's billing accounts
-      // this.billingAccounts = response.data.data;
-      // axios.get('go-billing/api/v1/getBillingAccounts/admin/'+Cookie.get('userId')).then(response => {
-      //   this.billingAccounts = response.data.data;
-      // }).catch(error => {
-      //   console.log(error)
-      // })
+      }, false)
+       //make api call to get all the user's billing accounts
+       //this.billingAccounts = response.data.data;
+       axios.get('http://go-billing.default.svc/api/v1/getBillingAccounts/admin/'+Cookie.get('userId')).then(response => {
+         this.billingAccounts = response.data.data;
+       }).catch(error => {
+         console.log(error)
+       })
   },
   computed: {
       PAYMEE_URL() {
@@ -188,6 +190,9 @@ export default {
       },
       VENDOR() {
         return this.$config.VENDOR;
+      },
+      INGRESS_URL() {
+        return this.$config.INGRESS_URL;
       },
 
     },
