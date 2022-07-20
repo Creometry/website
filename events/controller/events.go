@@ -18,9 +18,6 @@ import (
 )
 
 func GetEvents(c *fiber.Ctx) error {
-	//Get Service
-	srv := config.GetSVC()
-
 	myEvents := models.Events{}
 
 	cursor, err := database.Collection.Find(context.TODO(), bson.M{})
@@ -37,7 +34,7 @@ func GetEvents(c *fiber.Ctx) error {
 
 	for index := range myEvents.Events {
 		//Get Event Info from Google API
-		event, err := srv.Events.Get("primary", myEvents.Events[index].CalendarId).Do()
+		event, err := config.Srv.Events.Get("primary", myEvents.Events[index].CalendarId).Do()
 		if err != nil {
 			return err
 		}
@@ -54,9 +51,6 @@ func GetEvents(c *fiber.Ctx) error {
 }
 
 func AddAttendee(c *fiber.Ctx) error {
-	//Get Service
-	srv := config.GetSVC()
-
 	//Parse Body
 	attendee := new(models.Attendee)
 	if err := c.BodyParser(attendee); err != nil {
@@ -64,7 +58,7 @@ func AddAttendee(c *fiber.Ctx) error {
 	}
 
 	//Get Event Info
-	event, err := srv.Events.Get("primary", attendee.EventId).Do()
+	event, err := config.Srv.Events.Get("primary", attendee.EventId).Do()
 	if err != nil {
 		return err
 	}
@@ -102,7 +96,7 @@ func AddAttendee(c *fiber.Ctx) error {
 	)
 
 	//Update event
-	_, err = srv.Events.Patch("primary", attendee.EventId, event).Do()
+	_, err = config.Srv.Events.Patch("primary", attendee.EventId, event).Do()
 	if err != nil {
 		return err
 	}
@@ -110,9 +104,6 @@ func AddAttendee(c *fiber.Ctx) error {
 }
 
 func CreateEvent(c *fiber.Ctx) error {
-	//Get Service
-	srv := config.GetSVC()
-
 	//Parse Body
 	event := new(models.Event)
 	if err := c.BodyParser(event); err != nil {
@@ -138,7 +129,7 @@ func CreateEvent(c *fiber.Ctx) error {
 
 	//Create new Calendar Event
 	calendarId := "primary"
-	NewEvent, err := srv.Events.Insert(calendarId, NewEvent).Do()
+	NewEvent, err := config.Srv.Events.Insert(calendarId, NewEvent).Do()
 	if err != nil {
 		return err
 	}

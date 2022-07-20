@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"website/events/config"
 	"website/events/database"
 	"website/events/router"
 
@@ -10,6 +11,8 @@ import (
 )
 
 func main() {
+	config.GetSVC()
+
 	app := fiber.New()
 
 	err := database.Connect()
@@ -23,6 +26,5 @@ func main() {
 	}))
 
 	router.SetupRoutes(app)
-
 	app.Listen(":5001")
 }

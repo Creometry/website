@@ -15,6 +15,8 @@ import (
 	"google.golang.org/api/option"
 )
 
+var Srv *calendar.Service
+
 // Retrieve a token, saves the token, then returns the generated client.
 func getClient(config *oauth2.Config) *http.Client {
 	// The file token.json stores the user's access and refresh tokens, and is
@@ -70,7 +72,7 @@ func saveToken(path string, token *oauth2.Token) {
 	json.NewEncoder(f).Encode(token)
 }
 
-func GetSVC() *calendar.Service {
+func GetSVC() {
 	ctx := context.Background()
 	b, err := ioutil.ReadFile("credentials.json")
 	if err != nil {
@@ -84,9 +86,8 @@ func GetSVC() *calendar.Service {
 	}
 	client := getClient(config)
 
-	srv, err := calendar.NewService(ctx, option.WithHTTPClient(client))
+	Srv, err = calendar.NewService(ctx, option.WithHTTPClient(client))
 	if err != nil {
 		log.Fatalf("Unable to retrieve Calendar client: %v", err)
 	}
-	return srv
 }
