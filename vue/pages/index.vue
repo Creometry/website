@@ -74,7 +74,7 @@ import Hidden from '~/components/Hidden'
 import Corner from '~/components/Home/Corner'
 import Notification from '~/components/Notification'
 import brand from '~/static/text/brand'
-import Subscribe from '~/components/forms/Subscribe'
+import Subscribe from '~/components/Forms/Subscribe'
 
 export default {
   components: {
