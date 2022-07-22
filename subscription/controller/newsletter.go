@@ -1,11 +1,14 @@
 package controller
 
 import (
+	"context"
+	"fmt"
 	"net/mail"
+	"website/subscription/database"
 	m "website/subscription/models"
 
 	"github.com/gofiber/fiber/v2"
-	clov "github.com/ostafen/clover"
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 func AddEmail(c *fiber.Ctx) error {
@@ -18,38 +21,39 @@ func AddEmail(c *fiber.Ctx) error {
 	if _, err := mail.ParseAddress(sub.Email); err != nil {
 		return c.JSON("email field incorrect")
 	}
-	db, _ := clov.Open("creometry-db")
-	defer db.Close()
 
-	db.CreateCollection("Subscription")
-	docs, _ := db.Query("Subscription").Where(clov.Field("email").Eq(sub.Email)).FindFirst()
+	tempSub := m.Subscription{}
 
-	if docs != nil {
-		return c.JSON("email adress already exists")
-	} else {
-		doc := clov.NewDocument()
-
-		doc.Set("email", sub.Email)
-		doc.Set("name", sub.Name)
-
-		db.InsertOne("Subscription", doc)
-
-		return c.JSON("inserted")
+	err := database.Collection.FindOne(context.TODO(), bson.M{"email": sub.Email}).Decode(&tempSub)
+	fmt.Printf("%v", tempSub)
+	if err != nil {
+		_, err := database.Collection.InsertOne(context.Background(), sub)
+		if err != nil {
+			return err
+		}
 	}
+
+	return c.JSON("inserted")
 
 }
 
 func GetCSV(c *fiber.Ctx) error {
-	db, _ := clov.Open("creometry-db")
-	defer db.Close()
+	subs := m.Subscriptions{}
 
-	docs, _ := db.Query("Subscription").FindAll()
-	sub := new(m.Subscription)
-
+	cursor, err := database.Collection.Find(context.TODO(), bson.M{})
+	if err != nil {
+		return err
+	}
+	if err := cursor.Err(); err != nil {
+		return err
+	}
+	if err = cursor.All(context.TODO(), &subs.Subs); err != nil {
+		return err
+	}
+	cursor.Close(context.TODO())
 	out := "email name \n"
 
-	for _, doc := range docs {
-		doc.Unmarshal(sub)
+	for _, sub := range subs.Subs {
 
 		out = out + sub.Email + " " + sub.Name + "\n"
 	}
