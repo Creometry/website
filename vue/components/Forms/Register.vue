@@ -101,7 +101,7 @@ export default {
         console.log("making post request to go-provisioner/api/v1/register")
         // get password from api
         // on success: store username in local storage and go to the next step
-         axios.post(this.INGRESS_URL+'/api/api/v1/register', {
+         axios.post(this.INGRESS_URL+'/api/v1/register', {
           username: this.username,
         }).then(response => {
             Cookie.set('rancher_token', response.data.token)
