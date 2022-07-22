@@ -147,45 +147,6 @@ export default {
       if (Cookie.get('rancher_token') === undefined) {
         window.location.href = '/login?redirect=/en/project?plan=' + this.$route.query.plan;
       }
-      window.addEventListener('message', function(event) {
-      if(event.data.event_id === 'paymee.complete') {
-        const paymentToken = event.data.payment_token;
-        console.log("paymentToken: ", paymentToken); 
-        // make post request to provision project here
-        const pr =  JSON.parse(this.localStorage.getItem('project'));
-        const plan = this.localStorage.getItem('plan')
-        const url = this.localStorage.getItem('url')
-         axios.post(url+'/api/v1/provisionProject', {
-           projectName: pr.name,
-           billingAccountId: pr.billingAccountId,
-           plan: plan,
-           gitRepoName: pr.gitRepoName,
-           gitRepoUrl: pr.gitRepoUrl,
-           gitRepoBranch: pr.gitRepoBranch,
-           paymentToken: paymentToken,
-           userId : Cookie.get('userId')
-         }).then(response => {
-           console.log(response.data.projectId)
-           this.localStorage.removeItem('project')
-           this.localStorage.removeItem('plan')
-           this.localStorage.removeItem('url')
-           window.location.href = '/dashboard';
-         }).catch(error => {
-           console.log(error)
-           this.localStorage.removeItem('project')
-           this.localStorage.removeItem('plan')
-           this.localStorage.removeItem('url')
-           // window.location.href = '/dashboard';
-         })
-        //this.window.location.href = '/dashboard';
-        
-        }else{
-          console.log(event.data)
-          this.localStorage.removeItem('project')
-           this.localStorage.removeItem('plan')
-           this.localStorage.removeItem('url')
-        }
-      }, false)
        //make api call to get all the user's billing accounts
        //this.billingAccounts = response.data.data;
        axios.get('http://go-billing.default.svc/api/v1/getBillingAccounts/admin/'+Cookie.get('userId')).then(response => {
@@ -213,6 +174,32 @@ export default {
       selectBillingAccount(item) {
         this.project.billingAccountId = item.id;
       },
+      checkPayment(event){
+          if(event.data.event_id === 'paymee.complete') {
+                  const paymentToken = event.data.payment_token;
+                  console.log("paymentToken: ", paymentToken); 
+                  // make post request to provision project here
+                  axios.post(this.INGRESS_URL+'/api/v1/provisionProject', {
+                    projectName: this.project.name,
+                    billingAccountId: this.project.billingAccountId,
+                    plan: this.$route.query.plan,
+                    gitRepoName: this.project.gitRepoName,
+                    gitRepoUrl: this.project.gitRepoUrl,
+                    gitRepoBranch: this.project.gitRepoBranch,
+                    paymentToken: paymentToken,
+                    userId : Cookie.get('userId')
+                  }).then(response => {
+                    console.log(response.data.projectId)
+                    window.location.href = '/dashboard';
+                  }).catch(error => {
+                    console.log(error)
+                    window.location.href = '/dashboard';
+                  })
+                  this.window.location.href = '/dashboard';
+                  }else{
+                    console.log(event.data)
+                  }
+                },
       handleSubmit() {
       if (this.$refs.form.validate()) {
         if (this.project.billingAccountId=== '1') {
@@ -228,9 +215,6 @@ export default {
           //   console.log(error)
           // })
         }
-        localStorage.setItem('project', JSON.stringify(this.project));
-        localStorage.setItem('plan', this.$route.query.plan);
-        localStorage.setItem('url',this.INGRESS_URL)
         // switch amount by plan
         const plan = this.$route.query.plan;
         let amount = 0;
@@ -260,6 +244,7 @@ export default {
           console.log(response.data)
           this.token = response.data.data.token;
           console.log(this.token)
+          window.addEventListener('message', this.checkPayment, { once: true });
           this.stage = 2;
         }).catch(error => {
           console.log(error);
