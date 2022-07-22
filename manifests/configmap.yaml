@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: website-configmap
+  namespace: website
+  labels:
+    projectName: website
+data:
+  MONGO_URI: mongodb://website-mongodb-svc:27017
+  SUBSCRIPTION_URL: http://localhost:5000
+  EVENTS_URL: http://localhost:5001/events
+  VENDOR: 0
+  PAYMEE_URL: https://sandbox.paymee.tn
+  PAYMEE_API_KEY: ""
+  EVENTS_DB_NAME: Events
+  SUBS_DB_NAME: Subscription
+  EVENTS_COLLECTION_NAME: EVENT
+  SUBS_COLLECTION_NAME: SUBS
+  SENDER_PWD: ""
+  SENDER_ADRESS: ""

@@ -20,6 +20,32 @@ spec:
         image: creometry/website:v0.0.6
         ports:
         - containerPort: 8001
+        env:
+          - name: SUBSCRIPTION_URL
+            valueFrom:
+              configMapKeyRef:
+                name: website-configmap
+                key: SUBSCRIPTION_URL
+          - name: EVENTS_URL
+            valueFrom:
+              configMapKeyRef:
+                name: website-configmap
+                key: EVENTS_URL 
+          - name: PAYMEE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: website-configmap
+                key: PAYMEE_URL 
+          - name: PAYMEE_API_KEY
+            valueFrom:
+              configMapKeyRef:
+                name: website-configmap
+                key: PAYMEE_API_KEY 
+          - name: VENDOR
+            valueFrom:
+              configMapKeyRef:
+                name: website-configmap
+                key: VENDOR 
 ---
 apiVersion: v1
 kind: Service
