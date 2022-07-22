@@ -1,14 +1,19 @@
 package models
 
+import (
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
+
 type Event struct {
-	Id          string  `json:"id"`
-	Summary     string  `json:"summary"`
-	Description string  `json:"description"`
-	StartTime   string  `json:"startTime"`
-	EndTime     string  `json:"endTime"`
-	Price       float32 `json:"price"`
+	Id          primitive.ObjectID `bson:"_id,omitempty"`
+	CalendarId  string             `bson:"calendarId,omitempty"`
+	Summary     string             `bson:"summary,omitempty"`
+	Description string             `bson:"description,omitempty"`
+	StartTime   string             `bson:"startTime,omitempty"`
+	EndTime     string             `bson:"endTime,omitempty"`
+	Price       float32            `bson:"price,emitempty"`
 }
-type EventDB struct {
-	EventId string  `clover:"eventId"`
-	Price   float32 `clover:"price"`
+
+type Events struct {
+	Events []Event `json: "events"`
 }

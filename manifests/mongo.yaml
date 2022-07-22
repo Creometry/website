@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: website-mongodb-svc
+  namespace: website
+  labels:
+    projectName: website
+spec:
+  ports:
+  - port: 27017
+    targetPort: 27017
+  selector:
+    run: website-mongo
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  namespace: website
+  name: website-mongo-sts
+  labels:
+    projectName: website
+spec:
+  serviceName: website-mongodb-svc
+  replicas: 1
+  selector:
+    matchLabels:
+      run: website-mongo
+  template:
+    metadata:
+      labels:
+        run: website-mongo
+        replicaset: MainRepSet
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: mongod-container
+          image: mongo
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: website-mongodb-volume
+              mountPath: /data/db
+      volumes:
+        - name: website-mongodb-volume
+          persistentVolumeClaim:
+            claimName: website-mongodb-pvc
+            
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: website-mongodb-pvc
+  namespace: website
+  labels:
+    projectName: website
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi

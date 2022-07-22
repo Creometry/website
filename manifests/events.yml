@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: subscription-deploy
+  name: events-deploy
   #namespace: website
   labels:
     projectName: website
@@ -11,29 +11,29 @@ spec:
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      run: website-subscription
+      run: website-events
   replicas: 1
   template:
     metadata:
       labels:
-        run: website-subscription
+        run: website-events
     spec:
       containers:
-      - name: subscription
+      - name: events
         image: ImageNameHere
         ports:
-        - containerPort: 5000
+        - containerPort: 5001
         env:
-          - name: SENDER_PWD
+          - name: PAYMEE_URL
             valueFrom:
               configMapKeyRef:
                 name: website-configmap
-                key: SENDER_PWD 
-          - name: SENDER_ADRESS
+                key: PAYMEE_URL 
+          - name: PAYMEE_API_KEY
             valueFrom:
               configMapKeyRef:
                 name: website-configmap
-                key: SENDER_ADRESS 
+                key: PAYMEE_API_KEY 
           - name: MONGO_URI
             valueFrom:
               configMapKeyRef:
@@ -43,12 +43,12 @@ spec:
             valueFrom:
               configMapKeyRef:
                 name: website-configmap
-                key: SUBS_DB_NAME 
+                key: EVENTS_DB_NAME 
           - name: COLLECTION_NAME
             valueFrom:
               configMapKeyRef:
                 name: website-configmap
-                key: SUBS_COLLECTION_NAME 
+                key: EVENTS_COLLECTION_NAME 
         resources:
           limits:
             cpu: "200m"
