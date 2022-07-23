@@ -135,7 +135,7 @@ func CreateEvent(c *fiber.Ctx) error {
 	}
 
 	//insert into DB
-	insertResult, err := database.Collection.InsertOne(context.Background(), models.Event{CalendarId: NewEvent.Id, Price: event.Price})
+	insertResult, err := database.Collection.InsertOne(context.Background(), models.Event{CalendarId: NewEvent.Id, Price: event.Price, ImageLink: event.ImageLink})
 	if err != nil {
 		log.Fatalln("Insert:", err)
 		return err

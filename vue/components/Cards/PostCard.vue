@@ -6,7 +6,7 @@
   >
     <div class="figure">
       <v-img
-        :src="img"
+        :src="event.ImageLink"
         class="white--text"
         height="200px"
       />
@@ -18,25 +18,25 @@
           <v-col md="10">
             <strong class="use-text-subtitle text-truncate">
              <span>
-          {{ event.summary }}
+          {{ event.Summary }}
         </span>
         </strong>
           </v-col>
           <v-col>
-            <strong v-if="event.price > 0">TND {{ event.price }}</strong>
+            <strong v-if="event.Price > 0">TND {{ event.Price }}</strong>
             <strong v-else>FREE</strong>
           </v-col>
         </v-row>
        
       <p>
-       From: {{ event.startTime }}
+       From: {{ event.StartTime.substr(0, 10) }} at {{ event.StartTime.substr(11, 5) }}
       </p>
       <p>
-       To: {{ event.endTime }}
+       To: {{ event.EndTime.substr(0, 10) }} at {{ event.EndTime.substr(11, 5) }}
       </p>
       <v-card-text class="desc">
         <span class="text--primary">
-          <span>{{ event.description }}</span>
+          <span>{{ event.Description }}</span>
         </span>
         
       </v-card-text>
@@ -54,7 +54,7 @@
 </style>
 
 <script>
-import Dialog from '~/components/dialog/Event'
+import Dialog from '~/components/Dialog/Event'
 export default {
   components: {
     "dialog-event": Dialog
