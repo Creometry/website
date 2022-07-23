@@ -103,7 +103,7 @@ export default {
       if (this.$refs.form.validate()) {
         // make post request to go-provisioner to login and 
         // get rancher_token and userId
-        axios.post(this.INGRESS_URL+'/api/api/v1/login', {
+        axios.post(this.INGRESS_URL+'/api/v1/login', {
           username: this.username,
           password: this.password
         }).then(response => {
