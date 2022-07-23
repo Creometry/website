@@ -1,4 +1,4 @@
-name: Subscription Service CI
+name: Events Service CI
 
 on:
   pull_request:
@@ -24,25 +24,25 @@ jobs:
     
     # Install all the dependencies
     - name: Install dependencies
-      working-directory: subscription
+      working-directory: events
       run: |
         go version
         go mod tidy
         
     # Run build of the application
     - name: Run build
-      working-directory: subscription
+      working-directory: events
       run: go build . 
       
     # Run vet & lint on the code
     - name: Run vet & lint
-      working-directory: subscription
+      working-directory: events
       run: |
         go vet .
     
     # Run testing on the code
     # - name: Run testing
-    #   working-directory: subscription
+    #   working-directory: events
     #   run: cd test && go test -v
     
   deploy:
@@ -54,10 +54,9 @@ jobs:
         name: Build & push Docker image
         with:
           image: creometry/website
-          tags: subscriptionV0.1.0
-          dockerfile: subscription/Dockerfile
+          tags: eventsV0.1.0
+          dockerfile: events/Dockerfile
           registry: docker.io
-          directory: subscription
+          directory: events
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.WEBSITE_DOCKER_HUB }}
-
