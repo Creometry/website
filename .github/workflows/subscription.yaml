@@ -28,6 +28,7 @@ jobs:
       run: |
         go version
         go mod tidy
+        go get -u golang.org/x/lint/golint
         
     # Run build of the application
     - name: Run build
