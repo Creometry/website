@@ -89,6 +89,11 @@
                   color="primary"
                   :label="$t('common.subscribe_title')"
                 />
+                <span>
+                  <a href="#" class="link">
+                    {{ $t('common.form_privacy') }}
+                  </a>
+                </span>
               </div>
               <v-btn
                 :block="isMobile"
