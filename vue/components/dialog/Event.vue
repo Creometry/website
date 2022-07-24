@@ -21,7 +21,7 @@
 </template>
       <v-card>
         <v-card-title>
-          <span class="text-h5">{{ event.summary }}</span>
+          <span class="text-h5">{{ event.Summary }}</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -46,7 +46,7 @@
                 </v-col>
               </v-row>
               </v-col> 
-              <v-col cols="7" v-if="/.+@.+\..+/.test(email) && event.price > 0">
+              <v-col cols="7" v-if="/.+@.+\..+/.test(email) && event.Price > 0">
                 <iframe :src="'https://sandbox.paymee.tn/gateway/'+this.token" class="paymee" />  
               </v-col>   
             </v-row>
@@ -65,7 +65,7 @@
           </v-btn>
           
           <v-btn
-            v-if="event.price == 0"
+            v-if="event.Price == 0"
             color="blue darken-1"
             text
             :disabled="! /.+@.+\..+/.test(email)"
@@ -104,7 +104,7 @@ export default {
         //check if payment succeeded
         checkPayment(event) {
             if (event.data.event_id === 'paymee.complete') {
-                axios.put(process.env.EVENTS_URL, { eventId: this.event.id, email: this.email, paymentToken: event.data.payment_token }).then(res => {
+                axios.put(process.env.EVENTS_URL, { eventId: this.event._id, email: this.email, paymentToken: event.data.payment_token }).then(res => {
                     if (res.data == "email added") {
                         this.closeDialog()
                     }
@@ -113,18 +113,17 @@ export default {
         },
         //initiate payment token from paymee 
         getPaymentToken() {
-            if (this.event.price > 0) {
+            if (this.event.Price > 0) {
                 axios.post(process.env.PAYMEE_URL+'/api/v1/payments/create', {
                     vendor: process.env.VENDOR,
-                    amount: this.event.price,
-                    note: JSON.stringify({ eventId: this.event.id, email: this.email }),
+                    amount: this.event.Price,
+                    note: "",
                 }, {
                     headers: {
                         Authorization: 'Token '+process.env.PAYMEE_API_KEY,
                     },
                 }).then(response => {
                     this.token = response.data.data.token;
-                    console.log(response.data.data.token)
                     window.addEventListener('message', this.checkPayment, { once: true });
                 }).catch(error => {
                     console.log(error);
@@ -135,7 +134,7 @@ export default {
         //save email in DB (Free)
         validate() {
             if (this.$refs.form.validate()) {
-                axios.put(process.env.EVENTS_URL, { eventId: this.event.id, email: this.email }).then(res => {
+                axios.put(process.env.EVENTS_URL, { eventId: this.event._id, email: this.email }).then(res => {
                     if (res.data == "email added") {
                         this.closeDialog()
                     }

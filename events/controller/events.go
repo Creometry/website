@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 	"website/events/config"
 	"website/events/database"
 	"website/events/models"
@@ -31,6 +32,7 @@ func GetEvents(c *fiber.Ctx) error {
 		return err
 	}
 	cursor.Close(context.TODO())
+	responseEvents := models.Events{}
 
 	for index := range myEvents.Events {
 		//Get Event Info from Google API
@@ -38,15 +40,26 @@ func GetEvents(c *fiber.Ctx) error {
 		if err != nil {
 			return err
 		}
-
-		myEvents.Events[index].Summary = event.Summary
-		myEvents.Events[index].Description = event.Description
-		myEvents.Events[index].StartTime = event.Start.DateTime
-		myEvents.Events[index].EndTime = event.End.DateTime
-		myEvents.Events[index].Summary = event.Summary
+		if c.Query("q") != "" {
+			if strings.Contains(event.Summary, c.Query("q")) || strings.Contains(event.Description, c.Query("q")) {
+				myEvents.Events[index].Summary = event.Summary
+				myEvents.Events[index].Description = event.Description
+				myEvents.Events[index].StartTime = event.Start.DateTime
+				myEvents.Events[index].EndTime = event.End.DateTime
+				myEvents.Events[index].Summary = event.Summary
+				responseEvents.AddItem(myEvents.Events[index])
+			}
+		} else {
+			myEvents.Events[index].Summary = event.Summary
+			myEvents.Events[index].Description = event.Description
+			myEvents.Events[index].StartTime = event.Start.DateTime
+			myEvents.Events[index].EndTime = event.End.DateTime
+			myEvents.Events[index].Summary = event.Summary
+			responseEvents.AddItem(myEvents.Events[index])
+		}
 
 	}
-	return c.JSON(myEvents.Events)
+	return c.JSON(responseEvents.Events)
 
 }
 
@@ -135,7 +148,7 @@ func CreateEvent(c *fiber.Ctx) error {
 	}
 
 	//insert into DB
-	insertResult, err := database.Collection.InsertOne(context.Background(), models.Event{CalendarId: NewEvent.Id, Price: event.Price})
+	insertResult, err := database.Collection.InsertOne(context.Background(), models.Event{CalendarId: NewEvent.Id, Price: event.Price, ImageLink: event.ImageLink})
 	if err != nil {
 		log.Fatalln("Insert:", err)
 		return err

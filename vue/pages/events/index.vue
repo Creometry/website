@@ -64,8 +64,9 @@ export default {
         }
     },
     async fetch() {
-        console.log(process.env.EVENTS_URL)
-        this.events = (await axios.get(process.env.EVENTS_URL)).data
+        let query = this.$route.query.q ? "?q="+this.$route.query.q : ""
+        console.log(process.env.EVENTS_URL+query)
+        this.events = (await axios.get(process.env.EVENTS_URL+query)).data
     },
     head() {
         return {

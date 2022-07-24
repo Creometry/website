@@ -16,6 +16,7 @@
 }
 
 .paper {
+  z-index: 5;
   border-radius: 24px !important;
   &.v-sheet.v-card:not(.v-sheet--outlined) {
     padding: $spacing4;
