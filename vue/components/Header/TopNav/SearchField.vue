@@ -1,12 +1,13 @@
 <template>
-  <div class="search" :class="{ short: short}">
+  <div class="search" id="search" :class="{ short: short}">
     <v-text-field
       :placeholder="$t('common.header_search')"
       outlined
       color="primary"
       single-line
+      v-model="search"
     />
-    <v-icon class="search-icon">mdi-magnify</v-icon>
+    <v-icon class="search-icon" @click="goTo">mdi-magnify</v-icon>
   </div>
 </template>
 
@@ -20,6 +21,22 @@ export default {
     short: {
       type: Boolean,
       default: false
+    }
+  },
+  mounted(){
+    document.getElementById('search').addEventListener('keypress', this.press);
+  },
+  data: {
+    search: ""
+  },
+  methods:{
+    goTo(){
+      window.location.href = window.location.origin + window.location.pathname + "?q=" + this.search
+    },
+    press(event){
+      if (event.keyCode == 13) {
+          this.goTo()
+        }
     }
   }
 }

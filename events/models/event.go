@@ -18,3 +18,8 @@ type Event struct {
 type Events struct {
 	Events []Event `json: "events"`
 }
+
+func (events *Events) AddItem(event Event) []Event {
+	events.Events = append(events.Events, event)
+	return events.Events
+}
