@@ -50,6 +50,39 @@
           >
           </v-text-field>
           <v-text-field
+              v-model="project.email"
+              label="Email*"
+              v-if="project.billingAccountId==='1'"
+              :rules="emailRules"
+          >
+          </v-text-field>
+          <v-text-field
+              v-model="project.phone"
+              label="Phone number"
+              v-if="project.billingAccountId==='1'"
+              :rules="phoneNumberRules"
+          >
+          </v-text-field>
+           <v-checkbox
+              v-model="isCompany"
+              v-if="project.billingAccountId==='1'"
+              label="Company"
+          ></v-checkbox>
+          <v-text-field
+              v-model="companyName"
+              label="Company name*"
+              v-if="project.billingAccountId==='1' && isCompany"
+              :rules="requiredRules"
+          >
+          </v-text-field>
+          <v-text-field
+              v-model="taxId"
+              label="Tax ID*"
+              v-if="project.billingAccountId==='1' && isCompany"
+              :rules="requiredRules"
+          >
+          </v-text-field>
+          <v-text-field
               v-model="project.gitRepoUrl"
               label="Repo URL"
           ></v-text-field>
@@ -82,7 +115,7 @@
     </div>
 </template>
 <style lang="scss" scoped>
-@import './Forms/form-style.scss';
+@import '../Forms/form-style.scss';
 .centerdiv {
   display: flex;
   justify-content: center;
@@ -103,10 +136,15 @@ export default {
       stage:1,
       valid:true,
       token:'',
+      isCompany : false,
+      companyName: '',
+      taxId: '',
       project: {
         name: '',
         billingAccountId: '',
         billingAccountName: '',
+        email: '',
+        phone: '',
         gitRepoName: '',
         gitRepoUrl: '',
         gitRepoBranch: '',
@@ -118,8 +156,15 @@ export default {
         v => !!v || 'Name is required',
         v => /^[a-z-]+$/.test(v) || 'Invalid project name',
       ],
+      phoneNumberRules : [
+        v => /^[0-9]{8}$/.test(v) || 'Phone number is invalid',
+      ],
       requiredRules : [
         v => !!v || 'Required',
+      ],
+      emailRules : [
+         v => !!v || 'Required',
+        v => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v) || 'Email is invalid'
       ],
       billingAccounts: [
         {
@@ -149,7 +194,7 @@ export default {
       }
        //make api call to get all the user's billing accounts
        //this.billingAccounts = response.data.data;
-       axios.get('http://go-billing.default.svc/api/v1/getBillingAccounts/admin/'+Cookie.get('userId')).then(response => {
+       axios.get(this.BILLING_API_URL+'/v1/GetBillingAccountsByAdminUUID/'+Cookie.get('uuid')).then(response => {
          this.billingAccounts = response.data.data;
        }).catch(error => {
          console.log(error)
@@ -168,6 +213,9 @@ export default {
       INGRESS_URL() {
         return this.$config.INGRESS_URL;
       },
+      BILLING_API_URL() {
+        return this.$config.BILLING_API_URL;
+      },
 
     },
     methods: {
@@ -181,13 +229,17 @@ export default {
                   // make post request to provision project here
                   axios.post(this.INGRESS_URL+'/api/v1/provisionProject', {
                     projectName: this.project.name,
+                    email: this.project.email,
+                    phone: this.project.phone,
                     billingAccountId: this.project.billingAccountId,
                     plan: this.$route.query.plan,
                     gitRepoName: this.project.gitRepoName,
                     gitRepoUrl: this.project.gitRepoUrl,
                     gitRepoBranch: this.project.gitRepoBranch,
                     paymentToken: paymentToken,
-                    userId : Cookie.get('userId')
+                    userId : Cookie.get('userId'),
+                    uuid : Cookie.get('uuid'),
+                    companyName: this.companyName,
                   }).then(response => {
                     console.log(response.data.projectId)
                     window.location.href = '/dashboard';
@@ -201,20 +253,11 @@ export default {
                   }
                 },
       handleSubmit() {
-      if (this.$refs.form.validate()) {
-        if (this.project.billingAccountId=== '1') {
-          // make post request to billing service to create a new account
-          // and get the id
-          // axios.post('go-billing/api/v1/billingAccounts', {
-          //   name: this.project.billingAccountName,
-          // }).then(response => {
-          //   console.log(response)
-          //   this.project.billingAccountId = response.data.id;
-          //   this.stage = 2;
-          // }).catch(error => {
-          //   console.log(error)
-          // })
+        if (this.project.billingAccountId===''|| this.project.billingAccountId===undefined) {
+          this.project.billingAccountId ='1'
+          return
         }
+      else if (this.$refs.form.validate()) {
         // switch amount by plan
         const plan = this.$route.query.plan;
         let amount = 0;

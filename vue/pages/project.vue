@@ -16,7 +16,7 @@
 import brand from '~/static/text/brand'
 import Header from '~/components/Header/Basic'
 import Footer from '~/components/Footer'
-import Project from '~/components/Project'
+import Project from '~/components/Project/Project'
 import link from '~/static/text/link'
 
 export default {
