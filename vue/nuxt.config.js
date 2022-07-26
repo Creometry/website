@@ -5,6 +5,9 @@ import languages from './static/lang/languages'
 import brand from './static/text/brand'
 
 module.exports = {
+  serverMiddleware: {
+    '/api': '~/api'
+  },
   /*
   ** Headers of the page
   */
