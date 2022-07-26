@@ -195,9 +195,19 @@ export default {
        //make api call to get all the user's billing accounts
        //this.billingAccounts = response.data.data;
        axios.get(this.BILLING_API_URL+'/v1/GetBillingAccountsByAdminUUID/'+Cookie.get('uuid')).then(response => {
-         this.billingAccounts = response.data.data;
+         this.billingAccounts = [
+            {
+              id: '1',
+              name: 'Create a new account',
+            },
+            ...response.data.data
+          ]
        }).catch(error => {
          console.log(error)
+         this.billingAccounts = [{
+            id: '1',
+            name: 'Create a new account',
+          }]
        })
   },
   computed: {
