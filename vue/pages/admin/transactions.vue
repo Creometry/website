@@ -1,11 +1,6 @@
 <template>
     <div class="main-wrap">
         <main-header />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
         <v-container>
             <div class="container-wrap">
                 <v-data-table :headers="headers" :items="transactions" :items-per-page="5" class="elevation-1"></v-data-table>
@@ -16,6 +11,10 @@
 </template>
 <style scoped lang="scss">
 @import '~/assets/pages';
+.container{
+    margin-top: 150px;
+}
+
 </style>
 
 <script>
