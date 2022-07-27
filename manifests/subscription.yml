@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: subscription-deploy
-  #namespace: website
+  namespace: website
   labels:
     projectName: website
 spec:
@@ -20,19 +20,19 @@ spec:
     spec:
       containers:
       - name: subscription
-        image: ImageNameHere
+        image: azizbhy/website:subscription
         ports:
         - containerPort: 5000
         env:
           - name: SENDER_PWD
             valueFrom:
-              configMapKeyRef:
-                name: website-configmap
+              secretKeyRef:
+                name: website-secret
                 key: SENDER_PWD 
           - name: SENDER_ADRESS
             valueFrom:
-              configMapKeyRef:
-                name: website-configmap
+              secretKeyRef:
+                name: website-secret
                 key: SENDER_ADRESS 
           - name: MONGO_URI
             valueFrom:
@@ -48,7 +48,7 @@ spec:
             valueFrom:
               configMapKeyRef:
                 name: website-configmap
-                key: SUBS_COLLECTION_NAME 
+                key: COLLECTION_NAME_SUBS 
         resources:
           limits:
             cpu: "200m"
@@ -61,12 +61,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: subscription-svc
-  #namespace: website
+  namespace: website
   labels:
     projectName: website
 spec:
   ports:
-  - port: 3000
+  - port: 5000
     protocol: TCP
   selector:
-    run: webiste-subscription
+    run: website-subscription

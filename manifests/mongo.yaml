@@ -15,8 +15,8 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  namespace: website
   name: website-mongo-sts
+  namespace: website
   labels:
     projectName: website
 spec:

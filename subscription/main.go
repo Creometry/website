@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 	"website/subscription/controller"
 	"website/subscription/database"
 
@@ -11,7 +12,9 @@ import (
 )
 
 func main() {
-	godotenv.Load()
+	if os.Getenv("DEV") == "true" {
+		godotenv.Load()
+	}
 
 	app := fiber.New()
 

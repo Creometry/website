@@ -16,8 +16,12 @@ RUN go build -ldflags="-s -w" -o apiserver .
 
 FROM alpine
 
-COPY --from=builder ["/build/apiserver", "/"]
+WORKDIR /app
+
+COPY --from=builder ["/build/apiserver", "/app"]
+
+RUN mkdir /credentials
 
 EXPOSE 5001
 
-ENTRYPOINT ["/apiserver"]
+ENTRYPOINT ["/app/apiserver"]
