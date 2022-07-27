@@ -7,10 +7,10 @@ import (
 )
 
 func SetupRoutes(app *fiber.App) {
-	// Group
-	api := app.Group("/events")
-	api.Post("/", controller.CreateEvent)
-	api.Get("/", controller.GetEvents)
-	api.Put("/", controller.AddAttendee)
-	// Middleware if any
+	// Events
+	app.Post("/events", controller.CreateEvent)
+	app.Get("/events", controller.GetEvents)
+	app.Put("/events", controller.AddAttendee)
+	// Transaction
+	app.Get("/transactions", controller.GetTransactions)
 }
