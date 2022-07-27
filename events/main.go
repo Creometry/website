@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 	"website/events/config"
 	"website/events/database"
 	"website/events/router"
@@ -12,7 +13,9 @@ import (
 )
 
 func main() {
-	godotenv.Load()
+	if os.Getenv("DEV") == "true" {
+		godotenv.Load()
+	}
 
 	config.GetSVC()
 

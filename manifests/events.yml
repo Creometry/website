@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: events-deploy
-  #namespace: website
+  namespace: website
   labels:
     projectName: website
 spec:
@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: events
-        image: ImageNameHere
+        image: azizbhy/website:events
         ports:
         - containerPort: 5001
         env:
@@ -44,29 +44,46 @@ spec:
               configMapKeyRef:
                 name: website-configmap
                 key: EVENTS_DB_NAME 
-          - name: COLLECTION_NAME
+          - name: COLLECTION_NAME_EVENT
             valueFrom:
               configMapKeyRef:
                 name: website-configmap
-                key: EVENTS_COLLECTION_NAME 
+                key: COLLECTION_NAME_EVENT 
+          - name: COLLECTION_NAME_TRANSACTION
+            valueFrom:
+              configMapKeyRef:
+                name: website-configmap
+                key: COLLECTION_NAME_TRANSACTION 
         resources:
           limits:
             cpu: "200m"
             memory: "256Mi"
           requests:
             cpu: "5m"
-            memory: "10Mi"    
+            memory: "10Mi"  
+        volumeMounts:
+          - name: config-volume
+            mountPath: /app/credentials
+      volumes:
+      - name: config-volume
+        configMap:
+          name: website-configmap
+          items:
+            - key: token.json
+              path: token.json
+            - key: credentials.json
+              path: credentials.json
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: subscription-svc
-  #namespace: website
+  name: events-svc
+  namespace: website
   labels:
     projectName: website
 spec:
   ports:
-  - port: 3000
+  - port: 5001
     protocol: TCP
   selector:
-    run: webiste-subscription
+    run: website-events

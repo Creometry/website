@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: creometry-site-deploy
+  namespace: website
   labels:
-    app: site
+    projectName: website
 spec:
   replicas: 1
   selector:
@@ -17,7 +18,7 @@ spec:
     spec:
       containers:
       - name: site
-        image: creometry/website:v0.0.6
+        image: azizbhy/website:front
         ports:
         - containerPort: 8001
         env:
@@ -51,6 +52,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: creometry-site-svc
+  namespace: website
+  labels:
+    projectName: website
 spec:
   selector:
     app: site
