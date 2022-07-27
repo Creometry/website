@@ -60,10 +60,6 @@ export default {
     "dialog-event": Dialog
   },
   props: {
-    img: {
-      type: String,
-      required: true
-    },
     orientation: {
       type: String,
       default: 'portrait'
@@ -71,10 +67,6 @@ export default {
     type: {
       type: String,
       default: 'full' // available props: full, rounded, over, oval
-    },
-    href: {
-      type: String,
-      default: '#'
     },
     event: {
       type: Object,

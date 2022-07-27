@@ -69,7 +69,7 @@ func AddAttendee(c *fiber.Ctx) error {
 	if err := c.BodyParser(attendee); err != nil {
 		return err
 	}
-
+	
 	//Get Event Info
 	event, err := config.Srv.Events.Get("primary", attendee.EventId).Do()
 	if err != nil {

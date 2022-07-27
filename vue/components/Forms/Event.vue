@@ -18,13 +18,13 @@
                 <v-text-field v-model="summary" :rules="emptyRules" :label="$t('common.form_summary')" color="grey" required />
               </v-col>
               <v-col cols="12" sm="6" class="px-6">
-                <v-text-field v-model="description" :rules="emptyyRules" :label="$t('common.form_description')" color="grey" required />
+                <v-text-field v-model="description" :rules="emptyRules" :label="$t('common.form_description')" color="grey" required />
               </v-col>
               <v-col cols="12" sm="6" class="px-6">
-                <v-text-field v-model="imageLink" :rules="emptyyRules" :label="$t('common.form_image_link')" color="grey" required />
+                <v-text-field v-model="imageLink" :rules="emptyRules" :label="$t('common.form_image_link')" color="grey" required />
               </v-col>
               <v-col cols="12" sm="6" class="px-6">
-                <v-text-field v-model="price" :rules="emptyyRules" type="number" :label="$t('common.form_price')" color="grey" required />
+                <v-text-field v-model="price" type="number" :label="$t('common.form_price')" color="grey" />
               </v-col>
               <v-col cols="12" sm="6" class="px-6">
                 <v-menu ref="menu1" v-model="menu1" :close-on-content-click="false" transition="scale-transition" offset-y min-width="auto">
@@ -35,9 +35,9 @@
                 </v-menu>
               </v-col>
               <v-col>
-                <v-menu ref="menu2" v-model="menu2" :close-on-content-click="false" :nudge-right="40" :return-value.sync="time" transition="scale-transition" offset-y max-width="290px" min-width="290px">
+                <v-menu ref="menu2" v-model="menu2" :close-on-content-click="false" :nudge-right="40" transition="scale-transition" offset-y max-width="290px" min-width="290px">
                   <template v-slot:activator="{ on, attrs }">
-                    <v-text-field v-model="timeStart" :label="$t('common.form_start_time')" prepend-icon="mdi-clock-time-four-outline" readonly v-bind="attrs" v-on="on"></v-text-field>
+                    <v-text-field v-model="timeStart" :rules="emptyRules" :label="$t('common.form_start_time')" prepend-icon="mdi-clock-time-four-outline" readonly v-bind="attrs" v-on="on"></v-text-field>
                   </template>
                   <v-time-picker v-if="menu2" v-model="timeStart" full-width @click:minute="$refs.menu2.save(timeStart)"></v-time-picker>
                 </v-menu>
@@ -45,15 +45,15 @@
               <v-col cols="12" sm="6" class="px-6">
                 <v-menu ref="menu3" v-model="menu3" :close-on-content-click="false" transition="scale-transition" offset-y min-width="auto">
                   <template v-slot:activator="{ on, attrs }">
-                    <v-text-field v-model="dateEnd" :label="$t('common.form_end_day')" prepend-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"></v-text-field>
+                    <v-text-field v-model="dateEnd" :rules="emptyRules" :label="$t('common.form_end_day')" prepend-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"></v-text-field>
                   </template>
                   <v-date-picker v-model="dateEnd" :min="(new Date()).toISOString().substr(0, 10)" @change="saveEnd"></v-date-picker>
                 </v-menu>
               </v-col>
               <v-col>
-                <v-menu ref="menu4" v-model="menu4" :close-on-content-click="false" :nudge-right="40" :return-value.sync="time" transition="scale-transition" offset-y max-width="290px" min-width="290px">
+                <v-menu ref="menu4" v-model="menu4" :close-on-content-click="false" :nudge-right="40"  transition="scale-transition" offset-y max-width="290px" min-width="290px">
                   <template v-slot:activator="{ on, attrs }">
-                    <v-text-field v-model="timeEnd" :label="$t('common.form_start_day')" prepend-icon="mdi-clock-time-four-outline" readonly v-bind="attrs" v-on="on"></v-text-field>
+                    <v-text-field v-model="timeEnd" :rules="emptyRules" :label="$t('common.form_start_day')" prepend-icon="mdi-clock-time-four-outline" readonly v-bind="attrs" v-on="on"></v-text-field>
                   </template>
                   <v-time-picker v-if="menu4" v-model="timeEnd" full-width @click:minute="$refs.menu4.save(timeEnd)"></v-time-picker>
                 </v-menu>
@@ -114,7 +114,7 @@ export default {
         },
         validate() {
             if (this.$refs.form.validate()) {
-                axios.post(`http://localhost:5001/events`, {
+                axios.post(`/api/events`, {
                         summary: this.summary,
                         description: this.description,
                         price: parseFloat(this.price) ,
@@ -130,6 +130,7 @@ export default {
                             this.message = "Event Added"
                         }
                 }).catch(err => {
+                  console.log(err)
                         this.snackbar = true
                         this.color = "red"
                         this.message = "Server Error: Please try again later"

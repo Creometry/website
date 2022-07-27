@@ -26,8 +26,10 @@ export default {
   mounted(){
     document.getElementById('search').addEventListener('keypress', this.press);
   },
-  data: {
-    search: ""
+  data: function(){
+    return{
+      search: ""
+    }
   },
   methods:{
     goTo(){

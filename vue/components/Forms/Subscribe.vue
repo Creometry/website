@@ -102,7 +102,7 @@ export default {
     validate() {
       if (this.$refs.form.validate()) {
         
-        axios.post(`${process.env.SUBSCRIPTION_URL}/newsletter`, { email: this.email, name: this.name })
+        axios.post(`/api/newsletter`, { email: this.email, name: this.name })
         .then(res=>{
             if(res.data == "inserted"){
                 this.snackbar = true

@@ -5,6 +5,9 @@ import languages from './static/lang/languages'
 import brand from './static/text/brand'
 
 module.exports = {
+  serverMiddleware: {
+    '/api': '~/api'
+  },
   /*
   ** Headers of the page
   */
@@ -280,6 +283,7 @@ module.exports = {
   ** Application Port
   */
   server: {
-    port: 8001 // default: 3000
+    port: 8001, // default: 3000,
+    host: '0.0.0.0'
   }
 }

@@ -153,14 +153,13 @@ export default {
   },
   methods: {
     validate() {
-      console.log(process.env.SUBSCRIPTION_URL)
-      if (this.$refs.checkbox.inputValue){
-        axios.post(`${process.env.SUBSCRIPTION_URL}/newsletter`, { email: this.email, name: this.name })
+      if (this.$refs.checkbox.inputValue){ 
+        axios.post(`/api/newsletter`, { email: this.email, name: this.name })
         .catch(err=> console.log(err))
       }
       if (this.$refs.form.validate()) {
 
-        axios.post(`${process.env.SUBSCRIPTION_URL}/mail`, {
+        axios.post(`/api/mail`, {
           adress: this.email,
           body: this.body,
           title: this.title,

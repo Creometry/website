@@ -86,25 +86,32 @@ export default {
         event: {
             type: Object,
             required: true
+        },
+        orientation: {
+          type: String,
+
         }
     },
     mounted: function() {
 
     },
-    data: () => ({
+    data: function(){
+      return{
         dialog: false,
         emailRules: [
             v => !!v || 'E-mail is required',
             v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
         ],
         email: "",
-        token: null
-    }),
+        token: null,
+        valid: false
+      } 
+    },
     methods: {
         //check if payment succeeded
         checkPayment(event) {
             if (event.data.event_id === 'paymee.complete') {
-                axios.put(process.env.EVENTS_URL, { eventId: this.event._id, email: this.email, paymentToken: event.data.payment_token }).then(res => {
+                axios.put('/api/events', { eventId: this.event.CalendarId, email: this.email, paymentToken: event.data.payment_token }).then(res => {
                     if (res.data == "email added") {
                         this.closeDialog()
                     }
@@ -114,14 +121,8 @@ export default {
         //initiate payment token from paymee 
         getPaymentToken() {
             if (this.event.Price > 0) {
-                axios.post(process.env.PAYMEE_URL+'/api/v1/payments/create', {
-                    vendor: process.env.VENDOR,
+                axios.post("/api/paymee", {
                     amount: this.event.Price,
-                    note: "",
-                }, {
-                    headers: {
-                        Authorization: 'Token '+process.env.PAYMEE_API_KEY,
-                    },
                 }).then(response => {
                     this.token = response.data.data.token;
                     window.addEventListener('message', this.checkPayment, { once: true });
@@ -134,7 +135,7 @@ export default {
         //save email in DB (Free)
         validate() {
             if (this.$refs.form.validate()) {
-                axios.put(process.env.EVENTS_URL, { eventId: this.event._id, email: this.email }).then(res => {
+                axios.put('/api/events', { eventId: this.event.CalendarId, email: this.email }).then(res => {
                     if (res.data == "email added") {
                         this.closeDialog()
                     }

@@ -25,7 +25,6 @@ func AddEmail(c *fiber.Ctx) error {
 	tempSub := m.Subscription{}
 
 	err := database.Collection.FindOne(context.TODO(), bson.M{"email": sub.Email}).Decode(&tempSub)
-	fmt.Printf("%v", tempSub)
 	if err != nil {
 		_, err := database.Collection.InsertOne(context.Background(), sub)
 		if err != nil {
