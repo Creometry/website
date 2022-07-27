@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"time"
 	"website/events/config"
 	"website/events/database"
 	"website/events/models"
@@ -21,7 +22,7 @@ import (
 func GetEvents(c *fiber.Ctx) error {
 	myEvents := models.Events{}
 
-	cursor, err := database.Collection.Find(context.TODO(), bson.M{})
+	cursor, err := database.EventColl.Find(context.TODO(), bson.M{})
 	if err != nil {
 		return err
 	}
@@ -69,7 +70,7 @@ func AddAttendee(c *fiber.Ctx) error {
 	if err := c.BodyParser(attendee); err != nil {
 		return err
 	}
-	
+
 	//Get Event Info
 	event, err := config.Srv.Events.Get("primary", attendee.EventId).Do()
 	if err != nil {
@@ -77,7 +78,7 @@ func AddAttendee(c *fiber.Ctx) error {
 	}
 	tempEvent := models.Event{}
 
-	err = database.Collection.FindOne(context.TODO(), bson.M{"calendarId": attendee.EventId}).Decode(&tempEvent)
+	err = database.EventColl.FindOne(context.TODO(), bson.M{"calendarId": attendee.EventId}).Decode(&tempEvent)
 	//Check if evenement is free
 	if tempEvent.Price > 0 {
 		if attendee.PaymentToken == "" {
@@ -102,6 +103,23 @@ func AddAttendee(c *fiber.Ctx) error {
 		if paymeeResp.Data.Amount != tempEvent.Price {
 			return errors.New("Amount is not same, error ")
 		}
+		//save transaction
+		_, err = database.TransColl.InsertOne(context.Background(),
+			models.Transaction{
+				CalendarId:    tempEvent.CalendarId,
+				Token:         paymeeResp.Data.Token,
+				BuyerId:       paymeeResp.Data.BuyerId,
+				TransactionID: paymeeResp.Data.TransactionId,
+				Amount:        paymeeResp.Data.Amount,
+				Date:          time.Now(),
+				Email:         attendee.Email,
+			})
+
+		if err != nil {
+			log.Fatalln("Insert:", err)
+			return err
+		}
+
 	}
 	//Add new Email
 	event.Attendees = append(event.Attendees,
@@ -148,7 +166,7 @@ func CreateEvent(c *fiber.Ctx) error {
 	}
 
 	//insert into DB
-	insertResult, err := database.Collection.InsertOne(context.Background(), models.Event{CalendarId: NewEvent.Id, Price: event.Price, ImageLink: event.ImageLink})
+	insertResult, err := database.EventColl.InsertOne(context.Background(), models.Event{CalendarId: NewEvent.Id, Price: event.Price, ImageLink: event.ImageLink})
 	if err != nil {
 		log.Fatalln("Insert:", err)
 		return err

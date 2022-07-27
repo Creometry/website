@@ -2,7 +2,6 @@ package controller
 
 import (
 	"context"
-	"fmt"
 	"net/mail"
 	"website/subscription/database"
 	m "website/subscription/models"
@@ -50,11 +49,11 @@ func GetCSV(c *fiber.Ctx) error {
 		return err
 	}
 	cursor.Close(context.TODO())
-	out := "email name \n"
+	out := "email,name \n"
 
 	for _, sub := range subs.Subs {
 
-		out = out + sub.Email + " " + sub.Name + "\n"
+		out = out + sub.Email + "," + sub.Name + "\n"
 	}
 
 	c.Attachment("subs.csv")

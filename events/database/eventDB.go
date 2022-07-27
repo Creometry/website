@@ -10,7 +10,8 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
-var Collection *mongo.Collection
+var EventColl *mongo.Collection
+var TransColl *mongo.Collection
 var Client *mongo.Client
 
 func Connect() error {
@@ -19,7 +20,8 @@ func Connect() error {
 	// Load credentials
 	mongo_uri := os.Getenv("MONGO_URI")
 	dbName := os.Getenv("DB_NAME")
-	collName := os.Getenv("COLLECTION_NAME")
+	eventCollName := os.Getenv("COLLECTION_NAME_EVENT")
+	transactionCollName := os.Getenv("COLLECTION_NAME_TRANSACTION")
 	// Create a new Client
 	Client, err = mongo.Connect(context.TODO(), options.Client().ApplyURI(mongo_uri))
 	if err != nil {
@@ -33,7 +35,8 @@ func Connect() error {
 		return err
 	}
 
-	Collection = Client.Database(dbName).Collection(collName)
+	EventColl = Client.Database(dbName).Collection(eventCollName)
+	TransColl = Client.Database(dbName).Collection(transactionCollName)
 
 	log.Println("Opened database connection and loaded collection")
 
