@@ -158,7 +158,7 @@ module.exports = {
   /*
   ** Nuxt.js dev-modules
   */
-  buildModules: ['@nuxtjs/vuetify','@nuxtjs/dotenv'],
+  buildModules: ['@nuxtjs/vuetify', '@nuxtjs/dotenv'],
   /*
   ** Nuxt.js modules
   */
@@ -262,7 +262,8 @@ module.exports = {
     PAYMEE_IFRAME_URL: process.env.PAYMEE_IFRAME_URL,
     PAYMEE_API_KEY: process.env.PAYMEE_API_KEY,
     VENDOR: process.env.VENDOR,
-    INGRESS_URL: process.env.INGRESS_URL
+    INGRESS_URL: process.env.INGRESS_URL,
+    BILLING_API_URL: process.env.BILLING_API_URL
   },
   privateRuntimeConfig: {},
   /*
