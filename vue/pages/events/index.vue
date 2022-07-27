@@ -13,7 +13,7 @@
     
                         <div v-for="event in events" :key="event.id" :class="{ 'mt-15': true }">
     
-                            <post-card :href="link.agency.blogDetail" :img="imgAPI.photo[30]" orientation="portrait" type="over" :event="event" />
+                            <post-card orientation="portrait" type="over" :event="event" />
     
                         </div>
         
@@ -45,8 +45,6 @@ import Headline from '~/components/Blog/Headline'
 import PostCard from '~/components/Cards/PostCard'
 import Sidebar from '~/components/Blog/Sidebar'
 import Footer from '~/components/Footer'
-import imgAPI from '~/static/images/imgAPI'
-import link from '~/static/text/link'
 import axios from "axios"
 export default {
     components: {
@@ -58,14 +56,11 @@ export default {
     },
     data() {
         return {
-            imgAPI: imgAPI,
-            link: link,
             events: []
         }
     },
     async fetch() {
         let query = this.$route.query.q ? "?q="+this.$route.query.q : ""
-        console.log(process.env.EVENTS_URL+query)
         this.events = (await axios.get(process.env.EVENTS_URL+query)).data
     },
     head() {
