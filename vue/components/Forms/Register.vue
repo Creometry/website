@@ -101,13 +101,13 @@ export default {
         console.log("making post request to go-provisioner/api/v1/register")
         // get password from api
         // on success: store username in local storage and go to the next step
-         axios.post(this.INGRESS_URL+'/api/v1/register', {
+         axios.post('/api/register', {
           username: this.username,
         }).then(response => {
-            Cookie.set('rancher_token', response.data.token)
-            Cookie.set('userId', response.data.userId)
+            Cookie.set('rancher_token', response.token)
+            Cookie.set('userId', response.userId)
             Cookie.set('username', this.username)
-            this.password = response.data.password
+            this.password = response.password
         }).catch(error => {
           console.log(error)
         })
@@ -134,9 +134,6 @@ export default {
       const smDown = this.$store.state.breakpoints.smDown
       return smDown.indexOf(this.$mq) > -1
     },
-    INGRESS_URL() {
-        return this.$config.INGRESS_URL;
-      },
   },
   mounted() {
      if (Cookie.get('rancher_token') !== undefined) {

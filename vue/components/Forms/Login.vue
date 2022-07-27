@@ -103,12 +103,12 @@ export default {
       if (this.$refs.form.validate()) {
         // make post request to go-provisioner to login and 
         // get rancher_token and userId
-        axios.post(this.INGRESS_URL+'/api/v1/login', {
+        axios.post('/api/login', {
           username: this.username,
           password: this.password
         }).then(response => {
-            Cookie.set('rancher_token', response.data.token)
-            Cookie.set('userId', response.data.userId)
+            Cookie.set('rancher_token', response.token)
+            Cookie.set('userId', response.userId)
             Cookie.set('username', this.username)
             // redirect to project page
             window.location.href = this.$route.query.redirect
@@ -124,9 +124,6 @@ export default {
       const smDown = this.$store.state.breakpoints.smDown
       return smDown.indexOf(this.$mq) > -1
     },
-    INGRESS_URL() {
-        return this.$config.INGRESS_URL;
-      },
   },
   mounted() {
      if (Cookie.get('rancher_token') !== undefined) {
