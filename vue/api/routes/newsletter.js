@@ -7,5 +7,10 @@ router.post('/newsletter', function(req, res){
       res.json(response.data)
   }).catch(err=> res.status(500).json(err))
 })
+router.get('/newsletter', function(req, res){
+  axios.get(`${process.env.SUBSCRIPTION_URL}/newsletter`).then(response => {
+      res.send(response.data)
+  }).catch(err=> res.status(500).json(err))
+})
 
 module.exports = router

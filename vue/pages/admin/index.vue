@@ -1,11 +1,6 @@
 <template>
     <div class="main-wrap">
         <main-header />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
         <v-container>
             <v-btn color="blue" @click="getCSV">Get CSV</v-btn>
         </v-container>
@@ -15,6 +10,9 @@
 
 <style scoped lang="scss">
 @import '~/assets/pages';
+.container{
+    margin-top: 150px;
+}
 </style>
 
 <script>
@@ -29,7 +27,7 @@ export default ({
     },
     methods: {
         getCSV: function() {
-            axios.get("http://localhost:5000/newsletter", {responseType: 'blob'}).then((response) => {
+            axios.get("/api/newsletter", {responseType: 'blob'}).then((response) => {
                 const url = window.URL.createObjectURL(new Blob([response.data]));
                 const link = document.createElement('a');
                 link.href = url;
