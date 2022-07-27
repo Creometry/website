@@ -107,11 +107,18 @@ export default {
           username: this.username,
           password: this.password
         }).then(response => {
-            Cookie.set('rancher_token', response.token)
-            Cookie.set('userId', response.userId)
+          if (response.data.userId!==''&& response.data.token !==''
+          && response.data.uuid !==''
+          ) {
+            Cookie.set('rancher_token', response.data.token)
+            Cookie.set('userId', response.data.userId)
             Cookie.set('username', this.username)
+            Cookie.set("uuid", response.data.uuid)
             // redirect to project page
             window.location.href = this.$route.query.redirect
+          } else {
+            console.log('login failed')
+          }
         }).catch(error => {
           console.log(error)
         })

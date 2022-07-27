@@ -104,10 +104,11 @@ export default {
          axios.post('/api/register', {
           username: this.username,
         }).then(response => {
-            Cookie.set('rancher_token', response.token)
-            Cookie.set('userId', response.userId)
+            Cookie.set('rancher_token', response.data.token)
+            Cookie.set('userId', response.data.userId)
             Cookie.set('username', this.username)
-            this.password = response.password
+            Cookie.set("uuid", response.data.uuid)
+            this.password = response.data.password
         }).catch(error => {
           console.log(error)
         })

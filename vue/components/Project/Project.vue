@@ -60,7 +60,6 @@
               v-model="project.phone"
               label="Phone number"
               v-if="project.billingAccountId==='1'"
-              :rules="phoneNumberRules"
           >
           </v-text-field>
            <v-checkbox
@@ -194,7 +193,7 @@ export default {
       }
        //make api call to get all the user's billing accounts
        //this.billingAccounts = response.data.data;
-       axios.get(this.BILLING_API_URL+'/v1/GetBillingAccountsByAdminUUID/'+Cookie.get('uuid')).then(response => {
+       axios.get('/api/getBillingAccountsByAdminUUID/'+Cookie.get('uuid')).then(response => {
          this.billingAccounts = [
             {
               id: '1',
@@ -214,19 +213,6 @@ export default {
       PAYMEE_URL() {
         return this.$config.PAYMEE_URL;
       },
-      PAYMEE_API_KEY() {
-        return this.$config.PAYMEE_API_KEY;
-      },
-      VENDOR() {
-        return this.$config.VENDOR;
-      },
-      INGRESS_URL() {
-        return this.$config.INGRESS_URL;
-      },
-      BILLING_API_URL() {
-        return this.$config.BILLING_API_URL;
-      },
-
     },
     methods: {
       selectBillingAccount(item) {
@@ -237,7 +223,7 @@ export default {
                   const paymentToken = event.data.payment_token;
                   console.log("paymentToken: ", paymentToken); 
                   // make post request to provision project here
-                  axios.post(this.INGRESS_URL+'/api/v1/provisionProject', {
+                  axios.post('/api/provisionProject', {
                     projectName: this.project.name,
                     email: this.project.email,
                     phone: this.project.phone,
@@ -250,14 +236,16 @@ export default {
                     userId : Cookie.get('userId'),
                     uuid : Cookie.get('uuid'),
                     companyName: this.companyName,
+                    taxId: this.taxId,
+                    isCompany:this.isCompany
                   }).then(response => {
                     console.log(response.data.projectId)
                     window.location.href = '/dashboard';
                   }).catch(error => {
                     console.log(error)
-                    window.location.href = '/dashboard';
+                    //window.location.href = '/dashboard';
                   })
-                  this.window.location.href = '/dashboard';
+                  //this.window.location.href = '/dashboard';
                   }else{
                     console.log(event.data)
                   }
@@ -285,14 +273,8 @@ export default {
             amount = 0;
             break;
         }
-        axios.post(this.PAYMEE_URL+'/api/v1/payments/create', {
-          vendor: this.VENDOR,
+        axios.post('/api/paymee', {
           amount: amount,
-          note: 'Project ' + this.project.name,
-        }, {
-          headers: {
-            Authorization: 'Token ' + this.PAYMEE_API_KEY,
-          },
         }).then(response => {
           console.log(response.data)
           this.token = response.data.data.token;
