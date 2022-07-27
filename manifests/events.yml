@@ -31,8 +31,8 @@ spec:
                 key: PAYMEE_URL 
           - name: PAYMEE_API_KEY
             valueFrom:
-              configMapKeyRef:
-                name: website-configmap
+              secretKeyRef:
+                name: website-secret
                 key: PAYMEE_API_KEY 
           - name: MONGO_URI
             valueFrom:
@@ -62,12 +62,12 @@ spec:
             cpu: "5m"
             memory: "10Mi"  
         volumeMounts:
-          - name: config-volume
+          - name: secret-volume
             mountPath: /app/credentials
       volumes:
-      - name: config-volume
-        configMap:
-          name: website-configmap
+      - name: secret-volume
+        secret:
+          secretName: website-secret
           items:
             - key: token.json
               path: token.json

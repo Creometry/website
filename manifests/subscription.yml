@@ -26,13 +26,13 @@ spec:
         env:
           - name: SENDER_PWD
             valueFrom:
-              configMapKeyRef:
-                name: website-configmap
+              secretKeyRef:
+                name: website-secret
                 key: SENDER_PWD 
           - name: SENDER_ADRESS
             valueFrom:
-              configMapKeyRef:
-                name: website-configmap
+              secretKeyRef:
+                name: website-secret
                 key: SENDER_ADRESS 
           - name: MONGO_URI
             valueFrom:

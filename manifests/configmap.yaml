@@ -9,15 +9,9 @@ data:
   MONGO_URI: mongodb://website-mongodb-svc:27017
   SUBSCRIPTION_URL: http://subscription-svc:5000
   EVENTS_URL: http://events-svc:5001
-  VENDOR: ""
   PAYMEE_URL: https://sandbox.paymee.tn
-  PAYMEE_API_KEY: ""
   EVENTS_DB_NAME: Events
   SUBS_DB_NAME: Subscription
   COLLECTION_NAME_EVENT: EVENT
   COLLECTION_NAME_TRANSACTION: TRANSACTION
   COLLECTION_NAME_SUBS: SUBS
-  SENDER_PWD: ""
-  SENDER_ADRESS: ""
-  token.json: ""
-  credentials.json: ""

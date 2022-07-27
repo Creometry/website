@@ -39,13 +39,13 @@ spec:
                 key: PAYMEE_URL 
           - name: PAYMEE_API_KEY
             valueFrom:
-              configMapKeyRef:
-                name: website-configmap
+              secretKeyRef:
+                name: website-secret
                 key: PAYMEE_API_KEY 
           - name: VENDOR
             valueFrom:
-              configMapKeyRef:
-                name: website-configmap
+              secretKeyRef:
+                name: website-secret
                 key: VENDOR 
 ---
 apiVersion: v1
