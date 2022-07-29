@@ -13,6 +13,7 @@ import (
 	"website/events/database"
 	"website/events/models"
 
+	"github.com/google/uuid"
 	"go.mongodb.org/mongo-driver/bson"
 
 	"github.com/gofiber/fiber/v2"
@@ -135,6 +136,10 @@ func AddAttendee(c *fiber.Ctx) error {
 }
 
 func CreateEvent(c *fiber.Ctx) error {
+
+	if err := deletePastEvents(); err != nil {
+		return err
+	}
 	//Parse Body
 	event := new(models.Event)
 	if err := c.BodyParser(event); err != nil {
@@ -156,11 +161,19 @@ func CreateEvent(c *fiber.Ctx) error {
 		Attendees:               []*calendar.EventAttendee{},
 		GuestsCanInviteOthers:   &[]bool{false}[0],
 		GuestsCanSeeOtherGuests: &[]bool{false}[0],
+		ConferenceData: &calendar.ConferenceData{
+			CreateRequest: &calendar.CreateConferenceRequest{
+				RequestId: uuid.NewString(),
+				ConferenceSolutionKey: &calendar.ConferenceSolutionKey{
+					Type: "hangoutsMeet",
+				},
+			},
+		},
 	}
 
 	//Create new Calendar Event
 	calendarId := "primary"
-	NewEvent, err := config.Srv.Events.Insert(calendarId, NewEvent).Do()
+	NewEvent, err := config.Srv.Events.Insert(calendarId, NewEvent).ConferenceDataVersion(1).Do()
 	if err != nil {
 		return err
 	}
@@ -171,6 +184,44 @@ func CreateEvent(c *fiber.Ctx) error {
 		log.Fatalln("Insert:", err)
 		return err
 	}
-
 	return c.JSON(insertResult)
+}
+
+func deletePastEvents() error {
+	myEvents := models.Events{}
+
+	//get all events from DB
+	cursor, err := database.EventColl.Find(context.TODO(), bson.M{})
+	if err != nil {
+		return err
+	}
+	if err := cursor.Err(); err != nil {
+		return err
+	}
+	if err = cursor.All(context.TODO(), &myEvents.Events); err != nil {
+		return err
+	}
+	cursor.Close(context.TODO())
+
+	for index := range myEvents.Events {
+		//Get Event Info from Google API
+		event, err := config.Srv.Events.Get("primary", myEvents.Events[index].CalendarId).Do()
+		if err != nil {
+			return err
+		}
+		// convert string to time
+		date, err := time.Parse("2006-01-02", event.Start.DateTime[:10])
+
+		if err != nil {
+			return err
+		}
+		// if event occurred
+		if date.Before(time.Now()) {
+			_, err := database.EventColl.DeleteOne(context.TODO(), bson.M{"_id": myEvents.Events[index].Id})
+			if err != nil {
+				return err
+			}
+		}
+	}
+	return nil
 }
