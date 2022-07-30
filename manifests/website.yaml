@@ -18,20 +18,15 @@ spec:
     spec:
       containers:
       - name: site
-        image: azizbhy/website:front
+        image: creometry/website:nuxtV0.1.0
         ports:
         - containerPort: 8001
         env:
-          - name: SUBSCRIPTION_URL
+          - name: SERVER_URL
             valueFrom:
               configMapKeyRef:
                 name: website-configmap
-                key: SUBSCRIPTION_URL
-          - name: EVENTS_URL
-            valueFrom:
-              configMapKeyRef:
-                name: website-configmap
-                key: EVENTS_URL 
+                key: SERVER_URL 
           - name: PAYMEE_URL
             valueFrom:
               configMapKeyRef:
@@ -47,6 +42,16 @@ spec:
               secretKeyRef:
                 name: website-secret
                 key: VENDOR 
+          - name: SENDER_ADRESS
+            valueFrom:
+              secretKeyRef:
+                name: website-secret
+                key: SENDER_ADRESS 
+          - name: SENDER_PWD
+            valueFrom:
+              secretKeyRef:
+                name: website-secret
+                key: SENDER_PWD 
 ---
 apiVersion: v1
 kind: Service

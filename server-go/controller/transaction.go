@@ -3,8 +3,8 @@ package controller
 import (
 	"context"
 
-	"website/events/database"
-	"website/events/models"
+	"website/server/database"
+	"website/server/models"
 
 	"go.mongodb.org/mongo-driver/bson"
 

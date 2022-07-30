@@ -7,11 +7,9 @@ metadata:
     projectName: website
 data:
   MONGO_URI: mongodb://website-mongodb-svc:27017
-  SUBSCRIPTION_URL: http://subscription-svc:5000
-  EVENTS_URL: http://events-svc:5001
+  SERVER_URL: http://events-svc:5001
   PAYMEE_URL: https://sandbox.paymee.tn
-  EVENTS_DB_NAME: Events
-  SUBS_DB_NAME: Subscription
+  EVENTS_DB_NAME: Website
   COLLECTION_NAME_EVENT: EVENT
   COLLECTION_NAME_TRANSACTION: TRANSACTION
   COLLECTION_NAME_SUBS: SUBS

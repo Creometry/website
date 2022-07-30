@@ -3,9 +3,9 @@ package main
 import (
 	"log"
 	"os"
-	"website/events/config"
-	"website/events/database"
-	"website/events/router"
+	"website/server/config"
+	"website/server/database"
+	"website/server/router"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -31,5 +31,5 @@ func main() {
 	}))
 
 	router.SetupRoutes(app)
-	app.Listen(":5001")
+	app.Listen(":5000")
 }

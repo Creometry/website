@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: events-deploy
+  name: website-server-deploy
   namespace: website
   labels:
     projectName: website
@@ -11,18 +11,18 @@ spec:
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      run: website-events
+      run: website-server
   replicas: 1
   template:
     metadata:
       labels:
-        run: website-events
+        run: website-server
     spec:
       containers:
-      - name: events
-        image: azizbhy/website:events
+      - name: website-server
+        image: creometry/website:serverV0.1.0
         ports:
-        - containerPort: 5001
+        - containerPort: 5000
         env:
           - name: PAYMEE_URL
             valueFrom:
@@ -54,6 +54,11 @@ spec:
               configMapKeyRef:
                 name: website-configmap
                 key: COLLECTION_NAME_TRANSACTION 
+          - name: COLLECTION_NAME_SUBS
+            valueFrom:
+              configMapKeyRef:
+                name: website-configmap
+                key: COLLECTION_NAME_SUBS 
         resources:
           limits:
             cpu: "200m"
@@ -77,13 +82,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: events-svc
+  name: website-server-svc
   namespace: website
   labels:
     projectName: website
 spec:
   ports:
-  - port: 5001
+  - port: 5000
     protocol: TCP
   selector:
-    run: website-events
+    run: website-server

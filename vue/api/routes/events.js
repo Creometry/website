@@ -3,13 +3,13 @@ const router = Router()
 const axios = require('axios')
 
 router.put('/events', function(req, res){
-  axios.put(`${process.env.EVENTS_URL}/events`, req.body).then(response => {
+  axios.put(`${process.env.SERVER_URL}/events`, req.body).then(response => {
       res.json(response.data)
   }).catch(err=> res.status(500).json(err))
 })
 
 router.post('/events', function(req, res){
-  axios.post(`${process.env.EVENTS_URL}/events`, req.body).then(response => {
+  axios.post(`${process.env.SERVER_URL}/events`, req.body).then(response => {
       res.json(response.data)
   }).catch(err=> res.status(500).json(err))
 })

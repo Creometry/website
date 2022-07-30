@@ -1,7 +1,7 @@
 package router
 
 import (
-	"website/events/controller"
+	"website/server/controller"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -13,4 +13,7 @@ func SetupRoutes(app *fiber.App) {
 	app.Put("/events", controller.AddAttendee)
 	// Transaction
 	app.Get("/transactions", controller.GetTransactions)
+	//newsletter
+	app.Post("/newsletter", controller.AddEmail)
+	app.Get("/newsletter", controller.GetCSV)
 }

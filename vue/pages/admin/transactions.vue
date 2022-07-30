@@ -28,7 +28,7 @@ export default {
         'main-footer': Footer,
     },
     async fetch(){
-        this.transactions = (await axios.get(`${process.env.EVENTS_URL}/transactions`)).data
+        this.transactions = (await axios.get(`${process.env.SERVER_URL}/transactions`)).data
     },
     data() {
 

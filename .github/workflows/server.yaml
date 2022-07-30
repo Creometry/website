@@ -3,8 +3,6 @@ name: Events Service CI
 on:
   pull_request:
     branches: [main]
-  push: 
-    branches: [36-add-github-actions]
 
 jobs:
   build:
@@ -54,7 +52,7 @@ jobs:
         name: Build & push Docker image
         with:
           image: creometry/website
-          tags: eventsV0.1.0
+          tags: serverV0.1.0
           dockerfile: events/Dockerfile
           registry: docker.io
           directory: events

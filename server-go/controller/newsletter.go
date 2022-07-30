@@ -3,8 +3,8 @@ package controller
 import (
 	"context"
 	"net/mail"
-	"website/subscription/database"
-	m "website/subscription/models"
+	"website/server/database"
+	m "website/server/models"
 
 	"github.com/gofiber/fiber/v2"
 	"go.mongodb.org/mongo-driver/bson"
@@ -23,9 +23,9 @@ func AddEmail(c *fiber.Ctx) error {
 
 	tempSub := m.Subscription{}
 
-	err := database.Collection.FindOne(context.TODO(), bson.M{"email": sub.Email}).Decode(&tempSub)
+	err := database.NewsletterColl.FindOne(context.TODO(), bson.M{"email": sub.Email}).Decode(&tempSub)
 	if err != nil {
-		_, err := database.Collection.InsertOne(context.Background(), sub)
+		_, err := database.NewsletterColl.InsertOne(context.Background(), sub)
 		if err != nil {
 			return err
 		}
@@ -38,7 +38,7 @@ func AddEmail(c *fiber.Ctx) error {
 func GetCSV(c *fiber.Ctx) error {
 	subs := m.Subscriptions{}
 
-	cursor, err := database.Collection.Find(context.TODO(), bson.M{})
+	cursor, err := database.NewsletterColl.Find(context.TODO(), bson.M{})
 	if err != nil {
 		return err
 	}

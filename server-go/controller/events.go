@@ -9,9 +9,9 @@ import (
 	"os"
 	"strings"
 	"time"
-	"website/events/config"
-	"website/events/database"
-	"website/events/models"
+	"website/server/config"
+	"website/server/database"
+	"website/server/models"
 
 	"github.com/google/uuid"
 	"go.mongodb.org/mongo-driver/bson"
