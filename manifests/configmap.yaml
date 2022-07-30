@@ -9,7 +9,7 @@ data:
   MONGO_URI: mongodb://website-mongodb-svc:27017
   SERVER_URL: http://events-svc:5001
   PAYMEE_URL: https://sandbox.paymee.tn
-  EVENTS_DB_NAME: Website
+  DB_NAME: Website
   COLLECTION_NAME_EVENT: EVENT
   COLLECTION_NAME_TRANSACTION: TRANSACTION
   COLLECTION_NAME_SUBS: SUBS

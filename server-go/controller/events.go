@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -85,10 +86,20 @@ func AddAttendee(c *fiber.Ctx) error {
 		if attendee.PaymentToken == "" {
 			return errors.New("this event is not free, need payment token")
 		}
+		//get values from files
+		paymeeURL, err := os.ReadFile("variables/PAYMEE_URL")
+		if err != nil {
+			return err
+		}
+		paymeekey, err := os.ReadFile("secrets/PAYMEE_API_KEY")
+		if err != nil {
+			return err
+		}
+
 		//send Get request to Paymee
 		client := &http.Client{}
-		req, err := http.NewRequest("GET", os.Getenv("PAYMEE_URL")+"/api/v1/payments/"+attendee.PaymentToken+"/check", nil)
-		req.Header.Set("Authorization", "Token "+os.Getenv("PAYMEE_API_KEY"))
+		req, err := http.NewRequest("GET", string(paymeeURL)+"/api/v1/payments/"+attendee.PaymentToken+"/check", nil)
+		req.Header.Set("Authorization", "Token "+string(paymeekey))
 		resp, err := client.Do(req)
 		defer resp.Body.Close()
 		if err != nil {
@@ -101,6 +112,9 @@ func AddAttendee(c *fiber.Ctx) error {
 			log.Fatal(err)
 		}
 		//check if amount is same
+		fmt.Printf("%v", paymeeResp)
+		fmt.Printf("%v", tempEvent.Price)
+
 		if paymeeResp.Data.Amount != tempEvent.Price {
 			return errors.New("Amount is not same, error ")
 		}

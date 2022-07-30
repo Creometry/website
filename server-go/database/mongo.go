@@ -18,14 +18,29 @@ var Client *mongo.Client
 func Connect() error {
 	var err error
 
-	// Load credentials
-	mongo_uri := os.Getenv("MONGO_URI")
-	dbName := os.Getenv("DB_NAME")
-	eventCollName := os.Getenv("COLLECTION_NAME_EVENT")
-	transactionCollName := os.Getenv("COLLECTION_NAME_TRANSACTION")
-	newsletterCollName := os.Getenv("COLLECTION_NAME_SUBS")
+	// Load values
+	mongo_uri, err := os.ReadFile("variables/MONGO_URI")
+	if err != nil {
+		return err
+	}
+	dbName, err := os.ReadFile("variables/DB_NAME")
+	if err != nil {
+		return err
+	}
+	eventCollName, err := os.ReadFile("variables/COLLECTION_NAME_EVENT")
+	if err != nil {
+		return err
+	}
+	transactionCollName, err := os.ReadFile("variables/COLLECTION_NAME_TRANSACTION")
+	if err != nil {
+		return err
+	}
+	newsletterCollName, err := os.ReadFile("variables/COLLECTION_NAME_SUBS")
+	if err != nil {
+		return err
+	}
 	// Create a new Client
-	Client, err = mongo.Connect(context.TODO(), options.Client().ApplyURI(mongo_uri))
+	Client, err = mongo.Connect(context.TODO(), options.Client().ApplyURI(string(mongo_uri)))
 	if err != nil {
 		log.Fatalln("Connect:", err)
 		return err
@@ -37,9 +52,9 @@ func Connect() error {
 		return err
 	}
 
-	EventColl = Client.Database(dbName).Collection(eventCollName)
-	TransColl = Client.Database(dbName).Collection(transactionCollName)
-	NewsletterColl = Client.Database(dbName).Collection(newsletterCollName)
+	EventColl = Client.Database(string(dbName)).Collection(string(eventCollName))
+	TransColl = Client.Database(string(dbName)).Collection(string(transactionCollName))
+	NewsletterColl = Client.Database(string(dbName)).Collection(string(newsletterCollName))
 
 	log.Println("Opened database connection and loaded collection")
 
