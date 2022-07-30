@@ -30,7 +30,6 @@ func main() {
 
 	app.Post("/newsletter", controller.AddEmail)
 	app.Get("/newsletter", controller.GetCSV)
-	app.Post("/mail", controller.SendMail)
 
 	app.Listen(":5000")
 }
