@@ -23,14 +23,26 @@
               name="Username"
               required
             />
+            <v-text-field
+              v-model="email"
+              :label="$t('common.register_email')"
+              :rules="emailRules"
+              color="secondary"
+              name="Email"
+              required
+            />
           </v-col>
-          <div v-if="this.password">
-            Password : {{this.password}} <v-btn
-            small
-            color="primary"
-            @click="copyPasswordToClipboard"
-            >COPY AND CONTINUE</v-btn>
-          </div>
+            <v-banner
+              v-if="this.message"
+              color="primary"
+              rounded
+            >
+            <div style="
+            color : white;
+            ">
+              {{this.message}}
+            </div>
+      </v-banner>
         </v-row>
         <div class="btn-area flex">
           <div class="form-helper">
@@ -85,7 +97,7 @@ export default {
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
       ],
-      password: '',
+      message: '',
       confirmPassword: '',
       requiredRules: [v => !!v || 'This field is required'],
       passwordRules: [
@@ -97,29 +109,25 @@ export default {
   },
   methods: {
     handleSubmit() {
+      this.message = ''
       if (this.$refs.form.validate()) {
-        console.log("making post request to go-provisioner/api/v1/register")
-        // get password from api
-        // on success: store username in local storage and go to the next step
          axios.post('/api/register', {
           username: this.username,
-        }).then(response => {
-            Cookie.set('rancher_token', response.data.token)
-            Cookie.set('userId', response.data.userId)
-            Cookie.set('username', this.username)
-            Cookie.set("uuid", response.data.uuid)
-            this.password = response.data.password
+          email: this.email,
+        }).then(response => {   
+          console.log(response.data.message)        
+            this.message = "Registration successful. Please check your email to find your password."
+            this.username=""
+            this.email=""
         }).catch(error => {
-          console.log(error)
+            this.message = error.message
+            this.username=""
+            this.email=""
         })
         console.log('data submitted')
+        
       }
     },
-    copyPasswordToClipboard(){
-      navigator.clipboard.writeText(this.password)
-      // redirect to query paaram redirect
-      window.location.href = this.$route.query.redirect
-    }
   },
   computed: {
     isTablet() {
